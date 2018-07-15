@@ -1,0 +1,49 @@
+{
+  "pages":[ 
+    "pages/index/index",
+    "pages/login/login",
+    "pages/wait/wait",
+    "pages/mine/mine",
+    "pages/message/message",
+    "pages/chat/chat",
+    "pages/service/service",
+    "pages/register/register",
+    "pages/wallet/wallet",
+    "pages/order/myOrder",
+    "pages/order/orderService",
+    "pages/order/orderPassenger",
+    "pages/evaluation/evaluationP",
+    "pages/evaluation/evaluationS",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundColor": "#5cd79a",
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#5cd79a",
+    "navigationBarTitleText": "2333",
+    "navigationBarTextStyle":"light"
+  },
+  "tabBar": {
+    "selectedColor": "#5cd79a",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tabBar/Tabbar_Home_Empty.png",
+        "selectedIconPath": "images/tabBar/Tabbar_Home_Full.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "iconPath": "images/tabBar/Tabbar_Msg_Empty.png",
+        "selectedIconPath": "images/tabBar/Tabbar_Msg_Full.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "images/tabBar/Tabbar_My_Empty.png",
+        "selectedIconPath": "images/tabBar/Tabbar_My_Full.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.changyu.foryou.mapper.UsersMapper">
+	<cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
+	<resultMap id="BaseResultMap" type="com.changyu.foryou.model.Users">
+		<id column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="SMALLINT" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+		<result column="last_login_date" property="lastLoginDate"
+			jdbcType="DATE" />
+		<result column="create_time" property="createTime" jdbcType="DATE" />
+		<result column="sex" property="sex" jdbcType="SMALLINT" />
+		<result column="academy" property="academy" jdbcType="VARCHAR" />
+		<result column="san_color" property="sanColor" jdbcType="VARCHAR" />
+		<result column="san_style" property="sanStyle" jdbcType="VARCHAR" />
+		<result column="san_feature" property="sanFeature" jdbcType="VARCHAR" />
+		<result column="passenger_star" property="passengerStar" jdbcType="REAL" />
+		<result column="driver_star" property="driverStar" jdbcType="REAL" />
+		<result column="ballance" property="ballance" jdbcType="REAL" />
+		<result column="last_city" property="lastCity" jdbcType="VARCHAR" />
+		<result column="last_district" property="lastDistrict" jdbcType="VARCHAR" />
+		<result column="last_longtitude" property="lastLongitude" jdbcType="VARCHAR" />
+		<result column="last_latitude" property="lastLatitude" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		user_id,phone, type, nickname, img_url,
+		last_login_date,create_time,sex,academy,san_color,san_style,san_feature,passenger_star,driver_star,ballance
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String" flushCache="true" useCache="false">
+		select
+		*
+		FROM
+		users
+		WHERE
+		users.user_id = #{user_id,jdbcType=VARCHAR}
+		LIMIT 1
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from users
+		where user_id = #{user_id,jdbcType=VARCHAR}
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.changyu.foryou.model.Users">
+		insert into users
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="nickname != null">
+				nickname,
+			</if>
+			<if test="imgUrl != null">
+				img_url,
+			</if>
+			<if test="lastLoginDate != null">
+				last_login_date,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=SMALLINT},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=SMALLINT},
+			</if>
+			<if test="nickname != null">
+				#{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="imgUrl != null">
+				#{imgUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginDate != null">
+				#{lastLoginDate,jdbcType=DATE},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=DATE},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.changyu.foryou.model.Users">
+		update users
+		<set>
+			<if test="sex!=null">
+				sex=#{sex,jdbcType=SMALLINT},
+			</if>
+			<if test="academy!=null">
+				academy=#{academy,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=SMALLINT},
+			</if>
+			<if test="nickname != null">
+				nickname = #{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="imgUrl != null">
+				img_url = #{imgUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginDate != null">
+				last_login_date = #{lastLoginDate,jdbcType=DATE},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</update>
+	
+	
+	<update id="updateUserBallance">
+		update users
+		<set>
+			<if test="ballance != null">
+				ballance = #{ballance,jdbcType=REAL},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 登录检查接口 -->
+	<select id="checkLogin" resultMap="BaseResultMap">
+		select * from users where
+		user_id=#{user_id,jdbcType=VARCHAR}
+	</select>
+	
+	<update id="updateUserSanReg" parameterType="com.changyu.foryou.model.Users">
+		update users
+		<set>
+			<if test="type != null">
+				type = #{type,jdbcType=SMALLINT},
+			</if>
+			<if test="sanColor !=null">
+				san_color=#{sanColor,jdbcType=VARCHAR},
+			</if>
+			<if test="sanStyle !=null">
+				san_style=#{sanStyle,jdbcType=VARCHAR},
+			</if>
+			<if test="sanFeature !=null">
+				san_feature=#{sanFeature,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</update>
+	
+	
+	<update id="updateUserLocation" >
+		update users
+		<set>
+			<if test="lastCity != null">
+				last_city = #{lastCity,jdbcType=VARCHAR},
+			</if>
+			<if test="lastDistrict !=null">
+				last_district=#{lastDistrict,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLongitude !=null">
+				last_longitude=#{lastLongitude,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLatitude !=null">
+				last_latitude=#{lastLatitude,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</update>
+	
+	<select id="getDistrictUsers" resultMap="BaseResultMap" flushCache="true" useCache="false">
+		select
+		*
+		from users
+		where last_city = #{lastCity,jdbcType=VARCHAR} 
+		and last_district = #{lastDistrict,jdbcType=VARCHAR}
+	</select>
+	
+	
+</mapper>

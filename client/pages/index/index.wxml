@@ -1,0 +1,49 @@
+<view class="container">
+    <scroll-view class="horse" wx:if='{{orderingId}}' bindtap='onProcessOrder'>
+        <view class="scrolltxt weui-cell__ft_in-access" >
+          <view class="marquee_box">
+            <view class="marquee_text" style="transform: translateX(-{{marqueeDistance}}px)">
+              <text>{{text}}</text>
+              <text style="margin-right:{{marquee_margin}}px;"></text>
+              <text style="margin-right:{{marquee_margin}}px;">{{text}}</text>        
+            </view>
+          </view>
+        </view>
+    </scroll-view>
+    
+    <view class="content">
+        <view class="didi-time">出发时间: {{depart_time}}</view>
+        
+        <view class="circle-str"></view>
+        <view bindtap="onChooseFromLocation" > 
+          <view class="didi-input-str" style="color: #333333">{{address}}</view>
+        </view>
+        <view bindtap="onChooseDestLocation" >
+        <input type="text" class="didi-input-end" value="{{destination}}"  style="color: #333333" placeholder="你要去哪儿" placeholder-color="#ccccccc" focus="{{false}}"/>
+        </view>
+        <view class="circle-end"></view>
+
+        <view wx:if="{{callCart}}">
+          <button  class="didi-btn"bindtap="toDaSan">我要打伞</button>
+        </view>
+        <view wx:else class="cost">
+         <view class="cost-title" >
+            <view class="cost-tip"> <image src="../../images/assets/remind.png"></image></view>
+            <view class="cost-item">
+              大约{{distance}}公里，费用1.0元</view>   
+            </view>
+          <button  class="cost-btn"bindtap="toWait">提交订单</button>
+        </view>    
+    </view>
+
+    <view class="swiper">
+    <swiper autoplay="{{true}}" interval="{{interval}}" circular="{{true}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+      <swiper-item>
+    <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+     </block>
+     </swiper>
+    </view>
+
+</view>

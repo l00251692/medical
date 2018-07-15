@@ -1,0 +1,30 @@
+package com.changyu.foryou.mapper;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.changyu.foryou.model.Users;
+
+public interface UsersMapper {
+
+
+    int insertSelective(Users record);
+
+    Users selectByPrimaryKey(String userId);
+
+    int updateByPrimaryKeySelective(Users record);
+    
+    int updateUserBallance(Map<String, Object> paramMap);
+    
+    int updateUserLocation(Map<String, Object> paramMap);
+    
+    int updateUserSanReg(Users record);
+
+	Users checkLogin(String user_id);
+	
+	List<Users> getDistrictUsers(Map<String, Object> paramMap);
+
+}

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.changyu.foryou.mapper.OrderMapper">
+	<resultMap id="BaseResultMap" type="com.changyu.foryou.model.Order">
+		<id column="order_id" property="orderId" jdbcType="VARCHAR" />
+		<id column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="from_addr" property="fromAddr" jdbcType="VARCHAR" />
+		<result column="from_addr_detai" property="fromAddrDetai" jdbcType="VARCHAR" />
+		<result column="from_addr_longitude" property="fromAddrLongitude" jdbcType="VARCHAR" />
+		<result column="from_addr_latitude" property="fromAddrLatitude" jdbcType="VARCHAR" />
+		<result column="to_addr" property="toAddr" jdbcType="VARCHAR" />
+		<result column="to_addr_detai" property="toAddrDetai" jdbcType="VARCHAR" />
+		<result column="to_addr_longitude" property="toAddrLongitude" jdbcType="VARCHAR" />
+		<result column="to_addr_latitude" property="toAddrLatitude" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="depart_time" property="departTime" jdbcType="TIMESTAMP" />
+		<result column="rcv_time" property="rcvTime" jdbcType="TIMESTAMP" />
+		<result column="order_type" property="orderType" jdbcType="SMALLINT" />
+		<result column="order_status" property="orderStatus" jdbcType="SMALLINT" />
+		<result column="order_price" property="orderPrice" jdbcType="FLOAT" />
+		<result column="records" property="records" jdbcType="VARCHAR" />
+		<result column="receive_user" property="receiveUser" jdbcType="VARCHAR" />	
+		<result column="city_name" property="cityName" jdbcType="VARCHAR" />
+		<result column="district_name" property="districtName" jdbcType="VARCHAR" />	
+		<result column="star_by_passenger" property="startByPassenger" jdbcType="SMALLINT" />
+		<result column="star_by_driver" property="starByDriver" jdbcType="SMALLINT" />
+	</resultMap>
+	
+	<insert id="insertSelective" >
+		insert into orders
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="orderId != null">
+				order_id,
+			</if>
+			<if test="createUser != null">
+				create_user,
+			</if>
+			<if test="fromAddr != null">
+				from_addr,
+			</if>
+			<if test="fromAddrDetai != null">
+				from_addr_detai,
+			</if>
+			<if test="fromAddrLongitude != null">
+				from_addr_longitude,
+			</if>
+			<if test="fromAddrLatitude != null">
+				from_addr_latitude,
+			</if>
+			<if test="toAddr != null">
+				to_addr,
+			</if>
+			<if test="toAddrDetai != null">
+				to_addr_detai,
+			</if>
+			<if test="toAddrLongitude != null">
+				to_addr_longitude,
+			</if>
+
+			<if test="toAddrLatitude != null">
+				to_addr_latitude,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="departTime != null">
+				depart_time,
+			</if>
+			<if test="orderType != null">
+				order_type,
+			</if>
+			<if test="orderStatus != null">
+				order_status,
+			</if>
+			<if test="orderPrice != null">
+				order_price,
+			</if>
+			<if test="records != null">
+				records,
+			</if>
+			<if test="receiveUser != null">
+				receive_user,
+			</if>
+			<if test="cityName != null">
+				city_name,
+			</if>
+			<if test="districtName != null">
+				district_name,
+			</if>	
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="orderId != null">
+				#{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="createUser != null">
+				#{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="fromAddr != null">
+				#{fromAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="fromAddrDetai != null">
+				#{fromAddrDetai,jdbcType=VARCHAR},
+			</if>
+			<if test="fromAddrLongitude != null">
+				#{fromAddrLongitude,jdbcType=VARCHAR},
+			</if>
+			<if test="fromAddrLatitude != null">
+				#{fromAddrLatitude,jdbcType=VARCHAR},
+			</if>
+			<if test="toAddr != null">
+				#{toAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="toAddrDetai != null">
+				#{toAddrDetai,jdbcType=VARCHAR},
+			</if>
+			<if test="toAddrLongitude != null">
+				#{toAddrLongitude,jdbcType=VARCHAR},
+			</if>
+			<if test="toAddrLatitude != null">
+				#{toAddrLatitude,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="departTime != null">
+				#{departTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="orderType != null">
+				#{orderType,jdbcType=SMALLINT},
+			</if>
+			<if test="orderStatus != null">
+				#{orderStatus,jdbcType=SMALLINT},
+			</if>
+			<if test="orderPrice != null">
+				#{orderPrice,jdbcType=FLOAT},
+			</if>
+			<if test="records != null">
+				#{records,jdbcType=VARCHAR},
+			</if>
+			<if test="receiveUser != null">
+				#{receiveUser,jdbcType=VARCHAR},
+			</if>
+			<if test="cityName != null">
+				#{cityName,jdbcType=VARCHAR},
+			</if>
+			<if test="districtName != null">
+				#{districtName,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" flushCache="true" useCache="false">
+		select
+		*
+		from orders
+		where order_id = #{orderId,jdbcType=VARCHAR} 
+	</select>
+	
+	<select id="getMineProcessingOrder" resultMap="BaseResultMap" flushCache="true" useCache="false">
+		select
+		*
+		from orders
+		where 
+			create_user = #{userId,jdbcType=VARCHAR}
+		and(
+			order_status = 0
+			OR order_status = 2
+			OR order_status = 3
+		)
+		ORDER BY
+			create_time DESC LIMIT 1
+	</select>
+	
+	<select id="getMineProcessingOrderDriver" resultMap="BaseResultMap" flushCache="true" useCache="false">
+		select
+		*
+		from orders
+		where 
+			receive_user = #{userId,jdbcType=VARCHAR}
+		and(
+			order_status = 0
+			OR order_status = 2
+		)
+		ORDER BY
+			create_time DESC LIMIT 1
+	</select>
+	
+	<update id="updateOrderReceiver">
+		 update orders set
+		<if test="receiveUser != null">
+			receive_user=#{receiveUser, jdbcType=VARCHAR}
+		</if>
+		<if test="records != null">
+			,records=#{records, jdbcType=VARCHAR}
+		</if>
+		<if test="rcvTime != null">
+			,rcv_time=#{rcvTime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="orderStatus != null">
+			,order_status=#{orderStatus, jdbcType=SMALLINT}
+		</if>
+		<where>
+			order_id=#{orderId, jdbcType=VARCHAR}
+		</where> 
+	</update>
+	
+	<update id="updateOrderStatus">
+		 update orders set
+		<if test="orderStatus != null">
+			order_status=#{orderStatus, jdbcType=SMALLINT}
+		</if>
+		<if test="records != null">
+			,records=#{records, jdbcType=VARCHAR}
+		</if>
+		<where>
+			order_id=#{orderId, jdbcType=VARCHAR}
+		</where> 
+	</update>
+	
+	
+	<update id="updatePassengerStar">
+		 update orders set
+		<if test="startByPassenger != null">
+			star_by_passenger=#{startByPassenger, jdbcType=SMALLINT}
+		</if>
+		<where>
+			order_id=#{orderId, jdbcType=VARCHAR}
+		</where> 
+	</update>
+	
+	<update id="updateDriverStar">
+		 update orders set
+		<if test="starByDriver != null">
+			star_by_driver=#{starByDriver, jdbcType=SMALLINT}
+		</if>
+		<where>
+			order_id=#{orderId, jdbcType=VARCHAR}
+		</where> 
+	</update>
+	
+	<select id="getNearByOrders" resultMap="BaseResultMap" flushCache="true" useCache="false">
+		select
+		*
+		from orders
+		where city_name = #{cityName,jdbcType=VARCHAR} 
+		and district_name = #{districtName,jdbcType=VARCHAR}
+		and order_status = 0
+		order by
+		create_time DESC
+		<if test="limit !=null and offset !=null">
+			LIMIT #{limit,jdbcType=INTEGER} OFFSET
+			#{offset,jdbcType=INTEGER}
+		</if> 
+	</select>
+	
+	<select id="getDriverOrders" resultMap="BaseResultMap" flushCache="true" useCache="false">
+		select
+		*
+		from orders
+		where 
+		receive_user = #{userId,jdbcType=VARCHAR}
+		order by
+		create_time DESC
+		<if test="limit !=null and offset !=null">
+			LIMIT #{limit,jdbcType=INTEGER} OFFSET
+			#{offset,jdbcType=INTEGER}
+		</if> 
+	</select>
+	
+	<select id="getPassengerOrders" resultMap="BaseResultMap" flushCache="true" useCache="false">
+		select
+		*
+		from orders
+		where 
+		create_user = #{userId,jdbcType=VARCHAR}
+		order by
+		create_time DESC
+		<if test="limit !=null and offset !=null">
+			LIMIT #{limit,jdbcType=INTEGER} OFFSET
+			#{offset,jdbcType=INTEGER}
+		</if> 
+	</select>
+	
+	
+	
+</mapper>
