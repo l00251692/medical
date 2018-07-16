@@ -16,43 +16,15 @@ import { getMineInfo, addOrder, getMineProcessingOrder } from '../../utils/api'
 const app = getApp()
 Page({
   data: {
-    address:"我的位置",
-    depart_time:"现在",
-    // currentTab: 1,
-    // currentCost: 0,
-    // cart: '快车',
-    navScrollLeft: 0,
-    duration: 1000,
-    interval: 5000,
-    isLoading: true,
-    color: "#cccccc",
-    callCart: true,
-    distance: 0,
-    destination: '',
-    bluraddress: '',
-    index: '',
-    imgUrls: [
-      '../../images/assets/swiper-1.png',
-      "../../images/assets/swiper-2.png"
-    ]
+    agree:false
   },
   onLoad: function (options) {
     var that = this;
-
-    app.getCurrentAddress(function (address) {
-      if (address.addr_id) {
-        address['title'] = `${address.addr} ${address.detail}`
-      }
-      that.setData({
-        address: address['title'],
-        address_detail: address
-      })
-    });
   },
 
   onShow() { 
-    this.initData();
-    this.init();
+    //this.initData();
+    //this.init();
   },
 
 
@@ -109,88 +81,6 @@ Page({
     })
   },
 
-  scrolltxt: function () {
-    var that = this;
-    var length = that.data.length;//滚动文字的宽度
-    var windowWidth = that.data.windowWidth;//屏幕宽度
-    // if (length > windowWidth) {
-    var interval = setInterval(function () {
-      var maxscrollwidth = length + that.data.marquee_margin;//滚动的最大宽度，文字宽度+间距，如果需要一行文字滚完后再显示第二行可以修改marquee_margin值等于windowWidth即可
-      var crentleft = that.data.marqueeDistance;
-      if (crentleft < maxscrollwidth) {//判断是否滚动到最大宽度
-        that.setData({
-          marqueeDistance: crentleft + that.data.marqueePace
-        })
-      }
-      else {
-        //console.log("替换");
-        that.setData({
-          marqueeDistance: 0 // 直接重新滚动
-        });
-        clearInterval(interval);
-        that.scrolltxt();
-      }
-    }, that.data.rollinterval);
-    // }
-    // else {
-    //   that.setData({ marquee_margin: "1000" });//只显示一条不滚动右边间距加大，防止重复显
-    // }
-  },
-
-
-  onChooseFromLocation(e) {
-    var that = this
-    wx.chooseLocation({
-      success: function (res) {
-        var {
-          name: title, address,
-          longitude, latitude
-          } = res
-        var location = {
-          longitude, latitude
-        }
-        reverseGeocoder({
-          location,
-          success(data) {
-            console.log(data)
-            that.setData({
-              address_detail: Object.assign({
-                title, address, location
-              }, data),
-              address: title,
-            })
-          }
-        })
-      },
-    })
-  },
-
-  onChooseDestLocation(e) {
-    var that = this
-    wx.chooseLocation({
-      success: function (res) {
-        var {
-          name: title, address,
-          longitude, latitude
-        } = res
-        var location = {
-          longitude, latitude
-        }
-        reverseGeocoder({
-          location,
-          success(data) {
-            that.setData({
-              destination_detail: Object.assign({
-                title, address, location
-              }, data),
-              destination: title
-            })
-          }
-        })
-      },
-    })
-  },
-
   toDaSan(e) {
     const destination = this.data.destination
     const address_detail = this.data.address_detail
@@ -232,87 +122,11 @@ Page({
     }
   },
 
-  toWait(e) {
-    var that = this
-    var address_detail = this.data.address_detail
-    var destination_detail = this.data.destination_detail
-    //用户授权则登录，否则等用户点击授权
-    wx.getSetting({
-      success: (res) => {
-        if (res.authSetting['scope.userInfo']) {
-          getApp().getLoginInfo(loginInfo => {
-            if (loginInfo != null && loginInfo.is_login) {
-              that.setData({
-                loginInfo: loginInfo,
-                userInfo: loginInfo.userInfo
-              })
-
-              getMineInfo({
-                success(data) {
-                  if (data.phone != null && data.phone.length > 0) {
-                    //提交订单到后台
-                    console.log("addOrder dest=" + destination_detail.title)
-                    addOrder({
-                      city_name: address_detail.city,
-                      district_name: address_detail.district,
-                      from_add: address_detail.title.replace('(', '[').replace(')', ']'),//对于括号会乱码暂时替换方法解决
-                      from_add_detail: address_detail.address,
-                      from_add_longitude: address_detail.location.longitude,
-                      from_add_latitude: address_detail.location.latitude,
-                      to_add: destination_detail.title.replace('(', '[').replace(')', ']'),
-                      to_add_detail: destination_detail.address,
-                      to_add_longitude: destination_detail.location.longitude,
-                      to_add_latitude: destination_detail.location.latitude,
-                      time: "now",
-                      success(data) {
-                        console.log("start=" + address_detail.title)
-                        wx.navigateTo({
-                          url: "/pages/wait/wait?callback=callback&&start=" + address_detail.title + "&&orderId=" + data.orderId,
-                        }),
-                          wx.setTopBarText({
-                            text: '等待接单'
-                          })
-                      },
-                      error(data) {
-                        alert("系统繁忙，请稍侯")
-                      }
-                    })
-                  }
-                  else {
-                    alert('请在"我的"页面绑定手机号')
-                  }
-                }
-              })
-            }
-          })
-        }
-        else {
-          alert('请在"我的"页面授权登录后使用')
-        }
-      }
+  toAgree: function (e) {
+    var { agree } = this.data
+    this.setData({
+      agree: !agree
     })
-  },
-
-  onProcessOrder(e) {
-
-    var { orderingId, orderingStatus } = this.data
-
-    wx.navigateTo({
-      url: "/pages/order/orderPassenger?callback=callback&&id=" + orderingId,
-    })
-  },
-
-
-  onPullDownRefresh: function () {
-    if (getApp().globalData.loginInfo.is_login) {
-      wx.showNavigationBarLoading()
-      this.init(() => {
-        wx.hideNavigationBarLoading()
-        wx.stopPullDownRefresh()
-      })
-    } else {
-      wx.stopPullDownRefresh()
-    }
   },
 
   callback(){

@@ -1,6 +1,6 @@
 
-var host = "ailogic.xin"
-//var host = "127.0.0.1"
+//var host = "ailogic.xin"
+var host = "127.0.0.1"
 const debug = wx.getStorageSync('debug')
 if (debug) {
   host = "localhost"

@@ -1,42 +1,27 @@
 {
   "pages":[ 
     "pages/index/index",
+    "pages/agreement/agreement",
     "pages/login/login",
-    "pages/wait/wait",
     "pages/mine/mine",
-    "pages/message/message",
-    "pages/chat/chat",
-    "pages/service/service",
-    "pages/register/register",
-    "pages/wallet/wallet",
     "pages/order/myOrder",
-    "pages/order/orderService",
-    "pages/order/orderPassenger",
-    "pages/evaluation/evaluationP",
-    "pages/evaluation/evaluationS",
     "pages/logs/logs"
   ],
   "window":{
-    "backgroundColor": "#5cd79a",
+    "backgroundColor": "#6495ed",
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#5cd79a",
+    "navigationBarBackgroundColor": "#6495ed",
     "navigationBarTitleText": "2333",
     "navigationBarTextStyle":"light"
   },
   "tabBar": {
-    "selectedColor": "#5cd79a",
+    "selectedColor": "#6495ed",
     "list": [
       {
         "pagePath": "pages/index/index",
         "iconPath": "images/tabBar/Tabbar_Home_Empty.png",
         "selectedIconPath": "images/tabBar/Tabbar_Home_Full.png",
         "text": "首页"
-      },
-      {
-        "pagePath": "pages/message/message",
-        "iconPath": "images/tabBar/Tabbar_Msg_Empty.png",
-        "selectedIconPath": "images/tabBar/Tabbar_Msg_Full.png",
-        "text": "消息"
       },
       {
         "pagePath": "pages/mine/mine",
