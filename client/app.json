@@ -2,6 +2,7 @@
   "pages":[ 
     "pages/index/index",
     "pages/agreement/agreement",
+    "pages/addInfo/addInfo",
     "pages/login/login",
     "pages/mine/mine",
     "pages/order/myOrder",
@@ -11,7 +12,7 @@
     "backgroundColor": "#6495ed",
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#6495ed",
-    "navigationBarTitleText": "2333",
+    "navigationBarTitleText": "小程序名字",
     "navigationBarTextStyle":"light"
   },
   "tabBar": {

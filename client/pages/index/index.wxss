@@ -63,9 +63,9 @@ page {
 }
 
 .container .navigator{
-  padding-top: 60rpx;
+  padding-top: 20rpx;
 }
-.info_link{ 
+.info_link{
   color: #6495ed;
 }
 
@@ -82,11 +82,11 @@ page {
 }
 
 .container .create-btn {
-  width: 330rpx;
+  width: 500rpx;
   height: 90rpx;
   background-color: #6495ed;
   bottom: 60rpx;
   color: #fff;
-  left:150rpx；
+  border-radius:20rpx;
 }
 

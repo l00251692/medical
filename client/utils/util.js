@@ -14,9 +14,9 @@ const qqmap = new QQMapWX({
 });
 
 function resolveAdInfo(adInfo) {
-  const { city, district, adcode } = adInfo
+  const { province,city, district, adcode } = adInfo
   return {
-    city, district,
+    province,city, district,
     district_id: adcode,
     city_id: adcode.replace(/\d{2}$/, '00')
   }

@@ -1,0 +1,99 @@
+<form class="parent" catchsubmit="formSubmit">
+  <view class="reporter-detail">
+    <text class="reporter-detail-title">基本信息</text>
+    <view class="reporter-user reporter-detail-item">
+      <text class="reporter-detail-name" decode="{{true}}">姓名&emsp;&emsp;</text>
+      <view class="reporter-detail-input">
+        <input type="text" value="{{name}}" name="name" maxlength="12" placeholder="请输入姓名" />
+      </view>
+    </view>
+    <view class="reporter-tel reporter-detail-item">
+      <text class="reporter-detail-name">联系电话</text>
+      <view class="reporter-detail-input">
+        <input type="number" value="{{pbone}}" name="phone" maxlength="11" placeholder="请输入联系电话"/>
+      </view>
+    </view>
+    <view class="reporter-address reporter-detail-item">
+      <text class="reporter-detail-name">身份证号</text>
+      <view class="reporter-detail-input">
+        <input type="text" value="{{idcard}}" name="idcard" maxlength="18" placeholder="请输入身份证号"  />
+      </view>
+    </view>
+  </view>
+
+  <view class="reporter-detail">
+    <text class="reporter-detail-title">病情信息</text>
+    <view class="reporter-user reporter-detail-item">
+      <text class="reporter-detail-name">医院名称</text>
+      <view class="reporter-detail-input">
+        <input type="text" value="{{hospital}}" name="hospital"  placeholder="请输入医院名称" />
+      </view>
+    </view>
+    <view class="reporter-tel reporter-detail-item">
+      <text class="reporter-detail-name" decode="{{true}}">住院号&emsp;</text>
+      <view class="reporter-detail-input">
+        <input type="number" value="{{mrNo}}" name="mrNo"  placeholder="请输入住院号" />
+      </view>
+    </view>
+    <view class="reporter-tel reporter-detail-item">
+      <view bindtap="showHelp">
+        <text class="reporter-detail-name" decode="{{true}}">科室&ensp;</text>
+        <image class="help-img" src="../../images/index/help.png"></image>
+      </view>
+      <view class="reporter-detail-input">
+        <input type="text" value="{{department}}" name="department"  placeholder="请参照提示输入科室信息" />
+      </view>
+    </view>
+    <view class="reporter-address reporter-detail-item">
+      <text class="reporter-detail-name">主治医生</text>
+      <view class="reporter-detail-input">
+        <input type="text" value="{{doctor}}" name="doctor" placeholder="请输入主治医生姓名" />
+      </view>
+    </view>
+    <view class="reporter-address reporter-detail-item">
+      <text class="reporter-detail-name" decode="{{true}}">床位号&emsp;</text>
+      <view class="reporter-detail-input">
+        <input type="text" value="{{bedNo}}" name="bedNo" placeholder="请输入床位号"/>
+      </view>
+    </view>
+  </view>
+
+  <view class="reporter-detail">
+    <text class="reporter-detail-title">邮寄信息</text>
+    <view class="reporter-address reporter-detail-item" bindtap="onChooseLocation">
+      <text class="reporter-detail-name">邮寄地址</text>
+      <view class="reporter-detail-input" wx:if="{{address.title}}">
+        <text class='location'>{{address.title}}</text>
+      </view>
+      <view class="reporter-detail-input" wx:else>
+        <text class='location2'>请选择邮寄地址</text>
+      </view>
+    </view>
+    <view class="reporter-user reporter-detail-item">
+      <text class="reporter-detail-name">详细信息</text>
+      <view class="reporter-detail-input">
+        <input type="text" value="{{adDetail}}" name="adDetail" placeholder="请填写门牌号等详细信息" />
+      </view>
+    </view>
+  </view>
+
+
+  <view class="submit-declare" >
+    <button formType="submit">下一步</button>
+  </view>
+
+  <view class="help" id="help" wx:if="{{help_status}}" bindtap="tapHelp">
+    <view class="box">
+      <view class="box-hd">
+        <text class="box-title">帮助</text>
+        <image class="box-close" src="../../images/index/close.png" bindtap="hideHelp"></image>
+      </view>
+      <view class="box-bd">
+        <view class="help-q">医院科室信息填写规则？</view>
+        <view class="help-a">
+          <text>请参考如下示例填写科室，如：骨科，内科，外科等</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</form>

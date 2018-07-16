@@ -1,9 +1,3 @@
-//import util from '../../utils/index';
-var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
-var qqmapsdk;
-qqmapsdk = new QQMapWX({
-  key: 'FPOBZ-UT2K2-ZFYUC-CX67E-IOOYS-7XFQ6'
-});
 
 import {
   alert,
@@ -81,45 +75,18 @@ Page({
     })
   },
 
-  toDaSan(e) {
-    const destination = this.data.destination
-    const address_detail = this.data.address_detail
-    const destination_detail = this.data.destination_detail
-    if (destination == '') {
-      wx.showModal({
-        title: '目的地不能为空',
-        content: '请填写或选择正确的目的地',
-      })
+  createOrder(e) {
+    var { agree } = this.data
+
+    if(agree == false)
+    {
+      alert('请接受服务协议');
+      return;
     }
-    else if (this.data.orderingId != null) {
-      wx.showModal({
-        title: '您当前有订单在进行中',
-        content: '请先处理当前进行中的订单',
-      })
-    } else {
-      //注意此接口的from和to的形式是不一样的，to是数组
-      qqmapsdk.calculateDistance({
-        mode: 'walking',
-        from: address_detail.location,
-        to: [{
-          latitude: destination_detail.location.latitude,
-          longitude: destination_detail.location.longitude
-        }],
-        success: (res) => {
-          if (res.result.elements[0].distance != -1) {
-            this.setData({
-              distance: (res.result.elements[0].distance / 1000).toFixed(2),
-            })
-          }
-        },
-        fail: function (res) {
-          console.log(res);
-        }
-      });
-      this.setData({
-        callCart: false
-      })
-    }
+
+    wx.navigateTo({
+      url: '/pages/addInfo/addInfo',
+    })
   },
 
   toAgree: function (e) {
