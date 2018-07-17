@@ -23,6 +23,6 @@
   <view class="ft-title font-color-999">拍摄时注意光线和焦距,务必保持照片清晰</view>
   <view class="ft-title font-color-999">可以点击照片重新拍摄</view>
   <view class="submit-upload" bindtap="uploadIdCard">
-    <text>下一步</text>
+    <button>下一步</button>
   </view>
 </view>

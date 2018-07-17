@@ -8,7 +8,7 @@
     "pages/order/pay",
     "pages/login/login",
     "pages/mine/mine",
-    "pages/order/myOrder",
+    "pages/order/detail",
     "pages/logs/logs"
   ],
   "window":{

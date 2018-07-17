@@ -72,7 +72,7 @@
     <view class="reporter-user reporter-detail-item">
       <text class="reporter-detail-name">详细信息</text>
       <view class="reporter-detail-input">
-        <input type="text" value="{{adDetail}}" name="adDetail" placeholder="请填写门牌号等详细信息(可选)" />
+        <input type="text" value="{{adDetail}}" name="adDetail" placeholder="(可选)请填写门牌号等详细信息" />
       </view>
     </view>
   </view>

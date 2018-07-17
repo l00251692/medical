@@ -1,43 +1,59 @@
-
 <!--pages/mine/mine.wxml-->
 <view class="header">
   <view class="onlogin">
     <button bindgetuserinfo="onLogin" open-type="getUserInfo" class="userbutton">
       <image class="avatar" src="{{loginInfo ? userInfo.avatarUrl: '/images/default-image.png'}}"></image>
     </button>
-    
+
   </view>
   <view>
     {{loginInfo ? userInfo.nickName : '未登录'}}
   </view>
 </view>
-<view wx:if="{{loginInfo}}" class="weui-cells">
-  <navigator url="/pages/service/service?registType={{registType}}" wx:if="{{phone != null}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-    <view class="weui-cell__bd">我要接单</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-  </navigator>
-  <navigator url="/pages/login/login?phone={{phone}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-    <view class="weui-cell__bd">绑定手机号</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access">{{phone}}</view>
-  </navigator>
-  <navigator url="/pages/wallet/wallet?ballance={{ballance}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-    <view class="weui-cell__bd">我的钱包</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-  </navigator>
-  <navigator url="/pages/order/myOrder?ballance={{ballance}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-    <view class="weui-cell__bd">行程记录</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-  </navigator>
-</view>
-<view  wx:if="{{loginInfo}}" class="weui-cells">
-  <view data-phone="18261149716" bindtap="onPhoneTap" class="weui-cell weui-cell_access">
-    <view class="weui-cell__bd">热线</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access">18261149716</view>
+
+<text class="service-process-title">申请记录</text>
+<!-- <block wx:for="{{list}}" wx:key="wx_djh"> -->
+<block >
+  <view class="process review-process">
+    <view class="process-hd">
+      <image class="review-process-icon" src="../../images/order/order_accepted.png"></image>
+      <view class="order-number-name">
+        <text>患者订单标题</text>
+      </view>
+      <view class="process-state">
+        <text class="process-state-name process-state-accepted">已提交</text>
+      </view>
+    </view>
+    <view class="process-bd">
+      <view class="process-item">
+        <view class="process-item-bd">
+          <text class="process-item-name">患者姓名</text>
+        </view>
+        <view class="process-item-ft">
+          <text class="process-item-info">阿里朗</text>
+        </view>
+      </view>
+      <view class="process-item">
+        <view class="process-item-bd">
+          <text class="process-item-name">创建时间</text>
+        </view>
+        <view class="process-item-ft">
+          <text class="process-item-info">2018-06-12 12:23:12</text>
+        </view>
+      </view>
+      <view class="process-item">
+        <view class="process-item-bd">
+          <text class="process-item-name">订单编号</text>
+        </view>
+        <view class="process-item-ft">
+          <text class="process-item-info">20180612012234122324</text>
+        </view>
+      </view>
+    </view>
+    <navigator url="/pages/order/detail?id=20180612012234122324">
+      <view class="service-detail-open">
+        <text>详情</text>
+      </view>
+    </navigator>
   </view>
-  <view class="weui-cell weui-cell_access">
-    <view class="weui-cell__bd">客服留言</view>
-    <button class="cs_button" open-type="contact">
-      <image class="cs_image" src="/images/concat.png"></image>
-    </button>   
-  </view> 
-</view>
+</block>
