@@ -1,38 +1,35 @@
 <form class="parent" catchsubmit="formSubmit">
   <view class="reporter-detail">
-    <text class="reporter-detail-title">基本信息</text>
     <view class="reporter-user reporter-detail-item">
       <text class="reporter-detail-name" decode="{{true}}">姓名&emsp;&emsp;</text>
       <view class="reporter-detail-input">
-        <input type="text" value="{{name}}" name="name" maxlength="12" placeholder="请输入姓名" />
+        <input type="text" value="{{name}}" name="name" maxlength="12" disabled='true' />
       </view>
     </view>
     <view class="reporter-tel reporter-detail-item">
       <text class="reporter-detail-name">联系电话</text>
       <view class="reporter-detail-input">
-        <input type="number" value="{{phone}}" name="phone" maxlength="11" placeholder="请输入联系电话"/>
+        <input type="number" value="{{phone}}" name="phone" maxlength="11" disabled='true'/>
       </view>
     </view>
     <view class="reporter-address reporter-detail-item">
       <text class="reporter-detail-name">身份证号</text>
       <view class="reporter-detail-input">
-        <input type="idcard" value="{{idcard}}" name="idcard" maxlength="18" placeholder="请输入身份证号"  />
+        <input type="text" value="{{idcard}}" name="idcard" maxlength="18" disabled='true'  />
       </view>
     </view>
   </view>
-
   <view class="reporter-detail">
-    <text class="reporter-detail-title">病情信息</text>
     <view class="reporter-user reporter-detail-item">
       <text class="reporter-detail-name">医院名称</text>
       <view class="reporter-detail-input">
-        <input type="text" value="{{hospital}}" name="hospital"  placeholder="请输入医院名称" />
+        <input type="text" value="{{hospital}}" name="hospital"  disabled='true' />
       </view>
     </view>
     <view class="reporter-tel reporter-detail-item">
       <text class="reporter-detail-name" decode="{{true}}">住院号&emsp;</text>
       <view class="reporter-detail-input">
-        <input type="number" value="{{mrNo}}" name="mrNo"  placeholder="请输入住院号" />
+        <input type="number" value="{{mrNo}}" name="mrNo"  disabled='true' />
       </view>
     </view>
     <view class="reporter-tel reporter-detail-item">
@@ -41,45 +38,44 @@
         <image class="help-img" src="../../images/index/help.png"></image>
       </view>
       <view class="reporter-detail-input">
-        <input type="text" value="{{department}}" name="department"  placeholder="请参照提示输入科室信息" />
+        <input type="text" value="{{department}}" name="department"  disabled='true' />
       </view>
     </view>
     <view class="reporter-address reporter-detail-item">
       <text class="reporter-detail-name">主治医生</text>
       <view class="reporter-detail-input">
-        <input type="text" value="{{doctor}}" name="doctor" placeholder="请输入主治医生姓名" />
+        <input type="text" value="{{doctor}}" name="doctor" disabled='true' />
       </view>
     </view>
     <view class="reporter-address reporter-detail-item">
       <text class="reporter-detail-name" decode="{{true}}">床位号&emsp;</text>
       <view class="reporter-detail-input">
-        <input type="text" value="{{bedNo}}" name="bedNo" placeholder="请输入床位号"/>
+        <input type="text" value="{{bedNo}}" name="bedNo" disabled='true'/>
+      </view>
+    </view>
+  </view>
+  <view class="reporter-detail">
+    <view class="reporter-address reporter-detail-item" >
+      <text class="reporter-detail-name">邮寄地址</text>
+      <view class="reporter-detail-input" >
+        <text class='location'>{{addressStr}}</text>
       </view>
     </view>
   </view>
 
-  <view class="reporter-detail">
-    <text class="reporter-detail-title">邮寄信息</text>
-    <view class="reporter-address reporter-detail-item" bindtap="onChooseLocation">
-      <text class="reporter-detail-name">邮寄地址</text>
-      <view class="reporter-detail-input" wx:if="{{address.title}}">
-        <text class='location'>{{address.title}}</text>
+  <view class="reporter-img">
+      <text class="reporter-img-name">身份证照片</text>
+      <view class="reporter-img-idcard-front" >
+        <image src="{{idCardFrontPath}}"  mode='aspectFit'></image>
       </view>
-      <view class="reporter-detail-input" wx:else>
-        <text class='location2'>请选择邮寄地址</text>
+      <view class="reporter-img-idcard-back" >
+        <image src="{{idCardBackPath}}" mode='aspectFit'></image>
       </view>
-    </view>
-    <view class="reporter-user reporter-detail-item">
-      <text class="reporter-detail-name">详细信息</text>
-      <view class="reporter-detail-input">
-        <input type="text" value="{{adDetail}}" name="adDetail" placeholder="请填写门牌号等详细信息(可选)" />
-      </view>
-    </view>
   </view>
 
 
   <view class="submit-declare" >
-    <button formType="submit">下一步</button>
+    <button formType="submit">提交支付</button>
   </view>
 
   <view class="help" id="help" wx:if="{{help_status}}" bindtap="tapHelp">

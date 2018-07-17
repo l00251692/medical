@@ -16,6 +16,7 @@ Page({
    */
   onLoad: function (options) {
     this.initValidate()
+    this.init()
   },
 
   /**
@@ -104,6 +105,30 @@ Page({
       })
   },
 
+  init(){
+    var info = wx.getStorageSync("info")
+    if(info){
+      this.setData({
+        name: info.name,
+        phone: info.phone, 
+        idcard: info.idcard, 
+        hospital: info.hospital, 
+        mrNo: info.mrNo, 
+        department: info.department, 
+        doctor: info.doctor, 
+        bedNo: info.bedNo, 
+        adDetail: info.adDetail
+      })
+    }
+
+    var address = wx.getStorageSync("address")
+    if (address) {
+      this.setData({
+        address: address
+      })
+    }
+  },
+
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
@@ -120,9 +145,7 @@ Page({
 
   onChooseLocation(e) {
     var that = this
-    that.setData({
-      disabled: true
-    })
+
     wx.chooseLocation({
       success: function (res) {
         var {
@@ -150,19 +173,31 @@ Page({
   },
 
   formSubmit(e){
-    if (!this.validate.checkForm(e)) {
-      const error = this.validate.errorList[0]
-      return alert(error.msg)
-    }
-    console.log("submit")
+     if (!this.validate.checkForm(e)) {
+       const error = this.validate.errorList[0]
+       return alert(error.msg)
+     }
+
+    var { address } = this.data
 
     if (!address) {
-      return alert('请选择邮寄地址')
+       return alert('请选择邮寄地址')
     }
 
     var {
-      name, phone, idcard
+      name, phone, idcard, hospital, mrNo, department, doctor, bedNo, adDetail
     } = e.detail.value
+
+    var info = Object.assign({ name, phone, idcard, hospital, mrNo, department, doctor, bedNo, adDetail},{})
+
+    console.log(JSON.stringify(info))
+
+    wx.setStorageSync("info", info);
+    wx.setStorageSync("address", address);
+
+    wx.navigateTo({
+      url: '/pages/upload/uploadIdCard',
+    })
 
   },
 

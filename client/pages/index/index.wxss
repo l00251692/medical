@@ -71,13 +71,13 @@ page {
 
 .checkbox{
   position: absolute;
-  bottom: 220rpx;
+  bottom: 200rpx;
 }
 
 .xieyi{
   line-height: 52rpx;
   font-size: 32rpx;
-  padding-bottom: 20rpx;
+  padding-bottom: 10rpx;
   opacity: 0.8;
 }
 
