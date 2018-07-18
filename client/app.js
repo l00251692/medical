@@ -13,45 +13,19 @@ import distance from './utils/distance'
 App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
-    this.initSocket()
+    var is_login = wx.getStorageSync("is_login")
+    if(is_login){
+      wx.switchTab({
+        url: '/pages/index/index',
+      })
+    }
+    else{
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }
   },
-  
-  initSocket(){
 
-    wx.onSocketOpen(function (res) {
-      console.log('APP INIT WebSocket连接已打开！')
-      wx.setStorageSync('websocketFlag', true)
-    })
-
-    wx.onSocketError(function (res) {
-      console.log('APP INIT WebSocket连接打开失败，请检查！')
-      wx.setStorageSync('websocketFlag', false)
-    })
-
-    wx.onSocketClose(function (res) {
-      console.log('APP INIT WebSocket连接关闭！')
-      wx.setStorageSync('websocketFlag', false)
-    })
-
-    wx.onSocketMessage(function (res) {
-      console.log('APP INIT 收到消息onSocketMessage！')
-
-      if (getApp().globalData.loginInfo.is_login)
-      {
-        var tmp = JSON.parse(res.data)
-        var { user_id } = getApp().globalData.loginInfo.userInfo
-
-        if (tmp.type == "userMsg" && tmp.toId == user_id) {
-          if (wx.showTabBarRedDot) {
-            wx.showTabBarRedDot({
-              index: 1,
-            })
-          }
-        }
-      }
-    })
-  }
-  ,
   getLoginInfo: function (cb) {
     var that = this
     if (this.globalData.loginInfo.is_login)
@@ -75,7 +49,7 @@ App({
               fail(res) {
                 if (res.errMsg == 'getUserInfo:fail auth deny' && wx.openSetting) {
                   confirm({
-                    content: '若不授用户信息权限, 则无法正常显示用户头像和昵称以及发布相关信息, 请重新授权用户信息权限',
+                    content: '若不授用户信息权限, 则无法正常显示用户头像和昵称以及获得相关服务, 请重新授权用户信息权限',
                     cancelText: '不授权',
                     confirmText: '授权',
                     ok() {
@@ -85,12 +59,6 @@ App({
                             getLoginInfo({
                               success(data) {
                                 getApp().setLoginInfo(data)
-                                // var { user_id } = data.userInfo
-                                // connectWebsocket({
-                                //   user_id,
-                                //   success(data) {},
-                                //   error() {}
-                                // })
                                 cb && cb(data)
                               }
                             })
@@ -112,36 +80,16 @@ App({
             })
           }
           else {
-            alert("请点击“我的”页面头像授权登录");
+            alert("请点击“我的”页面头像进行授权登录");
           }
         }
       })
     }
   },
   setLoginInfo(loginInfo) {
-    if (loginInfo.session_key) {
-      wx.setStorageSync('session_3rd', loginInfo.session_key)
-    }
+    wx.setStorageSync("is_login", true)
+    wx.setStorageSync("userInfo", loginInfo.userInfo)
     this.globalData.loginInfo = loginInfo
-  },
-
-  getUserInfo: function (cb) {
-    var that = this
-    if (this.globalData.userInfo) {
-      cb && cb(this.globalData.userInfo)
-    } else {
-      //调用登录接口
-      getUserInfo({
-        success(data) {
-          that.setUserInfo(data)
-          cb && cb(data)
-        }
-      })
-    }
-  },
-
-  setUserInfo(userInfo) {
-    this.globalData.userInfo = userInfo
   },
 
 
@@ -207,6 +155,5 @@ App({
       is_login: 0,
       userInfo:null
     },
-    currentAddress: null
   }
 })

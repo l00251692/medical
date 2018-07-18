@@ -4,8 +4,8 @@
 }
 
 .camera{
-   width: 605rpx;
-   height: 32.14vh;
+   width: 610rpx;
+   height: 33vh;
    position: fixed;
    left: 81.5rpx;
    top:20.2vh;

@@ -22,65 +22,6 @@ public class Users {
     
     private String academy;
     
-    private String sanColor;
-    
-    private String sanStyle;
-    
-    private String sanFeature;
-    
-    private Float passengerStar;
-    
-    private Float driverStar;
-    
-    private Float ballance;
-    
-    private String lastCity;
-    
-    private String lastDistrict;
-    
-    private String lastLongitude;
-    
-    private String lastLatitude;
-    
-    public String getLastCity() {
-		return lastCity;
-	}
-
-
-	public void setLastCity(String lastCity) {
-		this.lastCity = lastCity;
-	}
-
-
-	public String getLastDistrict() {
-		return lastDistrict;
-	}
-
-
-	public void setLastDistrict(String lastDistrict) {
-		this.lastDistrict = lastDistrict;
-	}
-
-
-	public String getLastLongitude() {
-		return lastLongitude;
-	}
-
-
-	public void setLastLongitude(String lastLongitude) {
-		this.lastLongitude = lastLongitude;
-	}
-
-
-	public String getLastLatitude() {
-		return lastLatitude;
-	}
-
-
-	public void setLastLatitude(String lastLatitude) {
-		this.lastLatitude = lastLatitude;
-	}
-
 
 	public Users(String phone2,  String nickname2) {
 		phone=phone2;
@@ -90,7 +31,6 @@ public class Users {
 		lastLoginDate=new Date();
 	}
     
-
 	public Users() {
 	}
 	
@@ -178,65 +118,4 @@ public class Users {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
-
-	public String getSanColor() {
-		return sanColor;
-	}
-
-
-	public void setSanColor(String sanColor) {
-		this.sanColor = sanColor;
-	}
-
-
-	public String getSanStyle() {
-		return sanStyle;
-	}
-
-
-	public void setSanStyle(String sanStyle) {
-		this.sanStyle = sanStyle;
-	}
-
-
-	public String getSanFeature() {
-		return sanFeature;
-	}
-
-
-	public void setSanFeature(String sanFeature) {
-		this.sanFeature = sanFeature;
-	}
-
-
-	public Float getPassengerStar() {
-		return passengerStar;
-	}
-
-
-	public void setPassengerStar(Float passengerStar) {
-		this.passengerStar = passengerStar;
-	}
-
-
-	public Float getDriverStar() {
-		return driverStar;
-	}
-
-
-	public void setDriverStar(Float driverStar) {
-		this.driverStar = driverStar;
-	}
-
-
-	public Float getBallance() {
-		return ballance;
-	}
-
-
-	public void setBallance(Float ballance) {
-		this.ballance = ballance;
-	}
-
 }

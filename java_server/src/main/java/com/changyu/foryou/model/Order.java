@@ -5,118 +5,54 @@ import java.util.Date;
 public class Order {
 	private String orderId;
 	
-	private String cityName;
+	private String createUser;
 	
-	private String DistrictName;
+	private Date createTime;
 	
-    private String fromAddr;
+	private Date lastUpdateTime;
+	
+	private short orderStatus;
+	
+	private String records;
+	
+	private String name;
+	
+    private String phone;
     
-    private String fromAddrDetai;
+    private String idCard;
     
-    private String fromAddrLongitude;
+    private String hospital;
     
-    private String fromAddrLatitude;
+    private String mrNo;
     
-    private String toAddr;
+    private String department;
     
-    private String toAddrDetai;
+    private String doctor;
     
-    private String toAddrLongitude;
+    private String bedNo;
     
-    private String toAddrLatitude;
+    private String address;
 
-    private String createUser;
+    private String detail;
     
-    private Date createTime;
+    private String provice;
     
-    private Date departTime;
+    private String city;
     
-    private Date rcvTime;
+    private String district;
     
-    private short orderType;
+    private String adrTitle;
     
-    private short orderStatus;
+    private String idCardFront;
     
-    private Float orderPrice;
+    private String idCardBack;
     
-    private String records;
-    
-    private String receiveUser;
-    
-    private short startByPassenger;
-    
-    private short starByDriver;
-
-	public String getOrderId() {
+    public String getOrderId() {
 		return orderId;
 	}
 
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
-	}
-
-	public String getFromAddr() {
-		return fromAddr;
-	}
-
-	public void setFromAddr(String fromAddr) {
-		this.fromAddr = fromAddr;
-	}
-
-	public String getFromAddrDetai() {
-		return fromAddrDetai;
-	}
-
-	public void setFromAddrDetai(String fromAddrDetai) {
-		this.fromAddrDetai = fromAddrDetai;
-	}
-
-	public String getFromAddrLongitude() {
-		return fromAddrLongitude;
-	}
-
-	public void setFromAddrLongitude(String fromAddrLongitude) {
-		this.fromAddrLongitude = fromAddrLongitude;
-	}
-
-	public String getFromAddrLatitude() {
-		return fromAddrLatitude;
-	}
-
-	public void setFromAddrLatitude(String fromAddrLatitude) {
-		this.fromAddrLatitude = fromAddrLatitude;
-	}
-
-	public String getToAddr() {
-		return toAddr;
-	}
-
-	public void setToAddr(String toAddr) {
-		this.toAddr = toAddr;
-	}
-
-	public String getToAddrDetai() {
-		return toAddrDetai;
-	}
-
-	public void setToAddrDetai(String toAddrDetai) {
-		this.toAddrDetai = toAddrDetai;
-	}
-
-	public String getToAddrLongitude() {
-		return toAddrLongitude;
-	}
-
-	public void setToAddrLongitude(String toAddrLongitude) {
-		this.toAddrLongitude = toAddrLongitude;
-	}
-
-	public String getToAddrLatitude() {
-		return toAddrLatitude;
-	}
-
-	public void setToAddrLatitude(String toAddrLatitude) {
-		this.toAddrLatitude = toAddrLatitude;
 	}
 
 	public String getCreateUser() {
@@ -135,36 +71,20 @@ public class Order {
 		this.createTime = createTime;
 	}
 
-	public Date getDepartTime() {
-		return departTime;
+	public Date getLastUpdateTime() {
+		return lastUpdateTime;
 	}
 
-	public void setDepartTime(Date departTime) {
-		this.departTime = departTime;
+	public void setLastUpdateTime(Date lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
 	}
 
-	public short getOrderType() {
-		return orderType;
-	}
-
-	public void setOrderType(short orderType) {
-		this.orderType = orderType;
-	}
-
-	public Short getOrderStatus() {
+	public short getOrderStatus() {
 		return orderStatus;
 	}
 
-	public void setOrderStatus(Short orderStatus) {
+	public void setOrderStatus(short orderStatus) {
 		this.orderStatus = orderStatus;
-	}
-
-	public Float getOrderPrice() {
-		return orderPrice;
-	}
-
-	public void setOrderPrice(Float orderPrice) {
-		this.orderPrice = orderPrice;
 	}
 
 	public String getRecords() {
@@ -175,52 +95,132 @@ public class Order {
 		this.records = records;
 	}
 
-	public String getReceiveUser() {
-		return receiveUser;
+	public String getName() {
+		return name;
 	}
 
-	public void setReceiveUser(String receiveUser) {
-		this.receiveUser = receiveUser;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getCityName() {
-		return cityName;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setCityName(String cityName) {
-		this.cityName = cityName;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
-	public String getDistrictName() {
-		return DistrictName;
+	public String getIdCard() {
+		return idCard;
 	}
 
-	public void setDistrictName(String districtName) {
-		DistrictName = districtName;
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
 	}
 
-	public short getStartByPassenger() {
-		return startByPassenger;
+	public String getHospital() {
+		return hospital;
 	}
 
-	public void setStartByPassenger(short startByPassenger) {
-		this.startByPassenger = startByPassenger;
+	public void setHospital(String hospital) {
+		this.hospital = hospital;
 	}
 
-	public short getStarByDriver() {
-		return starByDriver;
+	public String getMrNo() {
+		return mrNo;
 	}
 
-	public void setStarByDriver(short starByDriver) {
-		this.starByDriver = starByDriver;
+	public void setMrNo(String mrNo) {
+		this.mrNo = mrNo;
 	}
 
-	public Date getRcvTime() {
-		return rcvTime;
+	public String getDepartment() {
+		return department;
 	}
 
-	public void setRcvTime(Date rcvTime) {
-		this.rcvTime = rcvTime;
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 
+	public String getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(String doctor) {
+		this.doctor = doctor;
+	}
+
+	public String getBedNo() {
+		return bedNo;
+	}
+
+	public void setBedNo(String bedNo) {
+		this.bedNo = bedNo;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+
+	public String getProvice() {
+		return provice;
+	}
+
+	public void setProvice(String provice) {
+		this.provice = provice;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+	public String getAdrTitle() {
+		return adrTitle;
+	}
+
+	public void setAdrTitle(String adrTitle) {
+		this.adrTitle = adrTitle;
+	}
+
+	public String getIdCardFront() {
+		return idCardFront;
+	}
+
+	public void setIdCardFront(String idCardFront) {
+		this.idCardFront = idCardFront;
+	}
+
+	public String getIdCardBack() {
+		return idCardBack;
+	}
+
+	public void setIdCardBack(String idCardBack) {
+		this.idCardBack = idCardBack;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+    
 }

@@ -41,45 +41,8 @@ public class UserServiceImpl implements UserService {
 		return usersMapper.updateByPrimaryKeySelective(users);
 	}
 	
-	public int updateUserBallance(Map<String, Object> paramMap) {
-		return usersMapper.updateUserBallance(paramMap);
-	}
-	
-	public int updateUserLocation(Map<String, Object> paramMap) {
-		return usersMapper.updateUserLocation(paramMap);
-	}
-	
-	public int updateUserSanInfo(Users users) {
-		return usersMapper.updateUserSanReg(users);
-	}
-	
 	@Override
 	public Users checkLogin(String user_id) {
 		return usersMapper.checkLogin(user_id);
 	}
-
-	
-	public List<Users> getNearByUsers(String cityName,String districtName,String longitude,String latitude){
-		
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		
-		paramMap.put("lastCity",cityName);
-		paramMap.put("lastDistrict",districtName);
-	
-		List<Users> list = usersMapper.getDistrictUsers(paramMap);
-		
-		System.out.println("getDistrictUsers:size=" + list.size());
-		
-		for(Users user: list)
-		{
-			System.out.println("before judge distance,userID:" + user.getUserId());
-			if(!ToolUtil.isNearBy(longitude, latitude, user.getLastLongitude(), user.getLastLatitude()))
-			{
-				list.remove(user);
-			}		
-		}
-		
-		return list;
- 	}
-
 }

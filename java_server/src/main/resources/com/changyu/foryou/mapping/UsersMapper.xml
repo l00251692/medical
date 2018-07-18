@@ -13,20 +13,10 @@
 		<result column="create_time" property="createTime" jdbcType="DATE" />
 		<result column="sex" property="sex" jdbcType="SMALLINT" />
 		<result column="academy" property="academy" jdbcType="VARCHAR" />
-		<result column="san_color" property="sanColor" jdbcType="VARCHAR" />
-		<result column="san_style" property="sanStyle" jdbcType="VARCHAR" />
-		<result column="san_feature" property="sanFeature" jdbcType="VARCHAR" />
-		<result column="passenger_star" property="passengerStar" jdbcType="REAL" />
-		<result column="driver_star" property="driverStar" jdbcType="REAL" />
-		<result column="ballance" property="ballance" jdbcType="REAL" />
-		<result column="last_city" property="lastCity" jdbcType="VARCHAR" />
-		<result column="last_district" property="lastDistrict" jdbcType="VARCHAR" />
-		<result column="last_longtitude" property="lastLongitude" jdbcType="VARCHAR" />
-		<result column="last_latitude" property="lastLatitude" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		user_id,phone, type, nickname, img_url,
-		last_login_date,create_time,sex,academy,san_color,san_style,san_feature,passenger_star,driver_star,ballance
+		last_login_date,create_time,sex,academy
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.String" flushCache="true" useCache="false">
@@ -70,6 +60,9 @@
 			<if test="createTime != null">
 				create_time,
 			</if>
+			<if test="academy != null">
+				academy,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="userId != null">
@@ -95,6 +88,9 @@
 			</if>
 			<if test="createTime != null">
 				#{createTime,jdbcType=DATE},
+			</if>
+			<if test="academy != null">
+				#{academy,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -126,68 +122,10 @@
 		where user_id = #{userId,jdbcType=VARCHAR}
 	</update>
 	
-	
-	<update id="updateUserBallance">
-		update users
-		<set>
-			<if test="ballance != null">
-				ballance = #{ballance,jdbcType=REAL},
-			</if>
-		</set>
-		where user_id = #{userId,jdbcType=VARCHAR}
-	</update>
-	
 	<!-- 登录检查接口 -->
 	<select id="checkLogin" resultMap="BaseResultMap">
 		select * from users where
 		user_id=#{user_id,jdbcType=VARCHAR}
-	</select>
-	
-	<update id="updateUserSanReg" parameterType="com.changyu.foryou.model.Users">
-		update users
-		<set>
-			<if test="type != null">
-				type = #{type,jdbcType=SMALLINT},
-			</if>
-			<if test="sanColor !=null">
-				san_color=#{sanColor,jdbcType=VARCHAR},
-			</if>
-			<if test="sanStyle !=null">
-				san_style=#{sanStyle,jdbcType=VARCHAR},
-			</if>
-			<if test="sanFeature !=null">
-				san_feature=#{sanFeature,jdbcType=VARCHAR},
-			</if>
-		</set>
-		where user_id = #{userId,jdbcType=VARCHAR}
-	</update>
-	
-	
-	<update id="updateUserLocation" >
-		update users
-		<set>
-			<if test="lastCity != null">
-				last_city = #{lastCity,jdbcType=VARCHAR},
-			</if>
-			<if test="lastDistrict !=null">
-				last_district=#{lastDistrict,jdbcType=VARCHAR},
-			</if>
-			<if test="lastLongitude !=null">
-				last_longitude=#{lastLongitude,jdbcType=VARCHAR},
-			</if>
-			<if test="lastLatitude !=null">
-				last_latitude=#{lastLatitude,jdbcType=VARCHAR},
-			</if>
-		</set>
-		where user_id = #{userId,jdbcType=VARCHAR}
-	</update>
-	
-	<select id="getDistrictUsers" resultMap="BaseResultMap" flushCache="true" useCache="false">
-		select
-		*
-		from users
-		where last_city = #{lastCity,jdbcType=VARCHAR} 
-		and last_district = #{lastDistrict,jdbcType=VARCHAR}
 	</select>
 	
 	

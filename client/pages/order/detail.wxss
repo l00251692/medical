@@ -1,6 +1,12 @@
-/**bx_detail.wxss**/
+
 .container{
     background-color: #f7f7f7;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }
 
 .repair-state-panel, .work-sheet-panel{
@@ -134,4 +140,30 @@
 .work-sheet-ft text{
   color: #888;
   padding-left: 50rpx;
+}
+
+.img-idcard-front{
+  position: relative;
+  width: 200rpx;
+  height: 170rpx;
+  margin-left: 50rpx;
+}
+
+.img-idcard-front image{
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+}
+
+.img-idcard-back{
+  position: relative;
+  width: 200rpx;
+  height: 170rpx;
+  margin-left: 30rpx;
+}
+
+.img-idcard-back image{
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
 }

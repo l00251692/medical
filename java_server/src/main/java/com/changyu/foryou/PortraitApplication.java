@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 
 import javax.servlet.MultipartConfigElement;
-import com.changyu.foryou.listener.InitContextListener;
 
 @SpringBootApplication
 @PropertySource("application.properties")
@@ -29,11 +28,11 @@ public class PortraitApplication extends SpringBootServletInitializer {
 		return factory.createMultipartConfig();
 	}
 	
-	@Bean  
+	/*@Bean  
     public ServletListenerRegistrationBean<InitContextListener> testListenerRegistration(){  
         ServletListenerRegistrationBean<InitContextListener> registration = new ServletListenerRegistrationBean<InitContextListener>(new InitContextListener());  
         return registration;  
-    } 
+    } */
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

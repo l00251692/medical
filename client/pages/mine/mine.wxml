@@ -2,12 +2,12 @@
 <view class="header">
   <view class="onlogin">
     <button bindgetuserinfo="onLogin" open-type="getUserInfo" class="userbutton">
-      <image class="avatar" src="{{loginInfo ? userInfo.avatarUrl: '/images/default-image.png'}}"></image>
+      <image class="avatar" src="{{userInfo ? userInfo.avatarUrl: '/images/default-image.png'}}"></image>
     </button>
 
   </view>
   <view>
-    {{loginInfo ? userInfo.nickName : '未登录'}}
+    {{userInfo ? userInfo.nickName : '未登录'}}
   </view>
 </view>
 
@@ -18,7 +18,7 @@
     <view class="process-hd">
       <image class="review-process-icon" src="../../images/order/order_accepted.png"></image>
       <view class="order-number-name">
-        <text>患者订单标题</text>
+        <text>订单号:20180612234567</text>
       </view>
       <view class="process-state">
         <text class="process-state-name process-state-accepted">已提交</text>
@@ -27,7 +27,7 @@
     <view class="process-bd">
       <view class="process-item">
         <view class="process-item-bd">
-          <text class="process-item-name">患者姓名</text>
+          <text class="process-item-name">申请人</text>
         </view>
         <view class="process-item-ft">
           <text class="process-item-info">阿里朗</text>
@@ -43,10 +43,10 @@
       </view>
       <view class="process-item">
         <view class="process-item-bd">
-          <text class="process-item-name">订单编号</text>
+          <text class="process-item-name">快递单号</text>
         </view>
         <view class="process-item-ft">
-          <text class="process-item-info">20180612012234122324</text>
+          <text class="process-item-info">暂无快递信息</text>
         </view>
       </view>
     </view>

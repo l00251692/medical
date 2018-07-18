@@ -28,10 +28,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.UUIDSerializer;
 import com.changyu.foryou.model.Users;
-import com.changyu.foryou.service.DelayService;
 import com.changyu.foryou.service.OrderService;
 import com.changyu.foryou.service.PayService;
-import com.changyu.foryou.service.RedisService;
 import com.changyu.foryou.service.UserService;
 import com.changyu.foryou.tools.Constants;
 import com.changyu.foryou.tools.PayUtil;
@@ -46,11 +44,7 @@ public class PayController {
 	private OrderService orderService;
 	@Autowired
     private UserService userService;
-	@Autowired  
-    private DelayService delayService;  
-    @Autowired  
-    private RedisService redisServie; 
-    
+  
     @Autowired
 	private PayService payService;
 
