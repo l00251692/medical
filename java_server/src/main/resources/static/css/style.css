@@ -52,7 +52,7 @@ body#landingBody{
 }
 .navbar .brand{
 	color:rgb(255,255,255);
-	
+
 	-webkit-transition:color .2s ease-in-out;
 	cursor:pointer;
 }
@@ -118,7 +118,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0956ae', end
     position: relative;
     margin-left:80px;
 }
-  
+
 .navbar-search .search-query {
     padding-left: 29px;
     background-color:#4487D3;
@@ -183,7 +183,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0956ae', end
 }
 .sideBar ul > li{
     font-family:"OpenSansLight";
-    color:#222;
+    color:#08c;
     cursor:pointer;
     font-size:16px;
     margin-bottom:2px;
@@ -526,7 +526,7 @@ input.sharp{
 .form.vertical input{
     display:block;
     clear:both;
-    
+
 }
 .form.vertical h6{
     margin-top:-5px;
@@ -544,7 +544,7 @@ input.sharp{
 
 button.sp{
     margin-bottom:20px;
-    
+
     clear:both;
 }
 

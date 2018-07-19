@@ -17,4 +17,10 @@ public interface OrderMapper {
 		
 	public List<Order> getMineOrders(Map<String, Object> paramMap);
 	
+	public List<Order> selectOrdersByDate(Map<String, Object> paramMap);
+	
+	public List<Order> getOrdersByStatus(Map<String, Object> paramMap);
+	
+	public long getOrdersStatusCount(Map<String, Object> paramMap);
+	
 }

@@ -13,17 +13,20 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         /*String[] loginList = new String[]{"login", "toLogin"};
+        System.out.println("preHandle enter:" + httpServletRequest.getRequestURI());
 
         if (isContains(httpServletRequest.getRequestURI(), loginList)) {
+        	System.out.println("contain");
             return true;
-        }
+        }      
 
         String user = (String) httpServletRequest.getSession().getAttribute("campusAdmin");
         if (user == null) {
+        	System.out.println("LoginInterceptor redics");
             httpServletResponse.sendRedirect("/login.html");
             return false;
-        }*/
-
+        }
+        System.out.println("LoginInterceptor return");*/
         return true;
     }
 

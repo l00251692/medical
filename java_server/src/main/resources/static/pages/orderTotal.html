@@ -5,7 +5,7 @@
   <meta http-equiv="Content-type" content="text/html" />
   <meta name="title" content="foryou" />
   <meta name="language" content="zh" />
-  <title>积木平台</title>
+  <title>订单汇总</title>
   <link rel="stylesheet" href="../css/order.css">
   <link rel="stylesheet" href="../css/bootstrap-datepicker3.css">
   <link rel="stylesheet"
@@ -54,7 +54,7 @@
     <div class="order_filter_summary">
       <span class="fr mr30"> <a class="blue"
        style="padding: 2px; margin-right: 5px;">1</a>
-     </span> 共计：<span name="counts"></span> 张有效订单，总金额：<span name="total_price"></span>元
+     </span> 共计：<span name="counts"></span> 张有效订单
    </div>
 
    <div id="list_container">
@@ -72,7 +72,7 @@
 
   $(function() {
     $('#datepicker').val(time());
-    getTotalDate(null);
+        getTotalDate(null);
 
     $("#select").on("click",function(){
       $("#list_items").text("");
@@ -81,21 +81,18 @@
   });
 
 
-	//需要店铺ID
 	function getTotalDate(datetime) {
 
 		var campusId = getCookie("campusId");
 		//alert(campusId);
 		$.post("../order/getOrdersByDate", {
 			date : datetime,
-			campusId : campusId,
 			server:"56846a8a2fee49d14901d39cc48b8b2a"
 		}, function(text) {
 			var data = eval(text);
             console.log("getTotalDate:" + JSON.stringify(data));
 			$("h2[name='counts']").text("订单列表(" + data.counts + ")");
 			$("span[name='counts']").text(data.counts);
-			$("span[name='total_price']").text(data.total_price);
 
 			for (var i = data.orderList.length - 1; i >= 0; i--) {
 				formatList(data.orderList[i], i + 1);
@@ -107,85 +104,39 @@
 
 	function formatList(data, i) {
 		$.get("togetherOrderDetail.txt", function(text) {
-			text = text.replace(/(orderId##)/g, data.orderId).replace(
-					/(date##)/g, data.createTime).replace(/(orderPrice##)/g,
-					data.payPrice).replace(/(customeAddress##)/g,
-					data.address).replace(/(customePhone##)/g,
-					data.phone).replace(/(index##)/g, i);
+			text = text.replace(/(orderId##)/g, data.order_id).replace(
+					/(date##)/g, data.create_time).replace(/(name##)/g,
+					data.name).replace(/(phone##)/g,
+					data.phone).replace(/(idcard##)/g,
+                    data.idcard).replace(/(hospital##)/g,
+                    data.hospital).replace(/(mrNo##)/g,
+                    data.mrNo).replace(/(department##)/g,
+                    data.department).replace(/(doctor##)/g,
+                    data.doctor).replace(/(bedNo##)/g,
+                    data.bedNo).replace(/(address##)/g,
+                    data.addr).replace(/(index##)/g, i);
 
-			//显示备注
-			if (data.message != null) {
-				text = text.replace(/(message##)/g, data.message);
-			} else {
-				text = text.replace(/(message##)/g, "");
-			}
-
-			if (data.userName != null) {
-				text = text.replace(/(adminName##)/g, data.userName);
-			} else {
-				text = text.replace(/(adminName##)/g, "");
-			}
+            if(data.nick_name == null)
+            {
+                text = text.replace(/(nickName##)/g, "");
+            }
+            else{
+                text = text.replace(/(nickName##)/g, data.nick_name);
+            }
 			//判断订单状态
             if (data.status == "1") {
                 text = text.replace(/(orderStatus##)/g, "待支付");
             }       //
-			else if (data.status == "2") {
-				text = text.replace(/(orderStatus##)/g, "待商家接单");
-			} else if (data.status == "3") {
-				text = text.replace(/(orderStatus##)/g, "订单进行中");
-			} else if (data.status == "4"||data.status=="5") {
-				text = text.replace(/(orderStatus##)/g, "交易完成");
-			}else if (data.status == "5") {
-				text = text.replace(/(orderStatus##)/g, "订单取消");
-			}else if (data.status == "6") {
-				text = text.replace(/(orderStatus##)/g, "订单退款中");
-			} else if (data.status == "7") {
-				text = text.replace(/(orderStatus##)/g, "退款完成");
+			else if (data.status == 2 ) {
+				text = text.replace(/(orderStatus##)/g, "待配送");
+			} else if (data.status == 3) {
+				text = text.replace(/(orderStatus##)/g, "已配送");
 			}else{
+                console.log("status1:");
 				text = text.replace(/(orderStatus##)/g, "");
 			}
 
-			/*if(data.payWay=="1"){
-				text=text.replace(/(payWay##)/g,"支付宝支付");
-			}else if(data.payWay=="2"){
-				text = text.replace(/(payWay##)/g,"微信支付");
-			}else{
-				text = text.replace(/(payWay##)/g,"");
-			}*/
-
-			if (data.reserveTime != null) {
-				text = text.replace(/(reserveTime##)/g, data.reserveTime);
-			} else {
-				text = text.replace(/(reserveTime##)/g, "立即送达");
-			}
 			$("#list_items").append(text);
-
-			$.each(data.orderList, function(index, context) {
-				$smallOrder = context;
-				var price = $smallOrder.price;;
-				/*if ($smallOrder.isDiscount == 1) {
-					price = $smallOrder.discountPrice;
-				} else {
-					price = $smallOrder.price;
-				}*/
-
-				var totalPrice = $smallOrder.totalPrice;
-				$("#" + data.orderId)
-						.append(
-								[
-										'<tr>',
-										'<td class="item_name"><span class="dishname">'
-												+ $smallOrder.foodName
-												+ '</span></td>',
-										'<td class="item_price">'
-												+ price.toFixed(2) + '</td>',
-										'<td class="item_quantity">'
-												+ $smallOrder.orderCount
-												+ '</td>',
-										'<td class="item_total_price">'
-												+ totalPrice.toFixed(2)
-												+ '</td>', '</tr>' ].join(''));
-			});
 
 		});
 	};

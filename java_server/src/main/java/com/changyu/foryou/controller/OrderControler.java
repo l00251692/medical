@@ -460,7 +460,7 @@ public class OrderControler {
 					record.put("type", state);
 					Map<String, Object> tmp = new HashMap<String, Object>();
 					tmp.put("快递发货", timeStr);
-					tmp.put("快递单号", "121212121212121");
+					tmp.put("快递单号", "12121212121212");
 					record.put("list", tmp);
 				}
 				else if(state == 4){
@@ -535,4 +535,152 @@ public class OrderControler {
           result.put("data", null);	
           return result;
     }
+	
+	//PC端接口
+	/**
+	 * 获取某日订单所有订单详情
+	 * 
+	 * @param date
+	 * @return
+	 */
+	@RequestMapping("/getOrdersByDate")
+	@ResponseBody
+	public Map<String, Object> getOrdersByDate(String date, Integer limit, Integer page) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			if (date.equals("") || date.equals("null"))
+			{
+				date = null;
+			}
+			else
+			{
+				date = date.replace("年", "-").replace("月", "-").replace("日", "");
+			}
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("createTime", date);
+
+			if (page != null && limit != null) {
+				paramMap.put("limit", limit);
+				paramMap.put("offset", (page - 1) * limit);
+			}
+
+			List<Order> lists = orderService.selectOrdersByDate(paramMap);
+			
+			JSONArray arr = new JSONArray();
+
+			for (Order order : lists)
+			{
+				JSONObject obj =  new JSONObject();
+				
+				Users user = userService.selectByUserId(order.getCreateUser());
+				if(user != null)
+				{
+					obj.put("nick_name", user.getNickname());
+				}
+				obj.put("order_id", order.getOrderId());
+				obj.put("status", order.getOrderStatus());
+				obj.put("create_time", order.getCreateTime());
+				obj.put("last_update_time", order.getLastUpdateTime());
+				obj.put("name", order.getName());
+				obj.put("phone", order.getPhone());
+				obj.put("idcard", order.getIdCard());
+				obj.put("hospital", order.getHospital());
+				obj.put("mrNo", order.getMrNo());
+				obj.put("department", order.getDepartment());
+				obj.put("doctor", order.getDoctor());
+				obj.put("bedNo", order.getBedNo());	
+				String temp = order.getProvice() + order.getCity()+order.getDistrict()+order.getAdrTitle();			
+				if(order.getDetail() == null || order.getDetail().isEmpty()){
+					obj.put("addr", temp);
+				}
+				else
+				{
+					obj.put("addr", temp + order.getDetail());
+				}	
+				obj.put("front_img", order.getIdCardFront());
+				obj.put("back_img", order.getIdCardBack());
+				
+				arr.add(obj);
+			}
+			
+			resultMap.put("counts", arr.size());
+			resultMap.put("orderList", JSONArray.parse(JSON.toJSONStringWithDateFormat(arr,
+							"yyyy-MM-dd HH:mm:ss")));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return resultMap;
+	}
+	
+	
+	/**
+	 * 获取所有订单详情
+	 * 
+	 * @param date
+	 * @return
+	 */
+	@RequestMapping("/getOrderList")
+	@ResponseBody
+	public Map<String, Object> getOrderList(Short status,Integer limit, Integer offset, String search) {
+Map<String, Object> map = new HashMap<String, Object>();
+		
+        Map<String,Object> paramMap=new HashMap<String,Object>();
+        
+        System.out.println("getOrdersList:status=" + String.valueOf(status) +",limit=" + String.valueOf(limit) +",offset=" + String.valueOf(status));
+        
+        paramMap.put("limit", limit);
+        paramMap.put("offset", offset);
+        paramMap.put("search", search);
+        paramMap.put("status", status);
+		
+	
+		List<Order> lists = orderService.getOrdersByStatus(paramMap);
+		JSONArray arr = new JSONArray();
+		for (Order order: lists)
+		{
+			JSONObject obj = new JSONObject();
+			Users user = userService.selectByUserId(order.getCreateUser());
+			if(user != null)
+			{
+				obj.put("nick_name", user.getNickname());
+			}
+			obj.put("order_id", order.getOrderId());
+			obj.put("status", order.getOrderStatus());
+			obj.put("create_time", order.getCreateTime());
+			obj.put("last_update_time", order.getLastUpdateTime());
+			obj.put("name", order.getName());
+			obj.put("phone", order.getPhone());
+			obj.put("idcard", order.getIdCard());
+			obj.put("hospital", order.getHospital());
+			obj.put("mrNo", order.getMrNo());
+			obj.put("department", order.getDepartment());
+			obj.put("doctor", order.getDoctor());
+			obj.put("bedNo", order.getBedNo());	
+			obj.put("deliveryNo", order.getBedNo());	
+			String temp = order.getProvice() + order.getCity()+order.getDistrict()+order.getAdrTitle();			
+			if(order.getDetail() == null || order.getDetail().isEmpty()){
+				obj.put("addr", temp);
+			}
+			else
+			{
+				obj.put("addr", temp + order.getDetail());
+			}	
+			obj.put("front_img", order.getIdCardFront());
+			obj.put("back_img", order.getIdCardBack());
+			
+			arr.add(obj);
+		}
+		
+
+		JSONArray jsonArray = JSONArray.parseArray(JSON
+				.toJSONStringWithDateFormat(arr, "yyyy-MM-dd"));
+
+		long totalCount = orderService.getOrdersStatusCount(paramMap);
+		map.put("rows", jsonArray);
+		map.put("total", totalCount);
+		return map;
+	}
 }

@@ -239,5 +239,42 @@
 		</if>
 	</select>
 	
+	<!-- 获取某天的总订单详情和数目 -->
+	<select id="selectOrdersByDate" resultMap="BaseResultMap" flushCache="true" useCache="false" >
+		select *
+		from orders
+		where
+		order_status > 0 
+		<if test="createTime!=null">
+			and
+			DATE_FORMAT(create_time,"%Y-%m-%d")=#{createTime,jdbcType=DATE}
+		</if>
+		<if test="createTime==null">
+			and DATE_FORMAT(create_time,"%Y-%m-%d")=CURDATE()
+		</if>
+		ORDER BY
+		create_time ASC
+	</select>
+	
+	<select id="getOrdersByStatus" resultMap="BaseResultMap">
+		select
+		*
+		from orders
+		WHERE order_status =#{status,jdbcType=SMALLINT}
+		<if test="search!=null">
+			and name like "%${search}%"
+		</if>
+		order by create_time DESC
+		limit ${offset},${limit}
+	</select>
+	
+	<select id="getOrdersStatusCount" resultType="Long">
+		select count(*)
+		from orders
+		WHERE order_status =#{status,jdbcType=SMALLINT}
+		<if test="search!=null">
+			and name like "%${search}%"
+		</if>
+	</select>
 	
 </mapper>

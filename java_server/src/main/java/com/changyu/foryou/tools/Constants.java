@@ -2,6 +2,11 @@ package com.changyu.foryou.tools;
 
 public  class Constants {
 
+	public static final String STATUS = "status";
+	public static final String SUCCESS = "success";
+	public static final String FAILURE = "failure";
+	public static final String MESSAGE = "message";
+	
 	public static final String localIp = "https://localhost/JiMuImage"; //存放上传的图片的服务器JiMuImage为上传图片时创建的目录
     public static final String appId="wxcc5ecb17be242087";
     public static final String apiKey="125666eeecee7a340f3cfcfd85be52d9";

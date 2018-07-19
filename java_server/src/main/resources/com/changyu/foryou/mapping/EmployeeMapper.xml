@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.changyu.foryou.mapper.EmployeeMapper">
+	<cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
+	<resultMap id="BaseResultMap" type="com.changyu.foryou.model.Employee">
+		<id column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="SMALLINT" />
+		<result column="authority" property="authority" jdbcType="VARCHAR" />
+		<result column="last_login_date" property="lastLoginDate" jdbcType="DATE" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		phone, password, type, authority,
+		last_login_date,
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String" flushCache="true" useCache="false">
+		select
+		*
+		FROM
+		oa_employee
+		WHERE
+		phone = #{phone,jdbcType=VARCHAR}
+		LIMIT 1
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from oa_employee
+		where phone = #{phone,jdbcType=VARCHAR}
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.changyu.foryou.model.Users">
+		insert into oa_employee
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="authority != null">
+				authority,
+			</if>
+			<if test="lastLoginDate != null">
+				last_login_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=SMALLINT},
+			</if>
+			<if test="authority != null">
+				#{authority,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginDate != null">
+				#{lastLoginDate,jdbcType=DATE},
+			</if>
+		</trim>
+	</insert>
+	
+	<!-- 登录检查接口 -->
+	<select id="checkLogin" resultMap="BaseResultMap">
+		select * from oa_employee where
+		phone=#{phone,jdbcType=VARCHAR}
+	</select>
+	
+	<update id="updateLastLoginTime">
+		update oa_employee
+		<set>
+			<if test="lastLoginDate != null">
+				last_login_date = #{lastLoginDate,jdbcType=DATE},
+			</if>
+		</set>
+		where phone = #{phone,jdbcType=VARCHAR}
+	</update>
+	
+	
+</mapper>

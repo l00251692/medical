@@ -6,48 +6,37 @@
 
         <div class="list_order_head head-color">
           <span class="process_num">index##</span>
-
-
           <span class="item-title">订单号:</span><span class="item-content">orderId##</span>
           <span class="item-title">下单时间:</span><span class="item-content">date##</span>
-          <span class="item-title">订单总额:</span><span class="item-content">orderPrice##元</span>
           <span class="item-title">订单状态:</span><span class="item-content">orderStatus##</span>
-          <!-- <span class="item-title">支付方式:</span><span class="item-content">payWay##</span> -->
+          <span class="item-title">用户昵称:</span><span class="item-content">nickName##</span>
         </div>
         <div class="list_content">
           <table class="order_meta">
             <tbody>
               <tr>
                 <td class="item_name">
-                  <span class="info_name">顾客电话:</span><span>customePhone##</span>
-                  <span class="info_name ml20">顾客地址:</span><span>customeAddress##</span>
-                  <span class="info_name ml20">预约送达时间:</span><span>reserveTime##</span>
-                  <span class="info_name ml20">买家名字:</span><span>adminName##</span>
-                </tr>
-                <tr>
-                  <td class="item_quantity"><span class="info_name">订单备注:</span><span>message##</span></td>
-                </tr>
+                  <span class="info_name">姓名:</span><span>name##</span>
+                  <span class="info_name ml20">手机号:</span><span>phone##</span>
+                  <span class="info_name ml20">身份证号:</span><span>idcard##</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="item_name">
+                  <span class="info_name">医院名称:</span><span>hospital##</span>
+                  <span class="info_name ml20">住院号:</span><span>mrNo##</span>
+                  <span class="info_name ml20">科室:</span><span>department##</span>
+                  <span class="info_name ml20">主治医生:</span><span>doctor##</span>
+                  <span class="info_name ml20">床位号:</span><span>bedNo##</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="item_name">
+                  <span class="info_name">邮寄地址:</span><span>address##</span>
+                  <span class="info_name">快递单号:</span><span>1212121212</span>
+                </td>
+              </tr>
               </tbody>
-            </table>
-
-            <table class="item_table">
-              <thead>
-                <tr>
-                  <th>商品篮子</th>
-                  <th>单价</th>
-                  <th>数量</th>
-                  <th>总价</th>
-                </tr>
-              </thead>
-              <tbody id="orderId##">
-        
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th colspan="3">小计</th>
-                  <th>orderPrice##</th>
-                </tr>
-              </tfoot>
             </table>
           </div>
         </li>

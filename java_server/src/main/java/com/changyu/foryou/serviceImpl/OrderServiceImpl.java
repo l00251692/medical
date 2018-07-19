@@ -44,4 +44,16 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.getMineOrders(paramMap);
 	}
 	
+	public List<Order> selectOrdersByDate(Map<String, Object> paramMap){
+		return orderMapper.selectOrdersByDate(paramMap);
+	}
+	
+	public List<Order> getOrdersByStatus(Map<String, Object> paramMap){
+		return orderMapper.getOrdersByStatus(paramMap);
+	}
+	
+	public long getOrdersStatusCount(Map<String, Object> paramMap){
+		return orderMapper.getOrdersStatusCount(paramMap);
+	}
+	
 }
