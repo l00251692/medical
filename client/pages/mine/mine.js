@@ -72,7 +72,7 @@ Page({
     // 页面关闭
   },
   onPhoneTap(e) {
-    makePhoneCall(e.currentTarget.dataset.phone)
+    makePhoneCall("18261149876")
   },
 
   onReachBottom(e) {

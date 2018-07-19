@@ -5,14 +5,24 @@
     <button bindgetuserinfo="onLogin" open-type="getUserInfo" class="userbutton">
       <image class="avatar" src="{{userInfo ? userInfo.avatarUrl: '/images/default-image.png'}}"></image>
     </button>
-
   </view>
   <view>
     {{userInfo ? userInfo.nickName : '未登录'}}
   </view>
+
+
+</view>
+<button class="phone" bindtap='onPhoneTap'>
+  <image src="../../images/phone.png"></image>
+</button>
+<button class="concat" open-type="contact">
+  <image src="../../images/concat.png"></image>
+</button>
+<view class="title">
+  <text class="service-process-title">申请记录</text>
 </view>
 
-<text class="service-process-title">申请记录</text>
+
 <block wx:for="{{list}}" wx:key="{{order_id}}">
   <view class="process review-process">
     <view class="process-hd">

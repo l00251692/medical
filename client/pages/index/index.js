@@ -84,6 +84,13 @@ Page({
       return;
     }
 
+    var { user_id } = wx.getStorageSync("userInfo")
+    if (user_id == null || user_id.length == 0)
+    {
+      alert('用户未登录，请在我的页面授权登录');
+      return;
+    }
+
     wx.navigateTo({
       url: '/pages/addInfo/addInfo',
     })
