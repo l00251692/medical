@@ -1,6 +1,7 @@
 package com.changyu.foryou.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -324,6 +325,62 @@ public class OrderControler {
 	 *            ,status
 	 * @return
 	 */
+	@RequestMapping("/getMineOrdersWx")
+	public @ResponseBody Map<String, Object> getMineOrdersWx(
+			@RequestParam String  user_id, @RequestParam Integer page) {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		try {
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("createUser",user_id);
+			paramMap.put("limit",5);
+			paramMap.put("offset",page*5);
+			
+			List<Order> list = orderService.getMineOrders(paramMap);
+			JSONArray arr = new JSONArray();
+			for(Order order: list){
+				JSONObject obj = new JSONObject();
+				obj.put("order_id", order.getOrderId());
+				obj.put("name", order.getName());
+				obj.put("status", order.getOrderStatus());
+				obj.put("create_time", order.getCreateTime());
+				
+				if(order.getDeliveryNo() == null || order.getDeliveryNo().length() == 0)
+				{
+					obj.put("delivery_no", "暂无快递信息");
+				}
+				else
+				{
+					obj.put("delivery_no", order.getDeliveryNo());
+				}
+				
+				arr.add(obj);
+			}
+		
+			JSONObject data = new JSONObject();
+			data.put("list", arr);
+			data.put("count", list.size());
+			
+			map.put("State", "Success");
+			map.put("data", data);	
+			return map;
+
+		} catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		map.put("State", "False");
+		map.put("data", null);	
+		return map;
+	}
+	
+	/**
+	 * 获取订单具体信息
+	 * 
+	 * @param phoneId
+	 *            ,status
+	 * @return
+	 */
 	@RequestMapping("/getOrderInfoWx")
 	public @ResponseBody Map<String, Object> getOrderInfoWx(
 			@RequestParam String  user_id, @RequestParam String order_id) {
@@ -343,14 +400,86 @@ public class OrderControler {
 		
 
 
-			JSONObject obj_order = new JSONObject();
+			JSONObject obj = new JSONObject();
+			obj.put("order_id", order.getOrderId());
+			obj.put("status", order.getOrderStatus());
+			obj.put("create_time", order.getCreateTime());
+			obj.put("last_update_time", order.getLastUpdateTime());
+			obj.put("name", order.getName());
+			obj.put("phone", order.getPhone());
+			obj.put("idcard", order.getIdCard());
+			obj.put("hospital", order.getHospital());
+			obj.put("mrNo", order.getMrNo());
+			obj.put("department", order.getDepartment());
+			obj.put("doctor", order.getDoctor());
+			obj.put("bedNo", order.getBedNo());
+			String temp = order.getProvice() + order.getCity()+order.getDistrict()+order.getAdrTitle();			
+			if(order.getDetail() == null || order.getDetail().isEmpty()){
+				obj.put("addr", temp);
+			}
+			else
+			{
+				obj.put("addr", temp + order.getDetail());
+			}
 			
+			obj.put("front_img", order.getIdCardFront());
+			obj.put("back_img", order.getIdCardBack());
 			
-			obj_order.put("createTime", order.getCreateTime());
-			obj_order.put("orderStatus", order.getOrderStatus());
+			JSONArray recordes = JSON.parseArray(order.getRecords());
+			JSONArray arr = new JSONArray();
+			for(int i = recordes.size() -1; i >= 0; i--)
+			{
+				JSONObject record = new JSONObject();
+				short state = recordes.getJSONObject(i).getShort("status");
+
+				DateFormat formattmp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+				String timeStr = formattmp.format(recordes.getJSONObject(i).getDate("time"));
+				if( state == 0){
+					record.put("name", "取消");
+					record.put("type", state);
+					Map<String, Object> tmp = new HashMap<String, Object>();
+					tmp.put("取消时间", timeStr);
+					record.put("list", tmp);
+				}
+				else if(state == 1){
+					record.put("name", "创建");
+					record.put("type", state);
+					Map<String, Object> tmp = new HashMap<String, Object>();
+					tmp.put("提交订单", timeStr);
+					record.put("list", tmp);
+				}
+				else if(state == 2){
+					record.put("name", "支付");
+					record.put("type", state);
+					Map<String, Object> tmp = new HashMap<String, Object>();
+					tmp.put("支付成功", timeStr);				
+					record.put("list", tmp);
+				}
+				else if(state == 3){
+					record.put("name", "配送");
+					record.put("type", state);
+					Map<String, Object> tmp = new HashMap<String, Object>();
+					tmp.put("快递发货", timeStr);
+					tmp.put("快递单号", "121212121212121");
+					record.put("list", tmp);
+				}
+				else if(state == 4){
+					record.put("name", "完成");
+					record.put("type", state);
+					Map<String, Object> tmp = new HashMap<String, Object>();
+					tmp.put("完成时间", timeStr);
+					record.put("list", tmp);
+				}
+				
+				arr.add(record);
+			}
+			
+			JSONObject data = new JSONObject();
+			data.put("info", obj);
+			data.put("state", arr);
 
 			map.put("State", "Success");
-			map.put("data", obj_order);	
+			map.put("data", data);	
 			return map;
 
 		} catch (Exception e) 

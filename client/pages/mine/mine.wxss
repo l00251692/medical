@@ -75,21 +75,28 @@
     padding-right: 30rpx;
     font-weight: bold;
 }
-.process-state-waited{
-    color: #ffcb63;
-}
-.process-state-accepted{
-    color: #73b4ef;
-}
-.process-state-dispatched{
-    color: #e78ab0;
-}
-.process-state-finished{
-    color: #9f8bea;
-}
-.process-state-refused{
+
+/* 取消订单 */
+.process-state-0{
     color: #999;
 }
+/* 待支付 */
+.process-state-1{
+    color: #e78ab0;
+}
+/* 待配送 */
+.process-state-2{
+    color: #ffcb63;
+}
+/* 已配送 */
+.process-state-3{
+    color: #73b4ef;
+}
+/* 保留状态 */
+.process-state-4{
+    color: #9f8bea;
+}
+
 .process-bd{
     padding: 10rpx 30rpx;
 }

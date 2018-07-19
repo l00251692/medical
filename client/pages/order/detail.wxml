@@ -5,9 +5,9 @@
       <text class="repair-state-title">处理详情</text>
       <view class="repair-state">
         <block wx:for="{{state}}" wx:key="name">
-          <view class="repair-state-item" wx:if="{{item.status}}">
+          <view class="repair-state-item" >
             <view class="repair-state-icon {{index===0?'repair-state-icon-'+item.type:''}}"></view>
-            <view class="repair-state-info {{item.name=='申请'?'repair-state-info-last':''}}">
+            <view class="repair-state-info {{item.name=='创建'?'repair-state-info-last':''}}">
               <view class="repair-info-item">
                 <text class="repair-info-bd repair-state-name">{{item.name}}</text>
               </view>
@@ -29,64 +29,64 @@
         <view class="work-sheet-item">
           <text class="work-sheet-bd">姓名</text>
           <view class="work-sheet-ft">
-            <text>六六六</text>
+            <text>{{info.name}}</text>
           </view>
         </view>
         <view class="work-sheet-item">
           <text class="work-sheet-bd">手机号</text>
           <view class="work-sheet-ft">
-            <text>18261145627</text>
+            <text>{{info.phone}}</text>
           </view>
         </view>
         <view class="work-sheet-item">
           <text class="work-sheet-bd">身份证号</text>
           <view class="work-sheet-ft">
-            <text>2331234199011092738</text>
+            <text>{{info.idcard}}</text>
           </view>
         </view>
         <view class="work-sheet-item">
           <text class="work-sheet-bd">医院名称</text>
           <view class="work-sheet-ft">
-            <text>河海大学</text>
+            <text>{{info.hospital}}</text>
           </view>
         </view>
         <view class="work-sheet-item">
           <text class="work-sheet-bd">住院号</text>
           <view class="work-sheet-ft">
-            <text>111122223333</text>
+            <text>{{info.mrNo}}</text>
           </view>
         </view>
         <view class="work-sheet-item">
           <text class="work-sheet-bd">科室</text>
           <view class="work-sheet-ft">
-            <text>骨科</text>
+            <text>{{info.department}}</text>
           </view>
         </view>
         <view class="work-sheet-item">
           <text class="work-sheet-bd">主治医生</text>
           <view class="work-sheet-ft">
-            <text>和大山</text>
+            <text>{{info.doctor}}</text>
           </view>
         </view>
         <view class="work-sheet-item">
           <text class="work-sheet-bd">床位号</text>
           <view class="work-sheet-ft">
-            <text>23232323</text>
+            <text>{{info.bedNo}}</text>
           </view>
         </view>
         <view class="work-sheet-item">
           <text class="work-sheet-bd">邮寄地址</text>
           <view class="work-sheet-ft">
-            <text>江苏省南京市玄武区钟麓花园板仓街23号8栋</text>
+            <text>{{info.addr}}</text>
           </view>
         </view>
         <view class="work-sheet-item">
           <text class="work-sheet-bd">身份证照</text>
           <view class="img-idcard-front">
-            <image src="../../images/upload/IDcard_front.png" mode='aspectFit'></image>
+            <image src="{{info.front_img}}" mode='aspectFit'></image>
           </view>
           <view class="img-idcard-back">
-            <image src="../../images/upload/IDcard_front.png" mode='aspectFit'></image>
+            <image src="{{info.back_img}}" mode='aspectFit'></image>
           </view>
         </view>
       </view>

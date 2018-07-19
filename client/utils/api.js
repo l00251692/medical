@@ -27,7 +27,7 @@ export function bindPhone(options) {
     success, error
   } = options
 
-  var { user_id, user_token } = getApp().globalData.loginInfo.userInfo
+  var { user_id } = getApp().globalData.loginInfo.userInfo
   
   fetch({
     url: "user/bindPhone",
@@ -94,10 +94,9 @@ export function getMineInfo(options) {
   const {
     success
   } = options
-  if (!getApp().globalData.loginInfo.is_login) {
-    return alert('用户未登录')
-  }
-  var { user_id, user_token } = getApp().globalData.loginInfo.userInfo
+
+  var { user_id } = wx.getStorageSync("userInfo")
+
   fetch({
     url: 'user/getMineInfoWx',
     data: {
@@ -146,14 +145,15 @@ export function updateOrderIdCard(options) {
   })
 }
 
-// 获取准订单
+// 获取订单信息
 export function getOrderInfo(options) {
   var {
     order_id,
     success, error
   } = options
 
-  var { user_id, user_token } = getApp().globalData.loginInfo.userInfo
+  var { user_id } = wx.getStorageSync("userInfo")
+
   fetch({
     url: 'order/getOrderInfoWx',
     data: {
@@ -171,7 +171,8 @@ export function cancelOrder(options) {
     success, error
   } = options
   
-  var { user_id, user_token } = getApp().globalData.loginInfo.userInfo
+  var { user_id } = wx.getStorageSync("userInfo")
+
   fetch({
     url: 'order/cancelOrderWx',
     data: {
@@ -189,7 +190,8 @@ export function getMineOrders(options) {
     success, error
   } = options
 
-  var { user_id } = getApp().globalData.loginInfo.userInfo
+  var { user_id } = wx.getStorageSync("userInfo")
+  
   fetch({
     url: 'order/getMineOrdersWx',
     data: {

@@ -46,20 +46,20 @@
     border: 5rpx solid #eee;
     margin: 15rpx 30rpx;
 }
-.repair-state-icon-waited{
-    background: #ffcb63;
+.repair-state-icon-0{
+    background: #999;
 }
-.repair-state-icon-accepted{
-    background: #73b4ef;
-}
-.repair-state-icon-dispatched{
+.repair-state-icon-1{
     background: #e78ab0;
 }
-.repair-state-icon-finished{
-    background: #9f8bea;
+.repair-state-icon-2{
+    background: #ffcb63;
 }
-.repair-state-icon-refused{
-    background: #999;
+.repair-state-icon-3{
+    background: #73b4ef;
+}
+.repair-state-icon-4{
+    background: #9f8bea;
 }
 .repair-state-info{
     position: relative;

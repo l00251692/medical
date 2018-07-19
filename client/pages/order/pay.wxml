@@ -73,9 +73,8 @@
       </view>
   </view>
 
-
   <view class="submit-declare" >
-    <button formType="submit">提交支付</button>
+    <button formType="submit">提交支付(￥50.00)</button>
   </view>
 
   <view class="help" id="help" wx:if="{{help_status}}" bindtap="tapHelp">

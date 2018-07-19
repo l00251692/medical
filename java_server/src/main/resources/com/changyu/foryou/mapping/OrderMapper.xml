@@ -24,6 +24,7 @@
 		<result column="adr_title" property="adrTitle" jdbcType="VARCHAR" />
 		<result column="idcard_front" property="idCardFront" jdbcType="VARCHAR" />	
 		<result column="idcard_back" property="idCardBack" jdbcType="VARCHAR" />
+		<result column="deliveryNo" property="deliveryNo" jdbcType="VARCHAR" />
 	</resultMap>
 	
 	<insert id="insertSelective" >
@@ -207,11 +208,35 @@
 			create_user=#{createUser, jdbcType=VARCHAR}
 	</update>
 	
+	<update id="updateDeliveryNo">
+		 update orders set
+		<if test="deliveryNo != null">
+			deliveryNo=#{deliveryNo, jdbcType=VARCHAR}
+		</if>
+		<if test="orderStatus != null">
+			order_status=#{orderStatus, jdbcType=SMALLINT}
+		</if>
+		<if test="records != null">
+			,records=#{records, jdbcType=VARCHAR}
+		</if>
+		<if test="lastUpdateTime != null">
+			,last_update_time=#{lastUpdateTime, jdbcType=VARCHAR}
+		</if>
+		where
+			order_id=#{orderId, jdbcType=VARCHAR}
+	</update>
+	
 	<select id="getMineOrders" resultMap="BaseResultMap" flushCache="true" useCache="false">
 		select
 		*
 		from orders
 		where create_user = #{createUser,jdbcType=VARCHAR} 
+		order by create_time
+		DESC
+		<if test="limit !=null and offset !=null">
+			LIMIT #{limit,jdbcType=INTEGER} OFFSET
+			#{offset,jdbcType=INTEGER}
+		</if>
 	</select>
 	
 	

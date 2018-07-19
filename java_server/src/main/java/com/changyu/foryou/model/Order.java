@@ -47,6 +47,8 @@ public class Order {
     
     private String idCardBack;
     
+    private String deliveryNo;
+    
     public String getOrderId() {
 		return orderId;
 	}
@@ -221,6 +223,14 @@ public class Order {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public String getDeliveryNo() {
+		return deliveryNo;
+	}
+
+	public void setDeliveryNo(String deliveryNo) {
+		this.deliveryNo = deliveryNo;
 	}
     
 }

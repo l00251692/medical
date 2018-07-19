@@ -1,4 +1,5 @@
 <!--pages/mine/mine.wxml-->
+<import src="/templates/load-more.wxml" />
 <view class="header">
   <view class="onlogin">
     <button bindgetuserinfo="onLogin" open-type="getUserInfo" class="userbutton">
@@ -12,16 +13,15 @@
 </view>
 
 <text class="service-process-title">申请记录</text>
-<!-- <block wx:for="{{list}}" wx:key="wx_djh"> -->
-<block >
+<block wx:for="{{list}}" wx:key="{{order_id}}">
   <view class="process review-process">
     <view class="process-hd">
-      <image class="review-process-icon" src="../../images/order/order_accepted.png"></image>
+      <image class="review-process-icon" src="../../images/order/order_{{item.status}}.png"></image>
       <view class="order-number-name">
-        <text>订单号:20180612234567</text>
+        <text>订单号:{{item.order_id}}</text>
       </view>
       <view class="process-state">
-        <text class="process-state-name process-state-accepted">已提交</text>
+        <text class="process-state-name process-state-{{item.status}}">{{ORDER_STATES[item.status]}}</text>
       </view>
     </view>
     <view class="process-bd">
@@ -30,7 +30,7 @@
           <text class="process-item-name">申请人</text>
         </view>
         <view class="process-item-ft">
-          <text class="process-item-info">阿里朗</text>
+          <text class="process-item-info">{{item.name}}</text>
         </view>
       </view>
       <view class="process-item">
@@ -38,7 +38,7 @@
           <text class="process-item-name">创建时间</text>
         </view>
         <view class="process-item-ft">
-          <text class="process-item-info">2018-06-12 12:23:12</text>
+          <text class="process-item-info">{{item.create_time_format}}</text>
         </view>
       </view>
       <view class="process-item">
@@ -46,14 +46,15 @@
           <text class="process-item-name">快递单号</text>
         </view>
         <view class="process-item-ft">
-          <text class="process-item-info">暂无快递信息</text>
+          <text class="process-item-info">{{item.delivery_no}}</text>
         </view>
       </view>
     </view>
-    <navigator url="/pages/order/detail?id=20180612012234122324">
+    <navigator url="/pages/order/detail?id={{item.order_id}}">
       <view class="service-detail-open">
         <text>详情</text>
       </view>
     </navigator>
   </view>
 </block>
+<template is="load-more" data="{{loading: loading, hasMore: hasMore, noMoreLabel: '没有更多了'}}"></template>
