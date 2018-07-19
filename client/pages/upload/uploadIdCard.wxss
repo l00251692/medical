@@ -58,6 +58,9 @@
     color: #fff;
     font-size: 12pt;
 }
+.submit-upload-button::after{
+  border: none;
+}
 .submit-upload:active{
     opacity: .8;
 }

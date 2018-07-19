@@ -92,4 +92,7 @@
       </view>
     </view>
   </scroll-view>
+  <view class="submit-declare" wx:if="{{info.status == 1}}" >
+    <button class="submit-declare-button" bindtap="payTap">待支付(￥50.00)</button>
+  </view>
 </view>

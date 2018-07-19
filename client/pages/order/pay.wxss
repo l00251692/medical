@@ -118,8 +118,11 @@
     color: #fff;
     font-size: 12pt;
 }
+.submit-declare-button::after{
+  border: none;
+}
 .submit-declare:active{
-    opacity: .8;
+  opacity: .8;
 }
 
 .submit-declare button{

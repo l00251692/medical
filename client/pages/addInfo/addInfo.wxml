@@ -79,7 +79,7 @@
 
 
   <view class="submit-declare" >
-    <button formType="submit">下一步</button>
+    <button class="submit-declare-button" formType="submit">下一步</button>
   </view>
 
   <view class="help" id="help" wx:if="{{help_status}}" bindtap="tapHelp">

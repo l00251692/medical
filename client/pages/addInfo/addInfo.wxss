@@ -78,6 +78,9 @@
     color: #fff;
     font-size: 12pt;
 }
+submit-declare-button::after{
+  border: none;
+}
 .submit-declare:active{
     opacity: .8;
 }

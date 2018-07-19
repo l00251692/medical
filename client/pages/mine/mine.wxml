@@ -60,7 +60,7 @@
         </view>
       </view>
     </view>
-    <navigator url="/pages/order/detail?id={{item.order_id}}">
+    <navigator url="/pages/order/detail?id={{item.order_id}}&callback=callback">
       <view class="service-detail-open">
         <text>详情</text>
       </view>

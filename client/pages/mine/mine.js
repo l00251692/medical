@@ -143,6 +143,33 @@ Page({
     })
 
   },
+  callback(){
+    var that = this 
+    this.setData(initData)
+    var { page, list } = this.data
+    getMineOrders({
+      page,
+      success(data) {
+        var list2 = data.list.map(item => {
+          item['create_time_format'] = datetimeFormat(item.create_time)
+          return item
+        })
+
+        that.setData({
+          list: list ? list.concat(list2) : list2,
+          page: page + 1,
+          hasMore: data.count == 5,
+          loading: false
+        })
+      },
+      error() {
+        that.setData({
+          loading: false
+        })
+      }
+    })
+  },
+
   onShareAppMessage() {
     return {
       title: '我的',

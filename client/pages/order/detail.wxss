@@ -167,3 +167,30 @@
   height: 100%;
   border-radius: 20rpx;
 }
+
+.submit-declare{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom:0;
+    height: 80rpx;
+    width: 100%;
+    border-radius: 3px;
+    text-align: center;
+    background-color: #6495ed;
+    color: #fff;
+    font-size: 12pt;
+}
+.submit-declare::after{
+  border: none;
+}
+.submit-declare:active{
+    opacity: .8;
+}
+
+.submit-declare button{
+  background-color: #6495ed;
+  width: 100%;
+  color: #fff;
+}

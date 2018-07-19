@@ -1,8 +1,13 @@
 // pages/order/detail.js
 
 import {
-  getOrderInfo
+  getOrderInfo, getPayment, updateOrderPayed
 } from '../../utils/api'
+
+import {
+  alert, requestPayment, getPrevPage
+} from '../../utils/util'
+
 Page({
 
   /**
@@ -19,6 +24,7 @@ Page({
    */
   onLoad: function (options) {
     this.id = options.id
+    this.callback = options.callback
     this.init()
   },
 
@@ -64,6 +70,39 @@ Page({
       },
       error(){
         console.log("获取订单信息失败")
+      }
+    })
+  },
+
+  payTap(e){
+    var order_id = this.data.info.order_id
+    var pay_money = "0.01"
+    var that = this
+    getPayment({
+      order_id,
+      pay_money,
+      success(data) {
+        //发起微信支付
+        console.log("getPayment success:")
+        requestPayment({
+          data,
+          success() {
+            //更新订单状态
+            updateOrderPayed({
+              order_id,
+              success(data) {
+                getPrevPage()[that.callback]()
+                that.init()
+              }
+            })
+          },
+          fail(data) {
+            console.log("用户取消支付")
+          }
+        })
+
+      }, error(data) {
+        console.log("getPayment err:" + JSON.stringify(data))
       }
     })
   }
