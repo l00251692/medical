@@ -12,13 +12,19 @@ import com.changyu.foryou.model.Users;
 public interface EmployeeMapper {
 
 
-    int insertSelective(Employee employee);
+    int insertSelective(Map<String, Object> paramMap);
+    
+    int updateEmployee(Map<String, Object> paramMap);
+    
+    int delEmployee(Map<String, Object> paramMap);
 
     Employee selectByPrimaryKey(String phone);
 
     Employee checkLogin(String phone);
     
     int updateLastLoginTime(Map<String, Object> paramMap);
+    
+    public List<Employee> getAllEmployee(Map<String, Object> paramMap);
 	
 
 }

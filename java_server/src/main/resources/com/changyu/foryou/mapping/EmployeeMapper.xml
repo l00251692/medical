@@ -28,7 +28,7 @@
 		where phone = #{phone,jdbcType=VARCHAR}
 	</delete>
 	
-	<insert id="insertSelective" parameterType="com.changyu.foryou.model.Users">
+	<insert id="insertSelective" >
 		insert into oa_employee
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="phone != null">
@@ -81,6 +81,39 @@
 		</set>
 		where phone = #{phone,jdbcType=VARCHAR}
 	</update>
+	
+	<update id="updateEmployee" >
+		update oa_employee
+		set
+		password = #{password,jdbcType=VARCHAR},
+		type =#{type,jdbcType=SMALLINT},
+		authority = #{authority,jdbcType=VARCHAR},
+		where phone = #{phone,jdbcType=VARCHAR}
+	</update>
+	
+	<delete id="delEmployee" >
+		delete from oa_employee
+		where phone = #{phone,jdbcType=VARCHAR}
+	</delete>
+	
+	<select id="getAllEmployee" resultMap="BaseResultMap" useCache="false">
+		select
+		*
+		from oa_employee
+		<where>
+			1=1
+			<if test="search != null and search !='' ">
+				and (phone like #{search,jdbcType=VARCHAR}
+			</if>
+			<if test="sort != null">
+				order by ${sort}
+			</if>
+			<if test="offset != null and limit != null">
+				limit #{offset,jdbcType=INTEGER} ,
+				#{limit,jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
 	
 	
 </mapper>

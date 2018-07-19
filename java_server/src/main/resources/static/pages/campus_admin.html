@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>校区管理员管理</title>
+<title>员工账号管理</title>
 <link rel="stylesheet"
 	href="../assets/bootstrap-table/bootstrap.min.css">
 <link rel="stylesheet"
@@ -16,7 +16,7 @@
 	<div class="container">
 		<div class="row-fluid">
 			<div class="page-header">
-				<h1>校区管理员管理</h1>
+				<h1>账号管理</h1>
 			</div>
 			<div id="info"></div>
 			<div>
@@ -38,10 +38,9 @@
 					<thead>
 						<tr>
 							<th data-field="state" data-checkbox="true"></th>
-							<th data-align="center" data-field="campusId" data-sortable="true" data-visible="false">校区Id</th>
-							<th data-align="center" data-field="campusName">校区名称</th>
-							<th data-align="center" data-field="campusAdmin">校区管理员</th>
-							<th data-align="center" data-field="lastLoginDate" data-sortable="true">上次登录时间</th>
+							<th data-align="center" data-field="authority">账号类型</th>
+							<th data-align="center" data-field="phone">账号名称</th>
+							<th data-align="center" data-field="lastLoginTime" data-sortable="true">上次登录时间</th>
 						</tr>
 					</thead>
 				</table>
@@ -56,34 +55,34 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 							&times;
 						</button>
-						<h4 class="modal-title" id="myPlusModalLabel">添加校区管理员</h4>
+						<h4 class="modal-title" id="myPlusModalLabel">添加账号</h4>
 					</div>
 					<div class="modal-body">
 						<form id="plus_form" class="form-horizontal" role="form">
 							<div class="form-group">
-								<label for="plus_campus_name" class="col-sm-2 control-label">校区名称</label>
+								<label for="plus_authority" class="col-sm-2 control-label">账号类型</label>
 								<div class="col-sm-10">
 									<div class="dropdown">
-										<button type="button" class="dropdown-toggle btn btn-default" style="width:100%;" data-toggle="dropdown" id="plus_campus_name">
-											<span id="span_plus_campus_name">校区</span>
+										<button type="button" class="dropdown-toggle btn btn-default" style="width:100%;" data-toggle="dropdown" id="plus_authority">
+											<span id="span_plus_authority">账号类型</span>
 											<b class="caret" style="float:right;margin-top:8px"></b>
 										</button>
 										<ul class="dropdown-menu" style="width:100%;">
-										
+
 										</ul>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="plus_campus_admin" class="col-sm-2 control-label">校区账户</label>
+								<label for="plus_phone" class="col-sm-2 control-label">账号名称</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="plus_campus_admin" name="campusAdminName" placeholder="校区账号名称">
+									<input type="text" class="form-control" id="plus_phone" name="phone" placeholder="账号名称（保证不重复，建议手机号）">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="plus_campus_admin_password" class="col-sm-2 control-label">校区密码</label>
+								<label for="plus_password" class="col-sm-2 control-label">账号密码</label>
 								<div class="col-sm-10">
-									<input type="password" class="form-control" id="plus_campus_admin_password" name="password" placeholder="校区账号初始密码">
+									<input type="password" class="form-control" id="plus_password" name="password" placeholder="账号初始密码">
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -92,13 +91,11 @@
 							</div>
 						</form>
 					</div>
-					
+
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal -->
 		</div>
-		<!-- 添加校区管理员modal end -->
-		
-		<!-- 删除校区管理员modal start -->
+
 		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myDeleteModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -106,26 +103,20 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 							&times;
 						</button>
-						<h4 class="modal-title" id="myDeleteModalLabel">删除校区管理员</h4>
+						<h4 class="modal-title" id="myDeleteModalLabel">删除账号</h4>
 					</div>
 					<div class="modal-body">
 						<form id="edit_form" class="form-horizontal" role="form">
 							<div class="form-group">
-								<label class="control-label col-sm-2" for="delete_campus_id">校区ID</label>
+								<label for="delete_authority" class="col-sm-2 control-label">账号类型</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="delete_campus_id" placeholder="校区ID" readonly>
+									<input type="text" class="form-control" id="delete_authority" placeholder="账号类型" readonly>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="delete_campus_name" class="col-sm-2 control-label">校区名称</label>
+								<label for="delete_phone" class="col-sm-2 control-label">账号名称名称</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="delete_campus_name" placeholder="校区名称" readonly>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="delete_campus_admin" class="col-sm-2 control-label">校区管理员名称</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="delete_campus_admin" placeholder="校区管理员名称" readonly>
+									<input type="text" class="form-control" id="delete_phone" placeholder="账号名称" readonly>
 								</div>
 							</div>
 						</form>
@@ -137,9 +128,8 @@
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal -->
 		</div>
-		<!-- 删除校区管理员modal end -->
-		
-		<!-- 更新校区管理员modal start -->
+
+
 		<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -147,29 +137,35 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-						<h3 class="modal-title" id="myModalLabel">修改校区管理员</h3>
+						<h3 class="modal-title" id="myModalLabel">修改账号</h3>
 					</div>
 
 					<div class="modal-body">
 						<form id="edit_form" class="form-horizontal" role="form">
 							<div class="form-group">
-								<label class="col-sm-2 control-label" for="campus-id">校区名称</label>
+								<label class="col-sm-2 control-label" for="campus-id">账号类型</label>
 								<div class="col-sm-10">
 									<div class="dropdown">
-										<button type="button" class="dropdown-toggle btn btn-default" style="width:100%;" data-toggle="dropdown" id="edit_campus_name">
-											<span id="span_edit_campus_name">校区</span>
+										<button type="button" class="dropdown-toggle btn btn-default" style="width:100%;" data-toggle="dropdown" id="edit_authority">
+											<span id="span_edit_authority">账号</span>
 											<b class="caret" style="float:right;margin-top:8px"></b>
 										</button>
 										<ul class="dropdown-menu" style="width:100%">
-										
+
 										</ul>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label" for="campus-admin">校区管理员</label>
+								<label for="edit_phone" class="col-sm-2 control-label">账号名称</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="edit_campus_admin" name="campusAdminName" placeholder="校区灌流" readonly>
+									<input type="text" class="form-control" id="edit_phone" name="phone" placeholder="账号名称">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="edit_password" class="col-sm-2 control-label">账号密码</label>
+								<div class="col-sm-10">
+									<input type="password" class="form-control" id="edit_password" name="password" placeholder="账号初始密码">
 								</div>
 							</div>
 						</form>
@@ -179,10 +175,10 @@
 						<button type="button" onclick="submitUpdateCampusAdmin();"
 							class="btn btn-primary">提交更改</button>
 					</div>
-				</div><!-- /.modal-content -->
+				</div>
 			</div>
-		</div><!-- /.modal -->
-		<!-- 更新校区管理员modal end -->
+		</div>
+
 	</div>
 <script src="../assets/bootstrap-table/jquery.min.js"></script>
 <script src="../assets/bootstrap-table/jquery.validate.js"></script>
@@ -222,7 +218,7 @@
 
 $("#plus_form").validate({
 	rules:{
-		campusAdminName:{
+		phone:{
 			required: true,
 		},
 		password:{
@@ -231,7 +227,7 @@ $("#plus_form").validate({
 		}
 	},
 	messages:{
-		campusAdminName:{
+		phone:{
 			required:"用户名必须",
 		},
 		password:{
@@ -240,15 +236,14 @@ $("#plus_form").validate({
 		}
 	},
 	submitHandler: function(form){
-		var campusName = $("#span_plus_campus_name").text().trim();
-		console.log(campusName);
-		var campusAdminName = $("#plus_campus_admin").val().trim();
-		var campusAdminPassword = $("#plus_campus_admin_password").val().trim();
-		
-		$.post("../campus/addCampusAdmin",{
-			campusName : campusName,
-			campusAdminName : campusAdminName,
-			password : campusAdminPassword,
+		var authority = $("#span_plus_authority").text().trim();
+		var phone = $("#plus_phone").val().trim();
+		var password = $("#plus_password").val().trim();
+
+		$.post("../oa/addEmployee",{
+			type : authority,
+			phone : phone,
+			password : password,
 			server:"56846a8a2fee49d14901d39cc48b8b2a"
 		},function(data){
 			alert(data.message);
@@ -267,12 +262,12 @@ $("#plus_form").validate({
 		$("#plus_form").submit();
 	}*/
 	//“更新校区管理员”的模态框的提交更改按钮的点击事件
-	/*function submitUpdateCampusAdmin(){
-		var campusName = $("#span_edit_campus_name").text().trim();
-		var campusAdminName = $("#edit_campus_admin").val();
-		$.post("../campus/updateCampusAdmin",{
-			campusName : campusName,
-			campusAdminName : campusAdminName
+	function submitUpdateCampusAdmin(){
+		var phone = $("#edit_phone").val();
+		var password = $("#edit_password").val().trim();
+		$.post("../oa/updateEmployee",{
+			phone : phone,
+			password : password,
 		},function(data){
 			alert(data.message);
 			if(data.status='success'){
@@ -280,15 +275,12 @@ $("#plus_form").validate({
 				$("#table").bootstrapTable('refresh', {silent: true});
 			}
 		},"json");
-	}*/
+	}
 	//“删除校区管理员”的模态框的提交更改按钮的点击事件
 	function deleteCampusAdminSubmit(){
-		var campusId = $("#delete_campus_id").val();
-		var campusName = $("#delete_campus_name").val();
-		var campusAdmin = $("#delete_campus_admin").val();
-		$.post("../campus/deleteCampusAdmin",{
-			campusId : campusId,
-			campusAdminName : campusAdmin,
+		var phone = $("#delete_phone").val();
+		$.post("../oa/deleteEmployee",{
+			phone : phone,
 			server:"56846a8a2fee49d14901d39cc48b8b2a"
 		},function(data){
 			alert(data.message);
@@ -303,74 +295,77 @@ $("#plus_form").validate({
 		var flag;		//萌萌哒flag
 		var $table = $("#table");
 		$("#table").bootstrapTable({
-			url : '../campus/getAllCampusAdmin?server=56846a8a2fee49d14901d39cc48b8b2a'
+			url : '../oa/getAllEmployee?server=56846a8a2fee49d14901d39cc48b8b2a'
 		});
-		
+
 		//下面3个button是表格的toobar的东西
 		var $plusButton = $("#plus");
 		var $editButton = $("#edit");
 		var $deleteButton = $("#delete");
-		
+
 		$(function() {
 			$plusButton.click(function(){
 				//初始化校区列表
 				//清空校区列表
-				$("#plus_campus_name").next().empty();
-				$.getJSON("../campus/getAllCampus?server=56846a8a2fee49d14901d39cc48b8b2a",function(data){
-					for(var i=0; i<data.length; i++){
-						$("#plus_campus_name").next().append('<li style="text-align:center;" data-campusId="'+data[i].campusId+'">'+data[i].campusName+'</li>');
-					}
-					//为校区下拉列表项设置单击事件监听
-					$("#plus_campus_name").next().children().click(function(){
-						$("#span_plus_campus_name").text($(this).text());
-					});
+				$("#plus_authority").next().empty();
+
+				$("#plus_authority").next().append('<li style="text-align:center;" data-type=0"'+'">'+"系统管理员"+'</li>');
+
+				$("#plus_authority").next().append('<li style="text-align:center;" data-type=1"'+'">'+"普通用户"+'</li>');
+
+				//为校区下拉列表项设置单击事件监听
+				$("#plus_authority").next().children().click(function(){
+						$("#span_plus_authority").text($(this).text());
 				});
+
 				$("#plusModal").modal('show');
 			});
-			
+
 			$("#plusModal").on("hidden.bs.modal", function() {
-					$('#plus_campus_admin').val("");
-					$('#plus_campus_admin_password').val('');
+					$('#plus_phone').val("");
+					$('#plus_password').val('');
 			 });
 
-			/*$editButton.click(function() {
+			$editButton.click(function() {
 				var array = $table.bootstrapTable('getSelections');
 				flag = 1;
 				if (array.length > 1) {
 					alert("编辑操作不能同时选中多条记录！");
 				} else if (array.length == 0) {
 					alert("请先选中某条记录！");
-				} else {
-					$("#span_edit_campus_name").text(array[0].campusName);
+				} else
+				{
+					$("#span_edit_authority").text(array[0].authority);
 					//初始化校区列表
 					//首先清空上一次的请求生成的列表
-					$("#edit_campus_name").next().empty();
-					$.getJSON("../campus/getAllCampus",function(data){
-						for(var i=0; i<data.length; i++){
-							$("#edit_campus_name").next().append('<li style="text-align:center;">'+data[i].campusName+'</li>');
-						}
+					$("#edit_authority").next().empty();
+
+
+					$("#edit_authority").next().append('<li style="text-align:center;" data-type=0"'+'">'+"系统管理员"+'</li>');
+
+					$("#edit_authority").next().append('<li style="text-align:center;" data-type=1"'+'">'+"普通用户"+'</li>');
+
 						//为校区下拉列表项设置单击事件监听
-						$("#edit_campus_name").next().children().click(function(){
-							$("#span_edit_campus_name").text($(this).text());
-						});
+					$("#edit_authority").next().children().click(function(){
+							$("#span_edit_authority").text($(this).text());
 					});
-					
-					$("#edit_campus_admin").val(array[0].campusAdmin);
+
+					$("#edit_phone").val(array[0].phone);
 					$("#editModal").modal('show');
 				}
-			});*/
-			
+			});
+
 			$deleteButton.click(function(){
 				var array = $table.bootstrapTable('getSelections');
 				flag = 1;
 				if (array.length > 1) {
-					alert("编辑操作不能同时选中多条记录！");
+					alert("删除操作不能同时选中多条记录！");
 				} else if (array.length == 0) {
 					alert("请先选中某条记录！");
 				} else {
-					$("#delete_campus_id").val(array[0].campusId);
-					$("#delete_campus_name").val(array[0].campusName);
-					$("#delete_campus_admin").val(array[0].campusAdmin);
+
+					$("#delete_authority").val(array[0].authority);
+					$("#delete_phone").val(array[0].phone);
 
 					$("#deleteModal").modal('show');
 				}

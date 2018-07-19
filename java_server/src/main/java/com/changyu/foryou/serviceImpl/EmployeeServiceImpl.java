@@ -34,8 +34,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 
-	public void addEmployee(Employee employee) {
-		employeeMapper.insertSelective(employee);
+	public int addEmployee(Map<String, Object> paramMap) {
+		return employeeMapper.insertSelective(paramMap);
+	}
+	
+	public int updateEmployee(Map<String, Object> paramMap) {
+		return employeeMapper.updateEmployee(paramMap);
+	}
+	
+	public int delEmployee(Map<String, Object> paramMap) {
+		return employeeMapper.delEmployee(paramMap);
+	}
+	
+	public List<Employee> getAllEmployee(Map<String, Object> paramMap){
+		return employeeMapper.getAllEmployee(paramMap);
 	}
 
 	

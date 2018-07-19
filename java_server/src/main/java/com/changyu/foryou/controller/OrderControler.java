@@ -590,6 +590,7 @@ public class OrderControler {
 				obj.put("department", order.getDepartment());
 				obj.put("doctor", order.getDoctor());
 				obj.put("bedNo", order.getBedNo());	
+				obj.put("deliveryNo", order.getBedNo());
 				String temp = order.getProvice() + order.getCity()+order.getDistrict()+order.getAdrTitle();			
 				if(order.getDetail() == null || order.getDetail().isEmpty()){
 					obj.put("addr", temp);
@@ -629,7 +630,7 @@ Map<String, Object> map = new HashMap<String, Object>();
 		
         Map<String,Object> paramMap=new HashMap<String,Object>();
         
-        System.out.println("getOrdersList:status=" + String.valueOf(status) +",limit=" + String.valueOf(limit) +",offset=" + String.valueOf(status));
+        //System.out.println("getOrdersList:status=" + String.valueOf(status) +",limit=" + String.valueOf(limit) +",offset=" + String.valueOf(offset));
         
         paramMap.put("limit", limit);
         paramMap.put("offset", offset);
@@ -639,6 +640,8 @@ Map<String, Object> map = new HashMap<String, Object>();
 	
 		List<Order> lists = orderService.getOrdersByStatus(paramMap);
 		JSONArray arr = new JSONArray();
+		DateFormat formattmp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+		
 		for (Order order: lists)
 		{
 			JSONObject obj = new JSONObject();
@@ -649,7 +652,7 @@ Map<String, Object> map = new HashMap<String, Object>();
 			}
 			obj.put("order_id", order.getOrderId());
 			obj.put("status", order.getOrderStatus());
-			obj.put("create_time", order.getCreateTime());
+			obj.put("create_time", formattmp.format(order.getCreateTime()));
 			obj.put("last_update_time", order.getLastUpdateTime());
 			obj.put("name", order.getName());
 			obj.put("phone", order.getPhone());
@@ -669,7 +672,7 @@ Map<String, Object> map = new HashMap<String, Object>();
 				obj.put("addr", temp + order.getDetail());
 			}	
 			obj.put("front_img", order.getIdCardFront());
-			obj.put("back_img", order.getIdCardBack());
+			obj.put("back_img", order.getIdCardBack());	
 			
 			arr.add(obj);
 		}

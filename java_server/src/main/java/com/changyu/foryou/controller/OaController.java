@@ -1,7 +1,10 @@
 package com.changyu.foryou.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.changyu.foryou.model.Employee;
 import com.changyu.foryou.service.EmployeeService;
 import com.changyu.foryou.service.UserService;
@@ -69,5 +74,182 @@ public class OaController {
 		}
 
 		return map;
+	}
+	
+	/**
+     * 添加账号
+     *
+     * @param campusName
+     * @param campusName
+     * @param campusAdminName
+     * @return
+     */
+    @RequestMapping("addEmployee")
+    public @ResponseBody
+    Map<String, Object> addEmployee(@RequestParam String type, @RequestParam String phone, @RequestParam String password) {
+        Map<String, Object> responseMap = new HashMap<>();
+        
+        Map<String, Object> paramMap = new HashMap<>();
+   
+        if(type.equals("系统管理员")){
+        	paramMap.put("type", 0);
+        	paramMap.put("authority",type);
+        }
+        else if(type.equals("普通用户")){
+        	paramMap.put("type", 1);
+        	paramMap.put("authority",type);
+        }
+        paramMap.put("phone", phone);
+        paramMap.put("password", Md5.GetMD5Code(password));
+
+        int flag = employeeService.addEmployee(paramMap);
+
+        if (flag != 0 && flag != -1) {
+            responseMap.put(Constants.STATUS, Constants.SUCCESS);
+            responseMap.put(Constants.MESSAGE, "添加账号成功，请及时将账号分派给相应人员并提醒他/她修改密码");
+        } else {
+            responseMap.put(Constants.STATUS, Constants.FAILURE);
+            responseMap.put(Constants.MESSAGE, "添加账号失败");
+        }
+        return responseMap;
+    }
+    
+    /**
+     * 修改账号信息
+     *
+     * @param campusId
+     * @param campusAdminName
+     * @return
+     */
+    @RequestMapping("/updateEmployee")
+    public @ResponseBody
+    Map<String, Object> updateEmployee(@RequestParam String type, @RequestParam String phone, @RequestParam String password) {
+        Map<String, Object> responseMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+
+        if(type.equals("系统管理员")){
+        	paramMap.put("type", 0);
+        	paramMap.put("authority",type);
+        }
+        else if(type.equals("普通用户")){
+        	paramMap.put("type", 1);
+        	paramMap.put("authority",type);
+        }
+        paramMap.put("phone", phone);
+        paramMap.put("password", Md5.GetMD5Code(password));
+
+        int result = employeeService.updateEmployee(paramMap);
+
+        if (result == 0 || result == -1) {
+            //没更新成功
+            responseMap.put(Constants.STATUS, Constants.FAILURE);
+            responseMap.put(Constants.MESSAGE, "修改账号失败！");
+        } else {
+            responseMap.put(Constants.STATUS, Constants.SUCCESS);
+            responseMap.put(Constants.MESSAGE, "修改账号成功！");
+        }
+
+        return responseMap;
+    }
+    
+    /**
+     * 删除账号
+     *
+     * @param campusId
+     * @param campusAdminName
+     * @return
+     */
+    @RequestMapping("/deleteEmployee")
+    public @ResponseBody
+    Map<String, Object> deleteEmployee(@RequestParam String phone) {
+        Map<String, Object> responseMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+
+        paramMap.put("phone", phone);
+
+        int result = employeeService.delEmployee(paramMap);
+        if (result > 0) {
+            responseMap.put(Constants.STATUS, Constants.SUCCESS);
+            responseMap.put(Constants.MESSAGE, "删除账号成功");
+        } else {
+            responseMap.put(Constants.STATUS, Constants.FAILURE);
+            responseMap.put(Constants.MESSAGE, "删除账号失败");
+        }
+        return responseMap;
+    }
+    
+    /**
+     * 返回所有账号
+     *
+     * @return
+     */
+    @RequestMapping("getAllEmployee")
+    public @ResponseBody JSONArray getAllEmployee() {
+    	
+    	JSONArray array = new JSONArray();
+    	Map<String, Object> paramMap = new HashMap<String, Object>();
+
+        //paramMap.put("phone", phone);
+        
+        List<Employee> list = employeeService.getAllEmployee(paramMap);
+        DateFormat formattmp = new SimpleDateFormat("yyyy-MM-dd");  
+  
+        for(Employee employee : list)
+        {
+        	JSONObject obj = new JSONObject();
+        	obj.put("phone", employee.getPhone());
+        	obj.put("authority", employee.getAuthority());
+        	if(employee.getLastLoginDate() == null)
+        	{
+        		obj.put("lastLoginTime", ""); 
+        	}
+        	else
+        	{
+        		obj.put("lastLoginTime", formattmp.format(employee.getLastLoginDate())); 
+        	}
+        	      	
+        	array.add(obj);
+        }
+        return array;
+    }
+    
+    /**
+	 * 用户更改密码(用老密码更改）
+	 * @param phone
+	 * @param oldPassword
+	 * @param newPassword
+	 * @return
+	 */
+	@RequestMapping("/changePassword")
+	public @ResponseBody Map<String,Object> changePassword(@RequestParam String phone
+			,@RequestParam String oldPassword,@RequestParam String newPassword)
+			{
+				Map<String, Object> map=new HashMap<String, Object>();
+				/*try {
+					Map<String, Object> paramMap=new HashMap<String, Object>();
+					paramMap.put("phone",phone);
+					String passwordMd5=Md5.GetMD5Code(oldPassword);
+					paramMap.put("password",passwordMd5);
+					List<Users> users=userService.selectByPhoneAndPassword(paramMap);
+					if(users.size()==0)
+					{
+						map.put(Constants.STATUS, Constants.FAILURE);
+						map.put(Constants.MESSAGE, "更改失败，原密码错误");
+					}
+					else
+					{
+						userService.updatePassword(phone,Md5.GetMD5Code(newPassword));  //对密码做md5加密
+						map.put(Constants.STATUS, Constants.SUCCESS);
+						map.put(Constants.MESSAGE, "修改密码成功");
+					}	
+					
+				} catch (Exception e) {
+					e.printStackTrace();	
+					map.put(Constants.STATUS, Constants.FAILURE);
+					map.put(Constants.MESSAGE, "修改密码失败");					
+				}*/	
+				
+				
+				return map;	
 	}
 }

@@ -38,7 +38,7 @@
 <div class="container">
 		<div class="page-header">
 			<h1>
-				待发货订单
+				待支付订单
 			</h1>
 		</div>
 		<table id="table"
@@ -76,7 +76,7 @@
 <script>
 $(function(){
 	$("#table").bootstrapTable({
-		url:"../order/getOrderList?server=56846a8a2fee49d14901d39cc48b8b2a&status=2"
+		url:"../order/getOrderList?server=56846a8a2fee49d14901d39cc48b8b2a&status=1"
 	});
 });
 </script>

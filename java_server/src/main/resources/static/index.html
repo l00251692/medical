@@ -19,6 +19,7 @@ a:hover {
 	width: 120px;
 	float:left;
 	margin-left:-22px;
+	margin-top: 20px;
 }
 .right{
    float:left;
@@ -31,16 +32,11 @@ a:hover {
 .sideBar ul{
 	border-right: 1px solid #eee;
 }
+
+.subSide-li{
+	text-align: right;
+}
 </style>
-<script type="text/javascript">
-		if(getCookie("type") == 1){
-			$("#user-link").hide();
-			$("#hotsearch").hide();
-			$("#preferential").hide();
-			$("#closeStore").hide();
-			$("#valideOrder").hide();
-		}
-</script>
 </head>
 <body>
 	<header class='navbar blue blue2 navbar-fixed-top'>
@@ -49,11 +45,10 @@ a:hover {
 				<a class='brand pull-left'><img src="img/icon.png" width="20px" height="auto">&nbsp;订单管理平台</a>
 				<ul class='nav pull-right'>
 					<li>
-						<!-- 添加校区下拉菜单 -->
 						<div class="dropdown" id="campusDropdown">
 							<button type="button" class="btn dropdown-toggle"
 								id="dropdownMenu1" data-toggle="dropdown">
-								我的账号 <span class="caret"></span>
+								账号类型 <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu" role="menu"
 								aria-labelledby="dropdownMenu1" id="dropdown-campus">
@@ -61,7 +56,7 @@ a:hover {
 							</ul>
 						</div>
 					</li>
-					<li><a href="/oa/logout?server=56846a8a2fee49d14901d39cc48b8b2a" rel='tooltip'
+					<li><a href="../login.html" rel='tooltip'
 						title='退出'><i class='icon-white icon-off'></i></a></li>
 				</ul>
 			</div>
@@ -73,25 +68,26 @@ a:hover {
 			<div class="sideBar left">
 				<br />
 				<ul>
-					<li><figure>
-							<a href="pages/orderTotal.html" target="content"> <i
-								class='icon-fire'></i>订单汇总&nbsp;&nbsp;
-							</a>
-						</figure><hr/></li>
+					<li class="active">
+						<figure>
+							<i class='icon-home'></i>
+							<a href="pages/orderTotal.html" target="content">订单汇总&nbsp;&nbsp;</a>
+						</figure><hr /></li>
+
 
 					<li class='dropper'>
 						<figure>
 							<i class='icon-circle-arrow-down'></i>
-							<span >订单详情</span>
+							<span >订单管理</span>
 						</figure>
 						<hr/>
 						<ul class='subSide'>
-							<li><a href="pages/order_success.html" target="content"><i
-									class='icon-fire'></i>已发货</a><hr/></li>
-							<li><a href="pages/order_wait_release.html" target="content"><i
-									class='icon-fire'></i>待发货</a><hr/></li>
-							<li><a href="pages/order_deliver.html" target="content"><i
-									class='icon-fire'></i>未支付</a><hr/></li>
+							<li class="subSide-li"><a href="pages/order_success.html" target="content" ><i
+									class='icon-fire'></i>已发货&nbsp;&nbsp;&nbsp;&nbsp;</a><hr/></li>
+							<li class="subSide-li"><a href="pages/order_wait_release.html" target="content"><i
+									class='icon-bell'></i>待发货&nbsp;&nbsp;&nbsp;&nbsp;</a><hr/></li>
+							<li class="subSide-li"><a href="pages/order_wait_pay.html" target="content"><i
+									class='icon-th-large'></i>待支付&nbsp;&nbsp;&nbsp;&nbsp; </a><hr/></li>
 						</ul>
 					</li>
 
