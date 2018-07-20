@@ -73,6 +73,7 @@ public class OaController {
 			}
 		}
 
+		
 		return map;
 	}
 	
@@ -148,7 +149,7 @@ public class OaController {
             responseMap.put(Constants.STATUS, Constants.SUCCESS);
             responseMap.put(Constants.MESSAGE, "修改账号成功！");
         }
-
+        
         return responseMap;
     }
     
@@ -225,12 +226,12 @@ public class OaController {
 			,@RequestParam String oldPassword,@RequestParam String newPassword)
 			{
 				Map<String, Object> map=new HashMap<String, Object>();
-				/*try {
+				try {
 					Map<String, Object> paramMap=new HashMap<String, Object>();
 					paramMap.put("phone",phone);
 					String passwordMd5=Md5.GetMD5Code(oldPassword);
 					paramMap.put("password",passwordMd5);
-					List<Users> users=userService.selectByPhoneAndPassword(paramMap);
+					List<Employee> users=employeeService.selectByPhoneAndPassword(paramMap);
 					if(users.size()==0)
 					{
 						map.put(Constants.STATUS, Constants.FAILURE);
@@ -238,7 +239,11 @@ public class OaController {
 					}
 					else
 					{
-						userService.updatePassword(phone,Md5.GetMD5Code(newPassword));  //对密码做md5加密
+						Map<String, Object> paramMap2=new HashMap<String, Object>();
+						paramMap2.put("phone",phone);
+						paramMap2.put("password",Md5.GetMD5Code(newPassword));
+						employeeService.updatePassword(paramMap2);  //对密码做md5加密
+						
 						map.put(Constants.STATUS, Constants.SUCCESS);
 						map.put(Constants.MESSAGE, "修改密码成功");
 					}	
@@ -247,7 +252,7 @@ public class OaController {
 					e.printStackTrace();	
 					map.put(Constants.STATUS, Constants.FAILURE);
 					map.put(Constants.MESSAGE, "修改密码失败");					
-				}*/	
+				}
 				
 				
 				return map;	

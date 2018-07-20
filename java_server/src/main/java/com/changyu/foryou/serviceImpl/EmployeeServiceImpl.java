@@ -49,6 +49,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Employee> getAllEmployee(Map<String, Object> paramMap){
 		return employeeMapper.getAllEmployee(paramMap);
 	}
+	
+	public List<Employee> selectByPhoneAndPassword(Map<String, Object> paramMap){
+		return employeeMapper.selectByPhoneAndPassword(paramMap);
+	}
+	
+	public int updatePassword(Map<String, Object> paramMap){
+		return employeeMapper.updatePassword(paramMap);
+	}
 
 	
 	@Override

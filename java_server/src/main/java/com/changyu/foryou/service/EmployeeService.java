@@ -22,5 +22,9 @@ public interface EmployeeService {
 	int updateLastLoginTime(Map<String, Object> paramMap);
 	
 	List<Employee> getAllEmployee(Map<String, Object> paramMap);
+	
+	List<Employee> selectByPhoneAndPassword(Map<String, Object> paramMap);	
+	
+	int updatePassword(Map<String, Object> paramMap);
  
 }

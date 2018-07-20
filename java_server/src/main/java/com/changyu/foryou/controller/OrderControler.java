@@ -630,14 +630,13 @@ Map<String, Object> map = new HashMap<String, Object>();
 		
         Map<String,Object> paramMap=new HashMap<String,Object>();
         
-        //System.out.println("getOrdersList:status=" + String.valueOf(status) +",limit=" + String.valueOf(limit) +",offset=" + String.valueOf(offset));
+        System.out.println("getOrdersList:status=" + String.valueOf(status) +",search=" + String.valueOf(search));
         
         paramMap.put("limit", limit);
         paramMap.put("offset", offset);
         paramMap.put("search", search);
         paramMap.put("status", status);
-		
-	
+        
 		List<Order> lists = orderService.getOrdersByStatus(paramMap);
 		JSONArray arr = new JSONArray();
 		DateFormat formattmp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  

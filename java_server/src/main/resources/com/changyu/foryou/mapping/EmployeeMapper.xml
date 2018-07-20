@@ -87,7 +87,7 @@
 		set
 		password = #{password,jdbcType=VARCHAR},
 		type =#{type,jdbcType=SMALLINT},
-		authority = #{authority,jdbcType=VARCHAR},
+		authority = #{authority,jdbcType=VARCHAR}
 		where phone = #{phone,jdbcType=VARCHAR}
 	</update>
 	
@@ -114,6 +114,24 @@
 			</if>
 		</where>
 	</select>
+	
+	<select id="selectByPhoneAndPassword" resultMap="BaseResultMap"  flushCache="true" useCache="false">
+		select
+		*
+		FROM
+		oa_employee
+		WHERE
+			phone = #{phone,jdbcType=VARCHAR}
+		and 
+			password = #{password,jdbcType=VARCHAR}
+	</select>
+	
+	<update id="updatePassword" >
+		update oa_employee
+		set
+		password = #{password,jdbcType=VARCHAR}
+		where phone = #{phone,jdbcType=VARCHAR}
+	</update>
 	
 	
 </mapper>

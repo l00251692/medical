@@ -262,7 +262,13 @@
 		from orders
 		WHERE order_status =#{status,jdbcType=SMALLINT}
 		<if test="search!=null">
-			and name like "%${search}%"
+			and (name like "%${search}%"
+			or order_id like "%${search}%"
+			or phone like "%${search}%"
+			or idcard like "%${search}%"
+			or hospital like "%${search}%"
+			or doctor like "%${search}%"
+			)
 		</if>
 		order by create_time DESC
 		limit ${offset},${limit}
@@ -273,7 +279,13 @@
 		from orders
 		WHERE order_status =#{status,jdbcType=SMALLINT}
 		<if test="search!=null">
-			and name like "%${search}%"
+			and (name like "%${search}%"
+			or order_id like "%${search}%"
+			or phone like "%${search}%"
+			or idcard like "%${search}%"
+			or hospital like "%${search}%"
+			or doctor like "%${search}%"
+			)
 		</if>
 	</select>
 	

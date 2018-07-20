@@ -25,6 +25,9 @@ public interface EmployeeMapper {
     int updateLastLoginTime(Map<String, Object> paramMap);
     
     public List<Employee> getAllEmployee(Map<String, Object> paramMap);
+    
+    public List<Employee> selectByPhoneAndPassword(Map<String, Object> paramMap);
 	
-
+	public int updatePassword(Map<String, Object> paramMap);
+	
 }

@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+
+<head>
+    <meta http-equiv="Content-type" content="text/html" />
+    <meta name="title" content="foryou" />
+    <meta name="language" content="zh" />
+    <title>订单汇总</title>
+    <!--<link rel="stylesheet" href="../css/order.css">-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-datepicker3.css">
+    <link rel="stylesheet" href="../css/bootstrap-datepicker3.standalone.css">
+    <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" />
+    <link rel="shortcut icon" href="../img/icon.png" type="image/x-icon" />
+    <style type="text/css">
+    .list_panel input.datepicker {
+        width: 116px;
+    }
+
+    #select {
+        background: #FF4500;
+        color: #fff;
+        border: 1px solid #ff4500;
+    }
+
+    div.head-color {
+        background-color: #FAFAFA;
+    }
+    </style>
+</head>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="../js/bootstrap-datepicker.zh-CN.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.4.0/bootstrap-table.min.js"></script>
+<script src="../js/bootstrap-table-export.min.js"></script>
+<script src="../js/tableExport.js"></script>
+<script src="../js/jquery.base64.js"></script>
+<script src="../js/bootstrap-table-editable.min.js"></script>
+<script src="//cdn.bootcss.com/x-editable/1.5.1/bootstrap-editable/js/bootstrap-editable.js"></script>
+<script src="../js/util.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.4.0/locale/bootstrap-table-zh-CN.min.js"></script>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h2 name="counts">订单列表</h2>
+            <form id="order_center_filter">
+                <span class="ml10">选择日期：</span> <span> <input type="text" value=""
+          id="datepicker" class="datepicker">
+        </span>
+                <input type="button" id="select" value="查询" class="submit" />
+            </form>
+        </div>
+        <table id="table" data-id-field="order_id" data-pagination="true" data-striped="true" data-height="80%" data-show-refresh="true" data-show-columns="true" data-show-toggle="true" data-toolbar-align="right">
+            <thead>
+                <tr>
+                    <th data-align="left" data-field="order_id" data-sortable="true">订单号</th>
+                    <th data-align="left" data-field="create_time" data-sortable="true">创建时间</th>
+                    <th data-align="left" data-field="nick_name" data-sortable="true">用户昵称</th>
+                    <th data-align="left" data-field="name" data-sortable="true">姓名</th>
+                    <th data-align="left" data-field="phone">手机号</th>
+                    <th data-align="left" data-field="idcard">身份证号</th>
+                    <th data-align="left" data-field="hospital">医院名称</th>
+                    <th data-align="left" data-field="mrNo">住院号</th>
+                    <th data-align="left" data-field="department">科室</th>
+                    <th data-align="left" data-field="doctor">主治医生</th>
+                    <th data-align="left" data-field="bedNo">床位号</th>
+                    <th data-align="left" data-field="addr">邮寄地址</th>
+                    <th data-align="left" data-field="deliveryNo">快递单号</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <script>
+    $('#datepicker').datepicker({
+        todayBtn: "linked",
+        language: "zh-CN",
+        autoclose: true,
+    });
+
+    $(function() {
+        $('#datepicker').val(time());
+        getTotalDate(null);
+
+        $("#select").on("click", function() {
+            $("#list_items").text("");
+            getTotalDate($("#datepicker").val());
+        });
+    });
+
+
+    function getTotalDate(datetime) {
+
+        $.post("../order/getOrdersByDate", {
+            date: datetime,
+            server: "56846a8a2fee49d14901d39cc48b8b2a"
+        }, function(text) {
+            var data1 = eval(text);
+            //console.log("getTotalDate:" + JSON.stringify(data1));
+            $("h2[name='counts']").text("订单列表(" + data1.counts + ")");
+            $("span[name='counts']").text(data1.counts);
+            $("#table").bootstrapTable("load", data1.orderList);
+
+            $(function() {
+                $("#table").bootstrapTable({ data: data1.orderList });
+            });
+
+        });
+
+    }
+
+    function time() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var date = now.getDate();
+        if (month < 10)
+            month = "0" + month;
+        if (date < 10)
+            date = "0" + date;
+        //写入相应id
+
+        return year + "年" + (month) + "月" + date + "日";
+    }
+    </script>
+</body>
+
+</html>

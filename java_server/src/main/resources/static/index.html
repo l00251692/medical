@@ -71,7 +71,7 @@ a:hover {
 					<li class="active">
 						<figure>
 							<i class='icon-home'></i>
-							<a href="pages/orderTotal.html" target="content">订单汇总&nbsp;&nbsp;</a>
+							<a href="pages/order_total.html" target="content">订单汇总&nbsp;&nbsp;</a>
 						</figure><hr /></li>
 
 
@@ -101,20 +101,20 @@ a:hover {
 					</li>
 
 					<li><figure>
-							<a href="pages/help.html" target="content"><i
-								class='icon-question-sign'></i> 帮助 </a>
-						</figure><hr/></li>
-					<li>
-					<li><figure>
 							<a href="pages/modifypassword.html" target="content"><i
 								class='icon-cog'></i> 修改密码 </a>
 						</figure><hr/></li>
 					</li>
+					<li><figure>
+							<a href="pages/help.html" target="content"><i
+								class='icon-question-sign'></i> 帮助 </a>
+						</figure><hr/></li>
+					<li>
 				</ul>
 
 			</div>
 			<div class='right' style="width:1350px;border-left:1px solid #eee;">
-				<iframe id="content" name="content" src="pages/orderTotal.html"
+				<iframe id="content" name="content" src="pages/order_total.html"
 					style="height:720px;width:1400px" scroling="yes" frameborder="0"
 					border="0" marginwidth="0" marginheight="0"></iframe>
 			</div>
@@ -128,6 +128,13 @@ var phone = getCookie("phone");		//校区状态
 </script>
 
 <script>
+
+if(getCookie("phone")=="")
+{
+	console.log("phone cookie null")
+	window.location.href="login.html?";
+}
+
 $(function(){
 
 	//根据管理员类型判断是否显示校区下拉菜单
