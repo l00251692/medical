@@ -617,6 +617,9 @@ public class OrderControler {
 				obj.put("back_img", order.getIdCardBack());
 				
 				arr.add(obj);
+				
+	
+				
 			}
 			
 			resultMap.put("counts", arr.size());
@@ -625,10 +628,12 @@ public class OrderControler {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error("[getOrdersByDate Exception:]" + e.getMessage());
 		}
 
 		return resultMap;
 	}
+	
 	
 	
 	/**
@@ -640,11 +645,9 @@ public class OrderControler {
 	@RequestMapping("/getOrderList")
 	@ResponseBody
 	public Map<String, Object> getOrderList(Short status,Integer limit, Integer offset, String search) {
-Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		
         Map<String,Object> paramMap=new HashMap<String,Object>();
-        
-        System.out.println("getOrdersList:status=" + String.valueOf(status) +",search=" + String.valueOf(search));
         
         paramMap.put("limit", limit);
         paramMap.put("offset", offset);
@@ -663,6 +666,7 @@ Map<String, Object> map = new HashMap<String, Object>();
 			{
 				obj.put("nick_name", user.getNickname());
 			}
+			
 			obj.put("order_id", order.getOrderId());
 			obj.put("status", order.getOrderStatus());
 			obj.put("create_time", formattmp.format(order.getCreateTime()));
@@ -697,5 +701,62 @@ Map<String, Object> map = new HashMap<String, Object>();
 		map.put("rows", jsonArray);
 		map.put("total", totalCount);
 		return map;
+	}
+	
+	@RequestMapping("/updateDeliveryNo")
+	public @ResponseBody Map<String, String> updateDeliveryNo(
+			@RequestParam String order_id,  @RequestParam String deliveryNo){
+		Map<String,String> result = new HashMap<String, String>();
+		JSONObject node = new JSONObject();
+		
+		try {
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("orderId",order_id);
+			Order order = orderService.getOrderByIdWx(paramMap);
+			if(order == null)
+			{
+				result.put("State", "Fail");
+				result.put("info", "更新物流信息失败");
+				return result;
+			}
+
+			paramMap.put("orderStatus",Constants.STATUS_DELIVERED);
+			
+			Date now = new Date();
+			
+			JSONArray recordes = JSON.parseArray(order.getRecords());
+			JSONObject record = new JSONObject();
+			record.put("status",Constants.STATUS_DELIVERED);
+			record.put("time", now);
+			recordes.add(record);
+
+			paramMap.put("records",recordes.toString());
+			paramMap.put("lastUpdateTime",now);
+			paramMap.put("deliveryNo",deliveryNo);
+			
+			int flag = orderService.updateDeliveryNo(paramMap);
+			if (flag != -1 && flag != 0)
+			{	
+				result.put("State", "Success");
+				result.put("data", null);	
+				return result;
+			} 
+			else 
+			{
+				result.put("State", "Fail");
+				result.put("info", "更新物流信息失败");	
+				logger.error("[updateDeliveryNo Err]order_id=" + order_id);
+				return result;
+			}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("[updateDeliveryNo Exception]" + e.getMessage());
+		}
+		
+		
+		result.put("State", "Fail");
+		result.put("info", "更新物流信息失败");	
+		return result;
 	}
 }

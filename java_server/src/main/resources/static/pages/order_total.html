@@ -34,7 +34,7 @@
     }
 
     #order_center_filter {
-        margin-top: 40px;
+        margin-top: 30px;
         margin-bottom: 0;
     }
 
@@ -105,6 +105,8 @@
                         <th data-align="left" data-field="doctor">主治医生</th>
                         <th data-align="left" data-field="bedNo" data-visible="false">床位号</th>
                         <th data-align="left" data-field="addr">邮寄地址</th>
+                        <th data-align="center" data-field="front_img" data-formatter="ImageFormatter" data-visible="false">身份证（正面）</th>
+                        <th data-align="center" data-field="back_img" data-formatter="ImageFormatter" data-visible="false">身份证（背面）</th>
                         <th data-align="left" data-field="deliveryNo">快递单号</th>
                     </tr>
                 </thead>
@@ -173,6 +175,13 @@
 
         return year + "年" + (month) + "月" + date + "日";
     }
+
+    function ImageFormatter(value, row, index){
+            if(value==""||!value){
+            return "暂无图片";
+            }
+            return "<img height='50' width='100' alt='图片加载中' src=" + value+">";
+        }
     </script>
 </body>
 

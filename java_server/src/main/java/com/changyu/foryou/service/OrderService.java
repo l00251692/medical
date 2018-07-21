@@ -23,5 +23,7 @@ public interface OrderService {
 	
 	public long getOrdersStatusCount(Map<String, Object> paramMap);
 	
+	public int updateDeliveryNo(Map<String, Object> paramMap);
+	
 
 }

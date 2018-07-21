@@ -14,7 +14,7 @@
 	href="../assets/bootstrap-table/bootstrap-editable.css">
     <link rel="shortcut icon" href="img/icon.png">
     <link rel="stylesheet" type="text/css"
-	href="http://cdn.bootcss.com/bootstrap-select/2.0.0-beta1/css/bootstrap-select.css">
+	href="../css/bootstrap-select.min.css">
 
 	<style>
 		.ml10 {
@@ -67,7 +67,7 @@
 					</button>
 				</div>
 				<div>
-					<table id="table" data-id-field="foodId" data-striped="true"
+					<table id="table" data-id-field="foodId"data-striped="true"
 					data-toolbar="#toolbar"
 					data-search="true" data-show-refresh="true" data-show-toggle="true"
 					data-pagination="true" data-show-columns="true" data-height="80%"
@@ -75,27 +75,27 @@
 					<thead>
 						<tr>
 							<th data-field="state" data-checkbox="true"></th>
-							<th data-align="left" data-field="foodId" data-sortable="true" display="none">商品Id</th>
+							<th data-align="left" data-field="order_id" data-sortable="true">商品Id</th>
 							<th data-align="left" data-field="name">名&nbsp;&nbsp;&nbsp;&nbsp;称</th>
-							<th data-align="left" data-field="message" data-sortable="true" data-visible="false">商品介绍</th>
+							<!--<th data-align="left" data-field="message" data-sortable="true" data-visible="false">商品介绍</th>
 							<th data-align="left" data-field="price" data-sortable="true">商品价格</th>
-							<!-- <th data-align="left" data-field="discountPrice"
+							<th data-align="left" data-field="discountPrice"
 							data-sortable="true" data-sortable="true">折扣价</th>
-							<th data-align="left" data-field="isDiscount"  data-formatter="discountFormatter">打折?</th> -->
+							<th data-align="left" data-field="isDiscount"  data-formatter="discountFormatter">打折?</th>
 							<th data-align="left" data-field="foodCount">库存</th>
 							<th data-align="left" data-field="status" data-sortable="true" data-formatter="statusFormatter">商品状态</th>
-							<!-- <th data-align="left" data-field="primeCost"
-							data-sortable="true">成本价</th> -->
+							<th data-align="left" data-field="primeCost"
+							data-sortable="true">成本价</th>
 							<th data-align="left" data-field="foodFlag"
-							data-sortable="true">商品属性</th>
-							<th data-align="left" data-field="categoryId" data-formatter="categoryFmt"
+							data-sortable="true">商品标签</th>
+							<th data-align="left" data-field="categoryId" data-visible="false"
 							data-sortable="true">所属分类</th>
-							<!-- <th data-align="left" data-field="isFullDiscount" data-formatter="isFullDiscountFormatter">是否满减</th>
+							<th data-align="left" data-field="isFullDiscount" data-formatter="isFullDiscountFormatter">是否满减</th>
 							<th data-align="left" data-field="toHome"
 							 data-formatter="toHomeOperateFormatter" data-events="homeImageEvents">推到首页</th>
-							<th data-align="center" data-field="homeImage" data-formatter="homeImageFormatter">首页商品</th> -->
-							<!-- <th data-align="left" data-field="homeImageManage"
-							 data-sortable="true" data-formatter="detailImageManageFormatter" data-events="detailImageOperateEvents">详情管理</th> -->
+							<th data-align="center" data-field="homeImage" data-formatter="homeImageFormatter">首页商品</th>-->
+							<th data-align="left" data-field="phone"
+							 data-sortable="true" data-formatter="detailImageManageFormatter" data-events="detailImageOperateEvents">详情管理</th>
 						</tr>
 					</thead>
 				</table>
@@ -117,12 +117,12 @@
 					enctype="multipart/form-data" action="../service/updateFoods?server=56846a8a2fee49d14901d39cc48b8b2a">
 					<div class="modal-body">
 						<div class="form-group" style="display:none">
-							<label class="control-label col-md-4" for="campusId2">店铺ID</label>
+							<label class="control-label col-md-4" for="campusId2">校区Id</label>
 							<div class="col-md-8">
 								<input type="text" id="campusId2" name="campusId" readonly="readonly">
 							</div>
 						</div>
-						<div class="form-group" style="display:none">
+						<div class="form-group">
 							<label class="control-label col-md-4" for="foodId2">商品Id</label>
 							<div class="col-md-8">
 								<input type="text" id="foodId2" name="foodId"
@@ -158,10 +158,8 @@
 								<input type="text" id="price2" name="price"
 									placeholder="Present Price"> <span class="add-on">￥</span>
 							</div>
-							<br/>
-							<a>中杯：12；大杯：14</a>
 						</div>
-						<!-- <div class="form-group">
+						<div class="form-group">
 							<label class="control-label col-md-4" for="discountPrice2">折扣价</label>
 							<div class="col-md-8">
 								<input type="text" id="discountPrice2" name="discountPrice"
@@ -174,15 +172,13 @@
 								<input type="text" id="primeCost2" name="primeCost"
 									placeholder="Prime Cost"> <span class="add-on">￥</span>
 							</div>
-						</div> -->
+						</div>
 						<div class="form-group">
-							<label class="control-label col-md-4" for="foodTag2">商品属性</label>
+							<label class="control-label col-md-4" for="foodTag2">商品标签</label>
 							<div class="col-md-8">
 								<input type="text" id="foodTag2" name="foodTag"
-									placeholder="可供用户选择的属性">
+									placeholder="商品标签之间请以逗号隔开">
 							</div>
-							<br/>
-							<a>甜度：微糖，中糖，多糖；温度：常温，热，少冰</a>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-4" for="imgUrl2">商品主图片</label>
@@ -209,7 +205,7 @@
 								</label>
 							</div>
 						</div>
-						<!-- <div class="form-group">
+						<div class="form-group">
 							<label class="control-label col-md-4" for="is_discount">是否打折</label>
 							<div class="col-md-8">
 								<label class="radio inline"> <input type="radio"
@@ -219,18 +215,18 @@
 									name="is_discount" id="is_discount2" value="1"> 打折
 								</label>
 							</div>
-						</div> -->
+						</div>
 
- 						<!-- <div class="form-group">
- 													<label class="control-label col-md-4" for="status">是否满减</label>
- 													<div class="col-md-8">
- 														<label class="radio inline"> <input type="radio"
- 															name="isFullDiscount" id="isFullDiscount" value="1" checked> 是
- 														</label> <label class="radio inline margin-left6"> <input type="radio"
- 															name="isFullDiscount" id="isFullDiscount" value="0"> 否
- 														</label>
- 													</div>
- 						</div> -->
+ 						<div class="form-group">
+							<label class="control-label col-md-4" for="status">是否满减</label>
+							<div class="col-md-8">
+								<label class="radio inline"> <input type="radio"
+									name="isFullDiscount" id="isFullDiscount" value="1" checked> 是
+								</label> <label class="radio inline margin-left6"> <input type="radio"
+									name="isFullDiscount" id="isFullDiscount" value="0"> 否
+								</label>
+							</div>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -246,7 +242,7 @@
 	<!-- 添加商品Modal End -->
 
 	<!-- 推送图片到主页 modal start -->
-	<!-- <div class="modal fade" id="pushToHomeModal" tabindex="-1" roal="dialog"
+	<div class="modal fade" id="pushToHomeModal" tabindex="-1" roal="dialog"
 	aria-labelledby="pushToHomeModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 		<div class="modal-content">
@@ -298,7 +294,7 @@
 			</form>
 			</div>
 		</div>
-	</div> -->
+	</div>
 	<!-- 推送图片到主页 modal end -->
 
 
@@ -408,7 +404,7 @@
 				<form class="form-horizontal" role="form">
 					<div class="modal-body">
 						<div class="form-group none">
-							<label for="campus_id_add_count" class="control-label col-md-4">店铺ID</label>
+							<label for="campus_id_add_count" class="control-label col-md-4">校区ID</label>
 							<div class="col-md-8">
 								<input type="text" class="form-control" id="campus_id_add_count" name="campusId" readonly>
 							</div>
@@ -472,7 +468,7 @@ if(adminType==1){
 }else if(adminType==0){
 	$("#toolbar").show();
 }
-$("#campusId2").val(getCookie("campusId"));
+	$("#campusId2").val(getCookie("campusId"));
 </script>
 <Script>
 	var $table = $("#table");
@@ -485,20 +481,10 @@ $("#campusId2").val(getCookie("campusId"));
 	var tag=0;
 	var rowId;
 	var obj = document.getElementById("categoryId2");
-
-	var footCategories;
-
-	$.get("../service/getAllFoodCategories4Client?server=56846a8a2fee49d14901d39cc48b8b2a&campusId="+campusId,function(text) {
-				footCategories = eval(text);
-	});
 							//这个兼容IE与firefox
 	//初始化表格数据
-	//
-	//
-	//
-
 	$table.bootstrapTable({
-		url : "../service/getAllFoods?server=56846a8a2fee49d14901d39cc48b8b2a&campusId="+getCookie("campusId")
+		url : "../order/getOrderList?server=56846a8a2fee49d14901d39cc48b8b2a&status=2"
 	});
 
 	$(function() {
@@ -573,10 +559,10 @@ $("#campusId2").val(getCookie("campusId"));
 			var status=document.getElementsByName("status")
 			status[0].checked=true;
 
-			/*var is_discount=document.getElementsByName("is_discount");
+			var is_discount=document.getElementsByName("is_discount");
 			is_discount[0].checked=true;
 			var isFullDiscount=document.getElementsByName("isFullDiscount");
-			isFullDiscount[0].checked=true;*/
+			isFullDiscount[0].checked=true;
 			//var default_special=document.getElementsByName("default_special");
 			//default_special[0].checked=true;
 		});
@@ -623,24 +609,25 @@ $("#campusId2").val(getCookie("campusId"));
 				$.get(
 					"../service/getAllFoodCategories4Client?server=56846a8a2fee49d14901d39cc48b8b2a&campusId="+campusId,
 					function(text) {
-						var json = eval(text);
-						console.log(json)
+						var json = eval('(' + text
+							+ ')');
 						for ( var i = 0; i < json.length; i++) {
-							obj.options.add(new Option(
+							obj.options
+							.add(new Option(
 								json[i].category,
 								json[i].categoryId));
 						}
 						;
-
-/*						var array = $table.bootstrapTable('getSelections');
-						console.log(array);
+						var array = $table
+						.bootstrapTable('getSelections');
 						console.log(array[0]);
 						for ( var i = obj.options.length - 1; i >= 0; i--) {
 							if (array[0].categoryId == obj.options[i].value) {
 								obj.options[i].selected = true;
 							}
+							;
 						}
-					*/
+						;
 					});
 		});
 		$deleteButton.click(function() {
@@ -660,12 +647,12 @@ $("#campusId2").val(getCookie("campusId"));
 
 				if (confirm("是否确定要执行删除操作！")) {
 					//做删除的访问请求
-					$.post("../service/deleteFood", {
+					$.post("service/deleteFood", {
 						foodId : foodIdString,
 						campusId : getCookie("campusId"),
 						server:"56846a8a2fee49d14901d39cc48b8b2a"
 					}, function(text) {
-						var json = eval(text);
+						var json = eval('(' + text + ')');
 						if (json.status == "success") {
 							for ( var i = array.length - 1; i >= 0; i--) {
 								$('#table').bootstrapTable('remove', {
@@ -847,7 +834,7 @@ $("#commitFoodDataButton").on("click",function(){
         var $foodCommitDataForm=document.getElementById("dataCommit");
 
         console.log(categoryId);
-        /*if(!(/^[0-9]+$/.test(categoryId))||!(/[0-9]+$/.test(foodId))){
+        if(!(/^[0-9]+$/.test(categoryId))||!(/[0-9]+$/.test(foodId))){
         	alert("商品id和上级分类id只可以是数字");
         	return;
         }
@@ -855,17 +842,17 @@ $("#commitFoodDataButton").on("click",function(){
         if(!(/^\d+(\.\d{1,2})?$/).test(price)){
         	alert("商品单价格式有问题,检查后重新输入。");
         	return;
-        }*/
+        }
 
-        /*if(!(/^\d+(\.\d{1,2})?$/).test(discountPrice)){
+        if(!(/^\d+(\.\d{1,2})?$/).test(discountPrice)){
         	alert("商品折扣价输入格式有问题,检查后重新输入。");
         	return;
-        }*/
+        }
 
-       /* if(primeCost!=null&&primeCost!=""&&!(/^\d+(\.\d{1,2})?$/).test(primeCost)){
+        if(primeCost!=null&&primeCost!=""&&!(/^\d+(\.\d{1,2})?$/).test(primeCost)){
         	alert("商品成本价输入格式有问题,检查后重新输入。");
         	return;
-        }*/
+        }
 
         if(foodName==null||foodName==""){
         	alert("商品名称不能为空!");
@@ -890,20 +877,6 @@ $("#commitFoodDataButton").on("click",function(){
         $foodCommitDataForm.submit();
     });
 //});
-//
-
-
-function categoryFmt(value,row,index)
-{
-	for ( var i = 0; i < footCategories.length; i++) {
-		if (value == footCategories[i].categoryId)
-		{
-			return footCategories[i].category;
-		}
-	}
-	return value;
-}
-
 function statusFormatter(value, row, index) {
 	if (value == "0")
 		return "下架";

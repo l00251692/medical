@@ -34,6 +34,7 @@ public class PortraitApplication extends SpringBootServletInitializer {
         return registration;  
     } */
 
+	
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(PortraitApplication.class);

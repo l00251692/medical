@@ -56,4 +56,8 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.getOrdersStatusCount(paramMap);
 	}
 	
+	public int updateDeliveryNo(Map<String, Object> paramMap){
+		return orderMapper.updateDeliveryNo(paramMap);
+	}
+	
 }
