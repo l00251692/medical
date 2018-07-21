@@ -7,9 +7,11 @@
     <meta name="title" content="foryou" />
     <meta name="language" content="zh" />
     <title>订单汇总</title>
-    <!--<link rel="stylesheet" href="../css/order.css">-->
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-select.min.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-editable.css">
     <link rel="stylesheet" href="../css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="../css/bootstrap-datepicker3.standalone.css">
     <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" />
@@ -23,7 +25,7 @@
         background: #FF4500;
         color: #fff;
         border: 1px solid #ff4500;
-        margin-left:10px;
+        margin-left: 10px;
         width: 60px;
     }
 
@@ -31,16 +33,16 @@
         background-color: #FAFAFA;
     }
 
-    #order_center_filter{
-        margin-top:40px;
-        margin-bottom:0;
+    #order_center_filter {
+        margin-top: 40px;
+        margin-bottom: 0;
     }
 
-    .ml10{
+    .ml10 {
         font-size: large;
     }
 
-    .datepicker{
+    .datepicker {
         width: 100px;
         margin-right: 20px;
     }
@@ -49,6 +51,9 @@
         width: 200px;
     }
 
+    .pull-right {
+        padding-top:20px;
+    }
     </style>
 </head>
 <script src="../assets/js/jquery.min.js"></script>
@@ -58,6 +63,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.4.0/bootstrap-table.min.js"></script>
 <script src="../js/bootstrap-table-export.min.js"></script>
 <script src="../js/tableExport.js"></script>
+<script src="../js/ga.js"></script>
 <script src="../js/jquery.base64.js"></script>
 <script src="../js/bootstrap-table-editable.min.js"></script>
 <script src="../js/bootstrap-editable.js"></script>
@@ -75,26 +81,35 @@
                 <input type="button" id="select" value="查询" class="submit" />
             </form>
         </div>
-        <table id="table" data-id-field="order_id" data-pagination="true" data-striped="true" data-height="80%" data-show-refresh="true" data-show-columns="true" data-show-toggle="true" data-toolbar-align="right">
-            <thead>
-                <tr>
-                    <th data-align="left" data-field="order_id" data-sortable="true">订单号</th>
-                    <th data-align="left" data-field="create_time" data-sortable="true">创建时间</th>
-                    <th data-align="left" data-field="status" data-sortable="true">状态</th>
-                    <th data-align="left" data-field="nick_name" data-sortable="true">用户昵称</th>
-                    <th data-align="left" data-field="name" data-sortable="true">姓名</th>
-                    <th data-align="left" data-field="phone">手机号</th>
-                    <th data-align="left" data-field="idcard">身份证号</th>
-                    <th data-align="left" data-field="hospital">医院名称</th>
-                    <th data-align="left" data-field="mrNo" data-visible="false">住院号</th>
-                    <th data-align="left" data-field="department">科室</th>
-                    <th data-align="left" data-field="doctor">主治医生</th>
-                    <th data-align="left" data-field="bedNo" data-visible="false">床位号</th>
-                    <th data-align="left" data-field="addr">邮寄地址</th>
-                    <th data-align="left" data-field="deliveryNo">快递单号</th>
-                </tr>
-            </thead>
-        </table>
+        <div>
+            <!--<div id="toolbar" class="btn-group">
+                <select class="select-control">
+                    <option value="">导出当前页数据</option>
+                    <option value="all">导出全部数据</option>
+                    <option value="selected">导出选中数据</option>
+                </select>
+            </div>-->
+            <table id="table" data-id-field="order_id"  data-striped="true" data-height="80%" data-show-refresh="true" data-show-columns="true" data-show-toggle="true" data-toolbar-align="right" data-page-list="[10, 20, 50, 100, 1000]" data-smart-display="false">
+                <thead>
+                    <tr>
+                        <th data-align="left" data-field="order_id" data-sortable="true">订单号</th>
+                        <th data-align="left" data-field="create_time" data-sortable="true">创建时间</th>
+                        <th data-align="left" data-field="status" data-sortable="true">状态</th>
+                        <th data-align="left" data-field="nick_name" data-sortable="true">用户昵称</th>
+                        <th data-align="left" data-field="name" data-sortable="true">姓名</th>
+                        <th data-align="left" data-field="phone">手机号</th>
+                        <th data-align="left" data-field="idcard">身份证号</th>
+                        <th data-align="left" data-field="hospital">医院名称</th>
+                        <th data-align="left" data-field="mrNo" data-visible="false">住院号</th>
+                        <th data-align="left" data-field="department">科室</th>
+                        <th data-align="left" data-field="doctor">主治医生</th>
+                        <th data-align="left" data-field="bedNo" data-visible="false">床位号</th>
+                        <th data-align="left" data-field="addr">邮寄地址</th>
+                        <th data-align="left" data-field="deliveryNo">快递单号</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
     <script>
     $('#datepicker').datepicker({
@@ -102,6 +117,9 @@
         language: "zh-CN",
         autoclose: true,
     });
+
+
+    $('#table').bootstrapTable({ showExport: true, exportDataType: "all", pagination:true});
 
     $(function() {
         $('#datepicker').val(time());
@@ -112,6 +130,14 @@
             getTotalDate($("#datepicker").val());
         });
     });
+
+    /*$(function() {
+        $('#toolbar').find('select').change(function() {
+            $('#table').bootstrapTable('destroy').bootstrapTable({
+                exportDataType: $(this).val()
+            });
+        });
+    })*/
 
 
     function getTotalDate(datetime) {

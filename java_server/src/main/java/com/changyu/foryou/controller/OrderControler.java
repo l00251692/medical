@@ -686,7 +686,7 @@ Map<String, Object> map = new HashMap<String, Object>();
 			}	
 			obj.put("front_img", order.getIdCardFront());
 			obj.put("back_img", order.getIdCardBack());	
-			arr.add(obj);
+			arr.add(obj);	
 		}
 		
 
