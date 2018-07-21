@@ -56,7 +56,7 @@ public class OrderControler {
 		this.userService = userService;
 	}
 	
-    
+	
     private static final Logger logger = LoggerFactory.getLogger(OrderControler.class);
     
     @RequestMapping("/getQiniuTokenWx")
@@ -579,7 +579,21 @@ public class OrderControler {
 					obj.put("nick_name", user.getNickname());
 				}
 				obj.put("order_id", order.getOrderId());
-				obj.put("status", order.getOrderStatus());
+				
+				short status = order.getOrderStatus();
+				if(status == 1){
+					obj.put("status", "待支付");
+				}
+				else if(status == 2){
+					obj.put("status", "待发货");
+				}
+				else if(status == 3){
+					obj.put("status", "已发货");
+				}
+				else{
+					obj.put("status", "");
+				}
+				
 				obj.put("create_time", order.getCreateTime());
 				obj.put("last_update_time", order.getLastUpdateTime());
 				obj.put("name", order.getName());
@@ -672,7 +686,6 @@ Map<String, Object> map = new HashMap<String, Object>();
 			}	
 			obj.put("front_img", order.getIdCardFront());
 			obj.put("back_img", order.getIdCardBack());	
-			
 			arr.add(obj);
 		}
 		
