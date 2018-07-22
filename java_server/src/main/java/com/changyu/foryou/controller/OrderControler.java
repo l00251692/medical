@@ -1,6 +1,18 @@
 package com.changyu.foryou.controller;
 
-import java.io.UnsupportedEncodingException;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,20 +20,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.UUID;
 
-
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.socket.TextMessage;
+
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -31,14 +42,11 @@ import com.changyu.foryou.model.Users;
 import com.changyu.foryou.service.OrderService;
 import com.changyu.foryou.service.UserService;
 import com.changyu.foryou.tools.Constants;
-import com.changyu.foryou.tools.HttpRequest;
-import com.changyu.foryou.tools.PayUtil;
-import com.changyu.foryou.tools.ThreadPoolUtil;
-import com.changyu.foryou.tools.TimeUtil;
-import com.changyu.foryou.tools.ToolUtil;
 import com.qiniu.util.Auth;
 
-import cn.jpush.api.report.UsersResult.User;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
 @Controller
 @RequestMapping("/order")
@@ -756,5 +764,133 @@ public class OrderControler {
 		result.put(Constants.STATUS, Constants.FAILURE);
 		result.put(Constants.MESSAGE, "更新快递单号信息失败");	
 		return result;
+	}
+	
+	@RequestMapping("/download")
+	public void downloadOrder(@RequestParam String order_id, HttpServletRequest request, HttpServletResponse response){
+
+		System.out.println("download:" + order_id);
+		try {
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("orderId",order_id);
+			Order order = orderService.getOrderByIdWx(paramMap);
+			if(order == null)
+			{
+				return;
+			}
+			
+			Map<String,Object> dataMap=new HashMap<String,Object>();
+			
+			DateFormat formattmp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+			dataMap.put("orderId", order.getOrderId());
+			dataMap.put("createTime", formattmp.format(order.getCreateTime()));
+			dataMap.put("name", order.getName());
+			dataMap.put("phone", order.getPhone());
+			dataMap.put("idcard", order.getIdCard());
+			dataMap.put("hospital", order.getHospital());
+			dataMap.put("mrNo", order.getMrNo());
+			dataMap.put("department", order.getDepartment());
+			dataMap.put("doctor", order.getDoctor());
+			dataMap.put("bedNo", order.getBedNo());	
+			
+			if(order.getBedNo() != null && order.getBedNo().length() > 0)
+			{
+				dataMap.put("deliveryNo", order.getBedNo());
+			}
+			else{
+				dataMap.put("deliveryNo", "无");
+			}
+			
+			String temp = order.getProvice() + order.getCity()+order.getDistrict()+order.getAdrTitle();			
+			if(order.getDetail() == null || order.getDetail().isEmpty()){
+				dataMap.put("address", temp);
+			}
+			else
+			{
+				dataMap.put("address", temp + order.getDetail());
+			}	
+			dataMap.put("image1", order.getIdCardFront());
+			dataMap.put("image2", order.getIdCardBack());	
+			
+			Configuration configuration = new Configuration();
+			configuration.setDefaultEncoding("UTF-8");  
+			configuration.setClassForTemplateLoading(getClass(), "/");
+			
+			Template template=null;  
+	        try {  
+	            template = configuration.getTemplate("order.ftl"); //文件名  
+	        } catch (IOException e) {  
+	            e.printStackTrace();  
+	        }  
+	        
+	        String path = request.getSession().getServletContext().getRealPath("/").concat("File/");
+	        File foler =new File(path);    
+
+	        if (!foler .exists()  && !foler .isDirectory())      
+	        {        
+	        	foler .mkdir();    
+	        } 
+
+	        File outFile = new File(path + order.getOrderId() + ".doc");  //导出文档的存放位置
+	        
+	        Writer out = null;  
+	        try {  
+	            out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile))); 
+	        }
+	        catch (FileNotFoundException e1) {  
+	            e1.printStackTrace();  
+	        }      
+	        
+	        try {
+	        	template.process(dataMap, out); 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	        
+			try {
+				System.out.println("文件生成成功:" + order_id);
+				out.flush();
+				out.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			
+			//将文件返回给浏览器
+			try {
+				// 清空response
+				response.reset();
+				
+				// 设置response的Header
+				response.addHeader("Content-Disposition", "attachment;filename=" + order_id + ".doc");
+				response.addHeader("Content-Length", "" + outFile.length());
+				response.setContentType("application/octet-stream");
+				
+				//设置输出的文件内容
+				InputStream fis = new BufferedInputStream(new FileInputStream(outFile));
+				OutputStream outStream = response.getOutputStream();
+				byte buffer[] = new byte[1024];
+				
+				int len = 0;
+		        //循环将输入流中的内容读取到缓冲区当中
+		        while((len=fis.read(buffer))>0){
+		             //输出缓冲区的内容到浏览器，实现文件下载
+		        	outStream.write(buffer, 0, len);
+		        }
+		        outStream.flush();
+		        outStream.close();
+					
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+			
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			logger.error("[downloadOrder Exception]" + order_id);
+		}
+	
+		return;
 	}
 }
