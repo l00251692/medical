@@ -45,7 +45,7 @@
         <div>
             <div class="page-header">
                 <h1>
-                待支付订单
+                已发货订单
             </h1>
             </div>
             <table id="table" data-id-field="order_id" data-pagination="true" data-side-pagination="server" data-search="true" data-height="80%" data-show-refresh="true" data-show-columns="true" data-show-toggle="true" data-toolbar-align="right" data-page-list="[10, 20, 50, 100, 1000]" data-smart-display="false">
@@ -65,6 +65,8 @@
                         <th data-align="left" data-field="addr">邮寄地址</th>
                         <th data-align="center" data-field="front_img" data-formatter="ImageFormatter" data-visible="false">身份证（正面）</th>
                         <th data-align="center" data-field="back_img" data-formatter="ImageFormatter" data-visible="false">身份证（背面）</th>
+                        <th data-align="left" data-field="deliveryNo">快递单号</th>
+                        <th data-field="action" data-width="40" data-formatter="actionFormatter" data-events="actionEvents">操作</th>
                     </tr>
                 </thead>
             </table>
@@ -74,7 +76,7 @@
 <script>
 $(function() {
     $("#table").bootstrapTable({
-        url: "../order/getOrderList?server=56846a8a2fee49d14901d39cc48b8b2a&status=1"
+        url: "../order/getOrderList?server=56846a8a2fee49d14901d39cc48b8b2a&status=3"
     });
 });
 </script>
@@ -85,6 +87,39 @@ function ImageFormatter(value, row, index) {
     }
     return "<img height='50' width='100' alt='图片加载中' src=" + value + ">";
 }
+
+function actionFormatter(value, row, index) {
+    return [
+        '<a class="common" href="javascript:void(0)" title="保存">',
+        '&nbsp;<i class="glyphicon glyphicon-save"></i>&nbsp;',
+        '</a>'
+    ].join('');
+}
+
+window.actionEvents = {
+    'click .common': function(e, value, row, index) {
+        alert("common");
+        /*
+        $.post("order/douwnLoad", {
+            order_id : row.order_id,
+            server:"56846a8a2fee49d14901d39cc48b8b2a"
+        }, function(text) {
+            if (text == -1 || text == 0) {
+                setSuccess("设置为普通用户失败。");
+            } else {
+                setSuccess("设置为普通用户成功。");
+                $('#table').bootstrapTable('updateRow', {
+                    index : index,
+                    row : {
+                        type : 2
+                    }
+                });
+                //$('#table').bootstrapTable('refresh', {silent: true});
+            }
+
+        });*/
+    }
+};
 
 </script>
 

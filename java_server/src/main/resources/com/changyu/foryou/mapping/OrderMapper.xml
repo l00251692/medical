@@ -185,7 +185,7 @@
 			,records=#{records, jdbcType=VARCHAR}
 		</if>
 		<if test="lastUpdateTime != null">
-			,last_update_time=#{lastUpdateTime, jdbcType=VARCHAR}
+			,last_update_time=#{lastUpdateTime, jdbcType=TIMESTAMP}
 		</if>
 		where
 			order_id=#{orderId, jdbcType=VARCHAR}
@@ -214,13 +214,13 @@
 			deliveryNo=#{deliveryNo, jdbcType=VARCHAR}
 		</if>
 		<if test="orderStatus != null">
-			order_status=#{orderStatus, jdbcType=SMALLINT}
+			,order_status=#{orderStatus, jdbcType=SMALLINT}
 		</if>
 		<if test="records != null">
 			,records=#{records, jdbcType=VARCHAR}
 		</if>
 		<if test="lastUpdateTime != null">
-			,last_update_time=#{lastUpdateTime, jdbcType=VARCHAR}
+			,last_update_time=#{lastUpdateTime, jdbcType=TIMESTAMP}
 		</if>
 		where
 			order_id=#{orderId, jdbcType=VARCHAR}

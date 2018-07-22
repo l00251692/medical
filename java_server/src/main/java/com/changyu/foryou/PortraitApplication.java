@@ -28,13 +28,13 @@ public class PortraitApplication extends SpringBootServletInitializer {
 		return factory.createMultipartConfig();
 	}
 	
+	
 	/*@Bean  
     public ServletListenerRegistrationBean<InitContextListener> testListenerRegistration(){  
         ServletListenerRegistrationBean<InitContextListener> registration = new ServletListenerRegistrationBean<InitContextListener>(new InitContextListener());  
         return registration;  
     } */
 
-	
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(PortraitApplication.class);

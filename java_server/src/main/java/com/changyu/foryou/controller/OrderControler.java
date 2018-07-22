@@ -708,15 +708,14 @@ public class OrderControler {
 			@RequestParam String order_id,  @RequestParam String deliveryNo){
 		Map<String,String> result = new HashMap<String, String>();
 		JSONObject node = new JSONObject();
-		
 		try {
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("orderId",order_id);
 			Order order = orderService.getOrderByIdWx(paramMap);
 			if(order == null)
 			{
-				result.put("State", "Fail");
-				result.put("info", "更新物流信息失败");
+				result.put(Constants.STATUS, Constants.FAILURE);
+				result.put(Constants.MESSAGE, "未找到相应订单信息");
 				return result;
 			}
 
@@ -737,14 +736,14 @@ public class OrderControler {
 			int flag = orderService.updateDeliveryNo(paramMap);
 			if (flag != -1 && flag != 0)
 			{	
-				result.put("State", "Success");
-				result.put("data", null);	
+				result.put(Constants.STATUS, Constants.SUCCESS);
+				result.put(Constants.MESSAGE, "更新快递单号信息成功");
 				return result;
 			} 
 			else 
 			{
-				result.put("State", "Fail");
-				result.put("info", "更新物流信息失败");	
+				result.put(Constants.STATUS, Constants.FAILURE);
+				result.put(Constants.MESSAGE, "更新快递单号信息失败");
 				logger.error("[updateDeliveryNo Err]order_id=" + order_id);
 				return result;
 			}
@@ -753,10 +752,9 @@ public class OrderControler {
 			e.printStackTrace();
 			logger.error("[updateDeliveryNo Exception]" + e.getMessage());
 		}
-		
-		
-		result.put("State", "Fail");
-		result.put("info", "更新物流信息失败");	
+
+		result.put(Constants.STATUS, Constants.FAILURE);
+		result.put(Constants.MESSAGE, "更新快递单号信息失败");	
 		return result;
 	}
 }

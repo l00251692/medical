@@ -63,8 +63,8 @@
 								<label for="plus_authority" class="col-sm-2 control-label">账号类型</label>
 								<div class="col-sm-10">
 									<div class="dropdown">
-										<button type="button" class="dropdown-toggle btn btn-default" style="width:100%;" data-toggle="dropdown" id="plus_authority">
-											<span id="span_plus_authority">账号类型</span>
+										<button type="button" class="dropdown-toggle btn btn-default" style="width:100%;" data-toggle="dropdown" id="plus_authority" >
+											<span id="span_plus_authority" name="authority">账号类型</span>
 											<b class="caret" style="float:right;margin-top:8px"></b>
 										</button>
 										<ul class="dropdown-menu" style="width:100%;">
@@ -106,7 +106,7 @@
 						<h4 class="modal-title" id="myDeleteModalLabel">删除账号</h4>
 					</div>
 					<div class="modal-body">
-						<form id="edit_form" class="form-horizontal" role="form">
+						<form id="delete_form" class="form-horizontal" role="form">
 							<div class="form-group">
 								<label for="delete_authority" class="col-sm-2 control-label">账号类型</label>
 								<div class="col-sm-10">
@@ -146,7 +146,7 @@
 								<label class="col-sm-2 control-label" for="campus-id">账号类型</label>
 								<div class="col-sm-10">
 									<div class="dropdown">
-										<button type="button" class="dropdown-toggle btn btn-default" style="width:100%;" data-toggle="dropdown" id="edit_authority">
+										<button type="button" class="dropdown-toggle btn btn-default" style="width:100%;" data-toggle="dropdown" id="edit_authority" name="authority" >
 											<span id="span_edit_authority">账号</span>
 											<b class="caret" style="float:right;margin-top:8px"></b>
 										</button>
@@ -172,7 +172,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button type="button" onclick="submitUpdateCampusAdmin();"
+						<button type="submit" onclick="submitUpdateCampusAdmin();"
 							class="btn btn-primary">提交更改</button>
 					</div>
 				</div>
@@ -254,6 +254,7 @@ $("#plus_form").validate({
 		},"json");
 	}
 });
+
 </script>
 	<script>
 	//“添加校区管理员”的模态框的提交更改按钮的点击事件
@@ -266,6 +267,15 @@ $("#plus_form").validate({
 		var authority = $("#span_edit_authority").text().trim();
 		var phone = $("#edit_phone").val();
 		var password = $("#edit_password").val().trim();
+		if(password == null )
+		{
+			alert("请填写密码")
+			return
+		}
+		else if(password.length < 8 || password.length > 12){
+			alert("密码长度在8-12之间")
+			return
+		}
 		$.post("../oa/updateEmployee",{
 			type:authority,
 			phone : phone,
@@ -309,6 +319,8 @@ $("#plus_form").validate({
 			$plusButton.click(function(){
 				//初始化校区列表
 				//清空校区列表
+				$("#span_plus_authority").text("普通用户");
+
 				$("#plus_authority").next().empty();
 
 				$("#plus_authority").next().append('<li style="text-align:center;" data-type=0"'+'">'+"系统管理员"+'</li>');
@@ -338,18 +350,6 @@ $("#plus_form").validate({
 				} else
 				{
 					$("#span_edit_authority").text(array[0].authority);
-
-					$("#edit_authority").next().empty();
-
-
-					$("#edit_authority").next().append('<li style="text-align:center;" data-type=0"'+'">'+"系统管理员"+'</li>');
-
-					$("#edit_authority").next().append('<li style="text-align:center;" data-type=1"'+'">'+"普通用户"+'</li>');
-
-						//为校区下拉列表项设置单击事件监听
-					$("#edit_authority").next().children().click(function(){
-							$("#span_edit_authority").text($(this).text());
-					});
 
 					$("#edit_phone").val(array[0].phone);
 					$("#edit_password").val('');
