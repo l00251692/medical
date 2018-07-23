@@ -4,7 +4,7 @@ import {
   addOrder, getQiniuToken, updateOrderIdCard, getPayment, updateOrderPayed
 } from '../../utils/api'
 import {
-  alert, requestPayment
+  alert, requestPayment, randomString
 } from '../../utils/util'
 Page({
 
@@ -74,6 +74,7 @@ Page({
       success(data) {
         var token = ''
         var order_id = data.orderId
+        var key_str = randomString(4) //随机4位字符串用于保密
         getQiniuToken({
           success(data) {
             token = data.upToken;
@@ -131,7 +132,7 @@ Page({
               }, {
                   region: 'ECN', //华东
                   domain: 'img.ailogic.xin',
-                  key: 'order_' + order_id + '_back',
+                  key: 'order_' + order_id + '_' + key_str + '_back',
                   uptoken: token
                 }, (res) => {
                   console.log('上传进度', res.progress)
@@ -145,7 +146,7 @@ Page({
             }, {
                 region: 'ECN', //华东
                 domain: 'img.ailogic.xin',
-                key: 'order_' + order_id + '_front',
+                key: 'order_' + order_id + '_' + key_str + '_front',
                 uptoken: token
               }, (res) => {
                 console.log('上传进度', res.progress)
@@ -178,5 +179,6 @@ Page({
     this.setData({
       'help_status': false
     });
-  },
+  }
+
 })

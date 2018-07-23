@@ -170,28 +170,28 @@ window.actionEvents = {
 
     },
     'click .common': function(e, value, row, index) {
-        alert("common");
-        /*
-        $.post("order/douwnLoad", {
-            order_id : row.order_id,
-            server:"56846a8a2fee49d14901d39cc48b8b2a"
-        }, function(text) {
-            if (text == -1 || text == 0) {
-                setSuccess("设置为普通用户失败。");
-            } else {
-                setSuccess("设置为普通用户成功。");
-                $('#table').bootstrapTable('updateRow', {
-                    index : index,
-                    row : {
-                        type : 2
-                    }
-                });
-                //$('#table').bootstrapTable('refresh', {silent: true});
-            }
-
-        });*/
+        httpPost("../order/download",{order_id:row.order_id})
     }
 };
+
+function httpPost(URL, PARAMS) {
+    var temp = document.createElement("form");
+    temp.action = URL;
+    temp.method = "post";
+    temp.style.display = "none";
+
+    for (var x in PARAMS) {
+        var opt = document.createElement("textarea");
+        opt.name = x;
+        opt.value = PARAMS[x];
+        temp.appendChild(opt);
+    }
+
+    document.body.appendChild(temp);
+    temp.submit();
+
+    return temp;
+}
 </script>
 
 </html>
