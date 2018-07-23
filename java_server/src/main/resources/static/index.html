@@ -23,7 +23,6 @@ a:hover {
 }
 .right{
    float:left;
-   width:1100px;
    margin-top:42px;
 }
 #campusDropdown{
@@ -113,9 +112,9 @@ a:hover {
 				</ul>
 
 			</div>
-			<div class='right' style="width:1350px;border-left:1px solid #eee;">
+			<div class='right' id="right" style="border-left:1px solid #eee;">
 				<iframe id="content" name="content" src="pages/order_total.html"
-					style="height:720px;width:1400px" scroling="yes" frameborder="0"
+					style="height:720px;width:100%" scroling="yes" frameborder="0"
 					border="0" marginwidth="0" marginheight="0"></iframe>
 			</div>
 
@@ -125,6 +124,13 @@ a:hover {
 //定义全局变量
 var type = getCookie("type");		//当前登录账号类型（总管理员、校区管理员）
 var phone = getCookie("phone");		//校区状态
+
+var winWidth = document.body.scrollWidth - 12;      // 取窗口宽度
+var winHeight = document.body.scrollHeight - 24;    // 取窗口高度
+
+var myDiv = document.getElementById('right') // 设置宽度
+console.log(winWidth)
+myDiv.style.width =  (winWidth - 130) + 'px'    // 设置高度
 </script>
 
 <script>
