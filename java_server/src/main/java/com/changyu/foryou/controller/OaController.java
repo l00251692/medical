@@ -21,7 +21,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.changyu.foryou.model.Employee;
 import com.changyu.foryou.service.EmployeeService;
-import com.changyu.foryou.service.UserService;
 import com.changyu.foryou.tools.Constants;
 import com.changyu.foryou.tools.Md5;
 
@@ -111,6 +110,7 @@ public class OaController {
         } else {
             responseMap.put(Constants.STATUS, Constants.FAILURE);
             responseMap.put(Constants.MESSAGE, "添加账号失败");
+            logger.error("添加账号失败，账号名称:" + phone);
         }
         return responseMap;
     }

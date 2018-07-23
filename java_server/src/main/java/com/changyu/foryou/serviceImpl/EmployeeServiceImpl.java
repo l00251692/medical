@@ -1,22 +1,12 @@
 package com.changyu.foryou.serviceImpl;
 
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.alibaba.fastjson.JSON;
 import com.changyu.foryou.mapper.EmployeeMapper;
-import com.changyu.foryou.mapper.UsersMapper;
 import com.changyu.foryou.model.Employee;
-import com.changyu.foryou.model.Users;
 import com.changyu.foryou.service.EmployeeService;
-import com.changyu.foryou.service.UserService;
-import com.changyu.foryou.tools.ToolUtil;
 
 
 @Service("employeeService")

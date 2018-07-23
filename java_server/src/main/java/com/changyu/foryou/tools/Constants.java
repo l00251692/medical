@@ -37,6 +37,11 @@ public  class Constants {
     public static final short STATUS_PAYED=2;  //创建
     public static final short STATUS_DELIVERED=3;  //快递发送
     
+    //阿里云短信配置
+    public  static final String ALIOS_AK = "LTAI4CGPrpZbmFZx";  //accessKeyId
+    public  static final String ALIOS_SK = "6BMA3kW58dUpwPOSpHW6Awy95K07Jf";
+    
+    
     
     //定时任务配置
     public static final String TIMEER_TIMCE_CICLE = "60";//单位为分钟，定时任务时间间隔

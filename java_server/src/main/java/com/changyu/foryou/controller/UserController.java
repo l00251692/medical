@@ -1,51 +1,22 @@
 package com.changyu.foryou.controller;
 
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.apache.log4j.Logger;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.aliyuncs.DefaultAcsClient;
-import com.aliyuncs.IAcsClient;
-import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
-import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
-import com.aliyuncs.exceptions.ClientException;
-import com.aliyuncs.profile.DefaultProfile;
-import com.aliyuncs.profile.IClientProfile;
 import com.changyu.foryou.model.Users;
 import com.changyu.foryou.service.UserService;
 import com.changyu.foryou.tools.AesCbcUtil;
 import com.changyu.foryou.tools.Constants;
 import com.changyu.foryou.tools.HttpRequest;
-import com.changyu.foryou.tools.Md5;
-import com.google.gson.JsonObject;
-
 
 @Controller
 @RequestMapping("/user")
@@ -93,8 +64,6 @@ public class UserController {
 		
 		//获取会话密钥（session_key） 
 		String session_key = json.get("session_key").toString(); 
-		//用户的唯一标识（openid） 
-		String openid = (String) json.get("openid"); 
 	
 		//////////////// 2、对encryptedData加密数据进行AES解密 //////////////// 
 		try { 

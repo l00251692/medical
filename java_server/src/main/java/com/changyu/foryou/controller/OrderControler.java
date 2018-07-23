@@ -1,20 +1,10 @@
 package com.changyu.foryou.controller;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,7 +20,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,17 +28,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
 import com.changyu.foryou.model.Order;
 import com.changyu.foryou.model.Users;
 import com.changyu.foryou.service.OrderService;
 import com.changyu.foryou.service.UserService;
 import com.changyu.foryou.tools.Constants;
+import com.changyu.foryou.tools.SendSms;
 import com.changyu.foryou.tools.WordGenerator;
 import com.qiniu.util.Auth;
-
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
 
 @Controller
 @RequestMapping("/order")
@@ -181,7 +168,6 @@ public class OrderControler {
 	public @ResponseBody Map<String, String> updateOrderIdCardWx(
 			@RequestParam String user_id,  @RequestParam String order_id,@RequestParam String front_img,  @RequestParam String back_img){
 		Map<String,String> result = new HashMap<String, String>();
-		JSONObject node = new JSONObject();
 		
 		try {
 			Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -221,7 +207,6 @@ public class OrderControler {
 	public @ResponseBody Map<String, String> cancelOrderWx(
 			@RequestParam String user_id,  @RequestParam String order_id){
 		Map<String,String> result = new HashMap<String, String>();
-		JSONObject node = new JSONObject();
 		
 		try {
 			Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -274,7 +259,6 @@ public class OrderControler {
 	public @ResponseBody Map<String, String> updateOrderPayedWx(
 			@RequestParam String user_id,  @RequestParam String order_id){
 		Map<String,String> result = new HashMap<String, String>();
-		JSONObject node = new JSONObject();
 		
 		try {
 			Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -718,7 +702,7 @@ public class OrderControler {
 	public @ResponseBody Map<String, String> updateDeliveryNo(
 			@RequestParam String order_id,  @RequestParam String deliveryNo){
 		Map<String,String> result = new HashMap<String, String>();
-		JSONObject node = new JSONObject();
+
 		try {
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("orderId",order_id);
@@ -747,6 +731,20 @@ public class OrderControler {
 			int flag = orderService.updateDeliveryNo(paramMap);
 			if (flag != -1 && flag != 0)
 			{	
+				//向用户发送短信信息
+				//组装请求对象-具体描述见控制台-文档部分内容
+		        SendSmsRequest request = new SendSmsRequest();
+		        //必填:待发送手机号
+		        request.setPhoneNumbers(order.getPhone());
+		        //必填:短信签名-可在短信控制台中找到
+		        request.setSignName("刘静涛");
+		        //必填:短信模板-可在短信控制台中找到
+		        request.setTemplateCode("SMS_140105457");
+		        //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
+		        request.setTemplateParam("{\"orderId\":\"" + order.getOrderId() + "\", \"deliveryNo\":\"" + deliveryNo + "\"}");
+		        
+		        //SendSms.sendSmsAli(request);
+		        
 				result.put(Constants.STATUS, Constants.SUCCESS);
 				result.put(Constants.MESSAGE, "更新快递单号信息成功");
 				return result;

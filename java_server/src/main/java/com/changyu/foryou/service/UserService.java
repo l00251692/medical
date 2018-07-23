@@ -1,9 +1,5 @@
 package com.changyu.foryou.service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
 import com.changyu.foryou.model.Users;
 
 public interface UserService {

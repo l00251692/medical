@@ -9,8 +9,6 @@ import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
-import com.alibaba.fastjson.JSON;
-
 /**
  * 此类用来获取登录用户信息并交由websocket管理
  */
