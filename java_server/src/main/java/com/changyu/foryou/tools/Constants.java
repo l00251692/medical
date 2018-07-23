@@ -36,5 +36,10 @@ public  class Constants {
     public static final short STATUS_CREATE=1;  //创建
     public static final short STATUS_PAYED=2;  //创建
     public static final short STATUS_DELIVERED=3;  //快递发送
+    
+    
+    //定时任务配置
+    public static final String TIMEER_TIMCE_CICLE = "60";//单位为分钟，定时任务时间间隔
+    public static final String FILE_SAVED_TIME = "60";//分钟为单位，文件保存时间
 	
 }

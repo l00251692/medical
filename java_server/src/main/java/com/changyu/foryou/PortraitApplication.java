@@ -9,6 +9,8 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 
+import com.changyu.foryou.listener.TempFileListener;
+
 import javax.servlet.MultipartConfigElement;
 
 @SpringBootApplication
@@ -31,11 +33,11 @@ public class PortraitApplication extends SpringBootServletInitializer {
 	
 	
 	
-	/*@Bean  
-    public ServletListenerRegistrationBean<InitContextListener> testListenerRegistration(){  
-        ServletListenerRegistrationBean<InitContextListener> registration = new ServletListenerRegistrationBean<InitContextListener>(new InitContextListener());  
+	@Bean  
+    public ServletListenerRegistrationBean<TempFileListener> testListenerRegistration(){  
+        ServletListenerRegistrationBean<TempFileListener> registration = new ServletListenerRegistrationBean<TempFileListener>(new TempFileListener());  
         return registration;  
-    } */
+    }
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

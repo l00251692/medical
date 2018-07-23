@@ -772,7 +772,6 @@ public class OrderControler {
 	@RequestMapping("/download")
 	public void downloadOrder(@RequestParam String order_id, HttpServletRequest request, HttpServletResponse response){
 
-		System.out.println("download:" + order_id);
 		try {
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("orderId",order_id);

@@ -51,12 +51,12 @@ public class WordGenerator {
 		
         File foler =new File(path);    
 
-        if (!foler .exists()  && !foler .isDirectory())      
+        if (!foler.exists()  && !foler.isDirectory())      
         {        
-        	foler .mkdir();    
+        	foler.mkdir();    
         } 
 
-		File f = new File(name);
+		File f = new File(path + name);
 		Template t = allTemplates.get(type);
 		try {
 			// 这个地方不能使用FileWriter因为需要指定编码类型否则生成的Word文档会因为有无法识别的编码而无法打开  
@@ -86,8 +86,7 @@ public class WordGenerator {
 			conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setConnectTimeout(5 * 1000);
-			
-			System.out.println("response:" + conn.getResponseCode());
+
 			inStream = conn.getInputStream();
 			outStream = new ByteArrayOutputStream();  
 
