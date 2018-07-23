@@ -29,6 +29,8 @@ public class PortraitApplication extends SpringBootServletInitializer {
 	}
 	
 	
+	
+	
 	/*@Bean  
     public ServletListenerRegistrationBean<InitContextListener> testListenerRegistration(){  
         ServletListenerRegistrationBean<InitContextListener> registration = new ServletListenerRegistrationBean<InitContextListener>(new InitContextListener());  

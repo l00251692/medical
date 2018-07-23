@@ -12,6 +12,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -42,6 +44,7 @@ import com.changyu.foryou.model.Users;
 import com.changyu.foryou.service.OrderService;
 import com.changyu.foryou.service.UserService;
 import com.changyu.foryou.tools.Constants;
+import com.changyu.foryou.tools.WordGenerator;
 import com.qiniu.util.Auth;
 
 import freemarker.template.Configuration;
@@ -809,52 +812,16 @@ public class OrderControler {
 			{
 				dataMap.put("address", temp + order.getDetail());
 			}	
-			dataMap.put("image1", order.getIdCardFront());
-			dataMap.put("image2", order.getIdCardBack());	
 			
-			Configuration configuration = new Configuration();
-			configuration.setDefaultEncoding("UTF-8");  
-			configuration.setClassForTemplateLoading(getClass(), "/");
-			
-			Template template=null;  
-	        try {  
-	            template = configuration.getTemplate("order.ftl"); //文件名  
-	        } catch (IOException e) {  
-	            e.printStackTrace();  
-	        }  
+            String image1 = WordGenerator.GetImageStrFromUrl(order.getIdCardFront());
+            String image2 = WordGenerator.GetImageStrFromUrl(order.getIdCardBack());
+            dataMap.put("image1", image1);
+            dataMap.put("image2", image2);
+			 
 	        
 	        String path = request.getSession().getServletContext().getRealPath("/").concat("File/");
-	        File foler =new File(path);    
-
-	        if (!foler .exists()  && !foler .isDirectory())      
-	        {        
-	        	foler .mkdir();    
-	        } 
-
-	        File outFile = new File(path + order.getOrderId() + ".doc");  //导出文档的存放位置
-	        
-	        Writer out = null;  
-	        try {  
-	            out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile))); 
-	        }
-	        catch (FileNotFoundException e1) {  
-	            e1.printStackTrace();  
-	        }      
-	        
-	        try {
-	        	template.process(dataMap, out); 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-	        
-			try {
-				System.out.println("文件生成成功:" + order_id);
-				out.flush();
-				out.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
+	        String name = order.getOrderId() + ".doc";
+	        File outFile = WordGenerator.createDoc(dataMap, path, name, "order");
 			
 			//将文件返回给浏览器
 			try {
@@ -879,8 +846,8 @@ public class OrderControler {
 		        }
 		        outStream.flush();
 		        outStream.close();
+		        fis.close();
 					
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
