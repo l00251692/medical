@@ -62,8 +62,18 @@ public class UserController {
 		//JSONObject json = JSONObject.fromObject(sr); 
 		JSONObject json = JSONObject.parseObject(sr);
 		
-		//获取会话密钥（session_key） 
-		String session_key = json.get("session_key").toString(); 
+		//获取会话密钥（session_key）
+		String session_key = "";
+		if(json.get("session_key") != null){
+			session_key = json.get("session_key").toString(); 
+		}
+		else
+		{
+			map.put("State", "Fail"); 
+			map.put("info", "获取信息失败"); 
+			return map; 
+		}
+		
 	
 		//////////////// 2、对encryptedData加密数据进行AES解密 //////////////// 
 		try { 

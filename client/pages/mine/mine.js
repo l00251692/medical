@@ -16,46 +16,16 @@ Page({
   },
   onLoad: function (options) {
     var that = this
-    var userInfo = wx.getStorageSync("userInfo")
-    if (userInfo)
-    {
-      this.setData({
-        userInfo: userInfo
-      })
-    }
-    this.setData(initData)
-
-    this.setData({
-      loading:true
-    })
     getApp().getLoginInfo(loginInfo => {
       if (loginInfo != null && loginInfo.is_login) {
         that.setData({
           userInfo: loginInfo.userInfo
         })
-
-        var { page, list } = that.data
-        getMineOrders({
-          page,
-          success(data) {
-            var list2 = data.list.map(item => {
-              item['create_time_format'] = datetimeFormat(item.create_time)
-              return item
-            })
-
-            that.setData({
-              list: list ? list.concat(list2) : list2,
-              page: page+1,
-              hasMore: data.count ==5,
-              loading: false
-            })
-          },
-          error(){
-            that.setData({
-              loading: false
-            })
-          }
-        })
+      }
+      else{
+        that.setData({
+          userInfo: wx.getStorageSync("userInfo")
+        })      
       }
     })
   },
@@ -63,7 +33,7 @@ Page({
     // 页面渲染完成
   },
   onShow: function () {
-
+    this.getOrdersList()
   },
   onHide: function () {
     // 页面隐藏
@@ -84,7 +54,6 @@ Page({
     getMineOrders({
       page,
       success(data) {
-        console.log("reach bottom,size=" + data.count)
         var list2 = data.list.map(item => {
           item['create_time_format'] = datetimeFormat(item.create_time)
           return item
@@ -104,10 +73,6 @@ Page({
       }
     })
   },
-
-  callback() {
-    this.onLogin()
-  },
   
   onLogin() {
     var that = this
@@ -116,36 +81,20 @@ Page({
         that.setData({
           userInfo: loginInfo.userInfo
         })
-
-        var { page, list } = that.data
-        getMineOrders({
-          page,
-          success(data) {
-            var list2 = data.list.map(item => {
-              item['create_time_format'] = datetimeFormat(item.create_time)
-              return item
-            })
-
-            that.setData({
-              list: list ? list.concat(list2) : list2,
-              page: page + 1,
-              hasMore: data.count == 5,
-              loading: false
-            })
-          },
-          error() {
-            that.setData({
-              loading: false
-            })
-          }
-        })
+        that.getOrdersList()
       }
     })
 
   },
-  callback(){
-    var that = this 
+
+  getOrdersList(){
+    var that = this
     this.setData(initData)
+
+    this.setData({
+      loading: true
+    })
+
     var { page, list } = this.data
     getMineOrders({
       page,
@@ -168,6 +117,10 @@ Page({
         })
       }
     })
+  },
+
+  callback(){
+    
   },
 
   onShareAppMessage() {

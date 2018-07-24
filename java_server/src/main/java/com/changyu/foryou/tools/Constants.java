@@ -8,12 +8,12 @@ public  class Constants {
 	public static final String MESSAGE = "message";
 	
 	public static final String localIp = "https://localhost/JiMuImage"; //存放上传的图片的服务器JiMuImage为上传图片时创建的目录
-    public static final String appId="wxcc5ecb17be242087";
-    public static final String apiKey="125666eeecee7a340f3cfcfd85be52d9";
+    public static final String appId="wx7b7aabca0fc1737d";
+    public static final String apiKey="7afb691ba14b3900ec3c88c5bb153e07";
     public static final String mchId="1508584831";
     public static final String mchKey="LiuJingTao2333KEY251692111111111";
-    //public static String notifyUrl = "https://www.ailogic.xin/pay/payNotify";
-    public static final String notifyUrl = "https://127.0.0.1/pay/payNotify";
+    public static String notifyUrl = "https://www.ailogic.xin/pay/payNotify";
+    //public static final String notifyUrl = "https://127.0.0.1/pay/payNotify";
  
     public static final String TemplateIdPaySuccess="vQoIDJ072tRjUpGDoh0GMb1qI8DzUPgBlrpOT_3p_9g";
     public static final String TemplateIdPayFail="qA_2yDLB6hlTKzsv9dY-SsFIC6QJChjTiii-kR2f-ms";
