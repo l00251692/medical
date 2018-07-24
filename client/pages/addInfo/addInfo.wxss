@@ -54,6 +54,12 @@
     width: 100%;
 }
 
+.reporter-detail-input .auth{
+    font-size: 10pt;
+    color: #999;
+    width: 100%;
+}
+
 .input-placeholder {
     font-size: 10pt;
 }

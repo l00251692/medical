@@ -66,7 +66,8 @@
         <text class='location'>{{address.title}}</text>
       </view>
       <view class="reporter-detail-input" wx:else>
-        <text class='location2'>请选择邮寄地址</text>
+        <button class='auth' open-type="openSetting" wx:if="{{authed == false}}">重新授权地理位置信息</button>
+        <text class='location2' wx:else>请选择邮寄地址</text>
       </view>
     </view>
     <view class="reporter-user reporter-detail-item">
@@ -76,7 +77,6 @@
       </view>
     </view>
   </view>
-
 
   <view class="submit-declare" >
     <button class="submit-declare-button" formType="submit">下一步</button>

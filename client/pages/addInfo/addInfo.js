@@ -30,7 +30,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this
+    wx.getSetting({
+       success(res) {
+         if (res.authSetting['scope.userLocation']) {
+           that.setData({
+             authed:true
+           })
+         }
+       }
+     })
   },
 
   /**
@@ -145,21 +154,18 @@ Page({
 
   onChooseLocation(e) {
     var that = this
-
     wx.chooseLocation({
       success: function (res) {
         var {
           name: title, address,
           longitude, latitude
         } = res
-        console.log(JSON.stringify(res))
         var location = {
           longitude, latitude
         }
         reverseGeocoder({
           location,
           success(data) {
-            console.log("chooseLocation2 " + JSON.stringify(data))
             that.setData({
               address: Object.assign({
                 title, address, location
@@ -169,6 +175,11 @@ Page({
           }
         })
       },
+      fail(res){
+        that.setData({
+          authed:false
+        })
+      }
     })
   },
 
