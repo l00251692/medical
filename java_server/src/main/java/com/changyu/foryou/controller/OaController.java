@@ -46,8 +46,7 @@ public class OaController {
 
 		if (phone!=null&&password!=null&&!phone.trim().equals("") && !password.trim().equals("")) {
 			Employee employee = employeeService.checkLogin(phone);
-			if (employeeService != null) {
-				System.out.println(Md5.GetMD5Code(password));
+			if (employee != null) {
 				if (employee.getPassword().equals(Md5.GetMD5Code(password))) {
 					
 					map.put(Constants.STATUS, Constants.SUCCESS);
@@ -86,8 +85,14 @@ public class OaController {
      */
     @RequestMapping("addEmployee")
     public @ResponseBody
-    Map<String, Object> addEmployee(@RequestParam String type, @RequestParam String phone, @RequestParam String password) {
+    Map<String, Object> addEmployee(@RequestParam int usertype,@RequestParam String type, @RequestParam String phone, @RequestParam String password) {
         Map<String, Object> responseMap = new HashMap<>();
+        
+        if(usertype != 0){
+        	responseMap.put(Constants.STATUS, Constants.FAILURE);
+            responseMap.put(Constants.MESSAGE, "您没有操作权限");
+            return responseMap;
+        }
         
         Map<String, Object> paramMap = new HashMap<>();
    
@@ -124,9 +129,15 @@ public class OaController {
      */
     @RequestMapping("/updateEmployee")
     public @ResponseBody
-    Map<String, Object> updateEmployee(@RequestParam String type, @RequestParam String phone, @RequestParam String password) {
+    Map<String, Object> updateEmployee(@RequestParam int usertype,@RequestParam String type, @RequestParam String phone, @RequestParam String password) {
         Map<String, Object> responseMap = new HashMap<String, Object>();
         Map<String, Object> paramMap = new HashMap<String, Object>();
+        
+        if(usertype != 0){
+        	responseMap.put(Constants.STATUS, Constants.FAILURE);
+            responseMap.put(Constants.MESSAGE, "您没有操作权限");
+            return responseMap;
+        }
 
         if(type.equals("系统管理员")){
         	paramMap.put("type", 0);
@@ -162,9 +173,15 @@ public class OaController {
      */
     @RequestMapping("/deleteEmployee")
     public @ResponseBody
-    Map<String, Object> deleteEmployee(@RequestParam String phone) {
+    Map<String, Object> deleteEmployee(@RequestParam int usertype,@RequestParam String phone) {
         Map<String, Object> responseMap = new HashMap<String, Object>();
         Map<String, Object> paramMap = new HashMap<String, Object>();
+        
+        if(usertype != 0){
+        	responseMap.put(Constants.STATUS, Constants.FAILURE);
+            responseMap.put(Constants.MESSAGE, "您没有操作权限");
+            return responseMap;
+        }
 
         paramMap.put("phone", phone);
 
@@ -190,7 +207,6 @@ public class OaController {
     	JSONArray array = new JSONArray();
     	Map<String, Object> paramMap = new HashMap<String, Object>();
 
-        //paramMap.put("phone", phone);
         
         List<Employee> list = employeeService.getAllEmployee(paramMap);
         DateFormat formattmp = new SimpleDateFormat("yyyy-MM-dd");  

@@ -216,6 +216,9 @@
 },"密码必须包含英文字母、数字和特殊字符");
 */
 
+var usertype = getCookie("type");		//当前登录账号类型（总管理员、校区管理员）
+var phone = getCookie("phone");		//校区状态
+
 $("#plus_form").validate({
 	rules:{
 		phone:{
@@ -241,6 +244,7 @@ $("#plus_form").validate({
 		var password = $("#plus_password").val().trim();
 
 		$.post("../oa/addEmployee",{
+			usertype:usertype,
 			type : authority,
 			phone : phone,
 			password : password,
@@ -277,6 +281,7 @@ $("#plus_form").validate({
 			return
 		}
 		$.post("../oa/updateEmployee",{
+			usertype:usertype,
 			type:authority,
 			phone : phone,
 			password : password,
@@ -292,6 +297,7 @@ $("#plus_form").validate({
 	function deleteCampusAdminSubmit(){
 		var phone = $("#delete_phone").val();
 		$.post("../oa/deleteEmployee",{
+			usertype:usertype,
 			phone : phone,
 			server:"56846a8a2fee49d14901d39cc48b8b2a"
 		},function(data){
@@ -332,6 +338,8 @@ $("#plus_form").validate({
 						$("#span_plus_authority").text($(this).text());
 				});
 
+				$("#plus_phone").val('');
+				$("#plus_password").val('');
 				$("#plusModal").modal('show');
 			});
 

@@ -48,7 +48,7 @@
 									$("#message").html("登录成功！");
 									document.cookie = "phone="+phone;
 									document.cookie = "type=0";
-									window.location.href="index.html?backurl="+window.location.href;
+									window.location.href="index.html?";
 								}else if($("#dropdownMenu1").text()=='普通用户'){
 									$("#message").html("对不起，账号类型错误！");
 								}
@@ -57,7 +57,7 @@
 									//将用户名和密码存到cookie
 									document.cookie = "phone="+phone;
 									document.cookie = "type=1";
-									window.location.href="index.html?backurl="+window.location.href;
+									window.location.href="index.html?";
 								}else if($("#dropdownMenu1").text()=='系统管理员'){
 									$("#message").html("对不起，您不是系统管理员！");
 								}
@@ -73,7 +73,15 @@
 	</script>
 	<style type="text/css">
 		.message{
-			color: red
+			color: red;
+		}
+
+		.copyright{
+			position: fixed;
+			bottom:10px;
+    		text-align: center;
+    		right: 0;
+    		left: 0;
 		}
 
 		#dropdownMenu1, [role=presentation]{
@@ -133,6 +141,9 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="copyright">
+			<h4>Copyright © 海遥科技 All rights Reserved.</h4>
 		</div>
 	</div>
 	<script>

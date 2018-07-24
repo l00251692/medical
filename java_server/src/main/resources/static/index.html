@@ -129,7 +129,6 @@ var winWidth = document.body.scrollWidth - 12;      // 取窗口宽度
 var winHeight = document.body.scrollHeight - 24;    // 取窗口高度
 
 var myDiv = document.getElementById('right') // 设置宽度
-console.log(winWidth)
 myDiv.style.width =  (winWidth - 130) + 'px'    // 设置高度
 </script>
 
@@ -137,7 +136,6 @@ myDiv.style.width =  (winWidth - 130) + 'px'    // 设置高度
 
 if(getCookie("phone")=="")
 {
-	console.log("phone cookie null")
 	window.location.href="login.html?";
 }
 
@@ -154,6 +152,8 @@ $(function(){
 		//普通商户
 		$("#campusDropdown").css("visibility", "visible");
 		$("#dropdownMenu1").html("普通用户"+'<span class="caret"></span>');
+
+		$("#li-campus-admin").hide();
 	}
 
 	$("#dropdown-campus").empty();//移除子元素
