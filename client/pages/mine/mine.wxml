@@ -56,7 +56,7 @@
           <text class="process-item-name">快递单号</text>
         </view>
         <view class="process-item-ft">
-          <text class="process-item-info">{{item.delivery_no}}</text>
+          <text class="process-item-info">{{item.deliveryNo}}</text>
         </view>
       </view>
     </view>

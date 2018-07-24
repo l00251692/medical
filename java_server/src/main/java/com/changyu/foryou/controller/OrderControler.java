@@ -342,11 +342,11 @@ public class OrderControler {
 				
 				if(order.getDeliveryNo() == null || order.getDeliveryNo().length() == 0)
 				{
-					obj.put("delivery_no", "暂无快递信息");
+					obj.put("deliveryNo", "暂无");
 				}
 				else
 				{
-					obj.put("delivery_no", order.getDeliveryNo());
+					obj.put("deliveryNo", order.getDeliveryNo());
 				}
 				
 				arr.add(obj);
@@ -408,6 +408,14 @@ public class OrderControler {
 			obj.put("department", order.getDepartment());
 			obj.put("doctor", order.getDoctor());
 			obj.put("bedNo", order.getBedNo());
+			if(order.getDeliveryNo() == null || order.getDeliveryNo().length() == 0)
+			{
+				obj.put("deliveryNo", "暂无");
+			}
+			else
+			{
+				obj.put("deliveryNo", order.getDeliveryNo());
+			}
 			String temp = order.getProvice() + order.getCity()+order.getDistrict()+order.getAdrTitle();			
 			if(order.getDetail() == null || order.getDetail().isEmpty()){
 				obj.put("addr", temp);
@@ -455,7 +463,7 @@ public class OrderControler {
 					record.put("type", state);
 					Map<String, Object> tmp = new HashMap<String, Object>();
 					tmp.put("快递发货", timeStr);
-					tmp.put("快递单号", "12121212121212");
+					tmp.put("快递单号", order.getDeliveryNo());
 					record.put("list", tmp);
 				}
 				else if(state == 4){
@@ -599,7 +607,14 @@ public class OrderControler {
 				obj.put("department", order.getDepartment());
 				obj.put("doctor", order.getDoctor());
 				obj.put("bedNo", order.getBedNo());	
-				obj.put("deliveryNo", order.getBedNo());
+				if(order.getDeliveryNo() == null || order.getDeliveryNo().length() == 0)
+				{
+					obj.put("deliveryNo", "暂无");
+				}
+				else
+				{
+					obj.put("deliveryNo", order.getDeliveryNo());
+				}
 				String temp = order.getProvice() + order.getCity()+order.getDistrict()+order.getAdrTitle();			
 				if(order.getDetail() == null || order.getDetail().isEmpty()){
 					obj.put("addr", temp);
@@ -674,7 +689,14 @@ public class OrderControler {
 			obj.put("department", order.getDepartment());
 			obj.put("doctor", order.getDoctor());
 			obj.put("bedNo", order.getBedNo());	
-			obj.put("deliveryNo", order.getBedNo());	
+			if(order.getDeliveryNo() == null || order.getDeliveryNo().length() == 0)
+			{
+				obj.put("deliveryNo", "暂无");
+			}
+			else
+			{
+				obj.put("deliveryNo", order.getDeliveryNo());
+			}
 			String temp = order.getProvice() + order.getCity()+order.getDistrict()+order.getAdrTitle();			
 			if(order.getDetail() == null || order.getDetail().isEmpty()){
 				obj.put("addr", temp);
@@ -793,12 +815,13 @@ public class OrderControler {
 			dataMap.put("doctor", order.getDoctor());
 			dataMap.put("bedNo", order.getBedNo());	
 			
-			if(order.getBedNo() != null && order.getBedNo().length() > 0)
+			if(order.getDeliveryNo() == null || order.getDeliveryNo().length() == 0)
 			{
-				dataMap.put("deliveryNo", order.getBedNo());
+				dataMap.put("deliveryNo", "暂无");
 			}
-			else{
-				dataMap.put("deliveryNo", "无");
+			else
+			{
+				dataMap.put("deliveryNo", order.getDeliveryNo());
 			}
 			
 			String temp = order.getProvice() + order.getCity()+order.getDistrict()+order.getAdrTitle();			
