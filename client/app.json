@@ -1,12 +1,12 @@
 {
   "pages":[ 
     "pages/index/index",
+    "pages/login/login",
     "pages/agreement/agreement",
     "pages/addInfo/addInfo",
     "pages/upload/uploadIdCard",
     "pages/upload/takePhoto",
     "pages/order/pay",
-    "pages/login/login",
     "pages/mine/mine",
     "pages/order/detail",
     "pages/logs/logs"

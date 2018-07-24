@@ -12,18 +12,11 @@ import {
 import distance from './utils/distance'
 App({
   onLaunch: function () {
-    //调用API从本地缓存中获取数据
-    var is_login = wx.getStorageSync("is_login")
-    if(is_login){
-      wx.switchTab({
-        url: '/pages/index/index',
-      })
-    }
-    else{
-      wx.navigateTo({
-        url: '/pages/login/login',
-      })
-    }
+
+  },
+
+  onShow(){
+
   },
 
   getLoginInfo: function (cb) {
@@ -80,7 +73,7 @@ App({
             })
           }
           else {
-            alert("请点击“我的”页面头像进行授权登录");
+            alert("若不授用户信息权限, 则无法正常显示用户头像和昵称以及获得相关服务, 请重新授权用户信息权限");
           }
         }
       })

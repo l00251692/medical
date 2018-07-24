@@ -1,9 +1,12 @@
 <view class="container">
-  <image class="user-avatar" src="../../images/index/logo.png"></image>
-  <view class="userbutton">
-    <button bindgetuserinfo="onLogin" open-type="getUserInfo">
-      <view class="moto">授权登录小程序</view>
-    </button>
-  </view>
+  <image class="avatar" src="../../images/index/logo.png"></image>
+  <view class="title">欢迎使用小程序</view>
+</view>
 
+<view class="scrope">
+  <button bindgetuserinfo="onLogin" open-type="getUserInfo" class="start">
+    授权登录小程序
+  </button>
+
+  <view class="copyright">Copyright © 海遥科技</view>
 </view>

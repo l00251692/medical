@@ -1,51 +1,53 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items:center;
+
+page{
+    height: 100%;
+    background-color: #6495ed;
 }
 
-.user-avatar{
+.container{
+    /*display: flex;
+    flex-direction: column;*/
+    align-items:center;
+    height: auto;
+}
+
+.avatar{
     width:200rpx;
     height:200rpx;
     margin-top: 100px;
     border-radius: 50%;
 }
 
-.user-name{
-    font-size: 32rpx;
-    font-weight: bold;
-    color:#fff;
-    line-height: 40rpx;
+.title{
+  color: #fff;
+  font-size: 60rpx;
+  margin-top: 100rpx;
 }
 
-
-.userbutton{
-    height: 70rpx;
-    width:300rpx;
-    border: 1rpx #6495ed solid;
-    text-align: center;
-    border-radius: 5rpx;
-    position: fixed;
-    bottom: 300rpx;
+.scrope {
+  align-items: center;
+  height: auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.userbutton button{
-  width: 100%;
-  height: 100%;
+.start {
+  position: absolute;
+  bottom: 200rpx;
+  color: #fff;
+  background-color: #6495ed;
+  border: 1rpx solid #fff;
+  border-radius: 20rpx;
+  font-size: 36rpx;
 }
 
-.userbutton button::after{
+.start ::after{
   border: none;
 }
 
-.moto{
-    font-size: 32rpx;
-    font-weight: bold;
-    line-height: 70rpx;
-    color: #6495ed;
+.copyright{
+  position: fixed;
+  font-size: 20rpx;
+  bottom: 50rpx;
 }
 
-page{
-    height: 100%;
-    background-color: #6495ed;
-}
