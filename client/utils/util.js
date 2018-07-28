@@ -195,7 +195,7 @@ export function getCurrentPage() {
 
 export function fetch(options) {
   wx.request({
-    url: `https://${host}/${options.url}`,
+    url: `http://${host}/${options.url}`,
     data: Object.assign(options.data, {
       'app_v': 'ailogic'
     }),
@@ -423,7 +423,6 @@ export function requestPayment(options) {
         })
       } else {
         alert('支付失败', function () { 
-          success && success()
           error && error()
           complete && complete()
         })
