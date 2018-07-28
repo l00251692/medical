@@ -1,5 +1,9 @@
 <view class="parent">
   <cover-image class="background-cover" src='../../images/upload/background.png'></cover-image>
+  <cover-view>
+    <button class='auth' open-type="openSetting" wx:if="{{authed == false}}" bindtap='openSetting'>点击授权相机拍照权限</button>
+  </cover-view>
+
   <camera class="camera" device-position="back" flash="off" binderror='bindCameraFail'>
   </camera>
   <cover-view class='tip'>

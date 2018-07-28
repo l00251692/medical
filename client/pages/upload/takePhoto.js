@@ -19,7 +19,6 @@ Page({
     var that = this
     this.type = options.type
     this.callback = options.callback || 'callback'
-
     this.ctx = wx.createCameraContext()
   
   },
@@ -35,6 +34,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this
+    console.log("takephoto onShow")
+    wx.getSetting({
+      success(res) {
+        console.log(JSON.stringify(res))
+        if (!res.authSetting['scope.camera']) {
+          that.setData({
+            authed: false
+          })
+        }
+        else{
+          that.setData({
+            authed: true
+          })
+        }
+      }
+    })
   
   },
 
@@ -52,8 +68,14 @@ Page({
   
   },
 
+  openSetting(e){
+    wx.navigateBack({})
+  },
+
   bindCameraFail(e){
-    console.log("bindCameraFail")
+    this.setData({
+      authed: false
+    })
   },
 
   /**

@@ -11,13 +11,20 @@
    top:20.2vh;
 } 
 
-/* .camera{
-   width: 100%;
-   height: 100%;
-   position: fixed;
-   left: 81.5rpx;
-   top:20.5vh;
-} */
+.auth{
+  position: fixed;
+  width:100%;
+  top:10vh;
+  color: #fff;
+  height:80rpx;
+  line-height:80rpx;
+  background-color:rgba(255,255,255,0);
+  font-size:34rpx;
+}
+
+.auth::after{
+  border: none;
+}
 
 
 .background-cover{
@@ -39,6 +46,7 @@
   text-align: center;
   line-height: 40rpx;
   padding-top: 20rpx;
+  font-size:34rpx;
 }
 
 .info2{
@@ -46,6 +54,7 @@
   text-align: center;
   line-height: 40rpx;
   padding-top: 20rpx;
+  font-size:34rpx;
 }
 
 .button{

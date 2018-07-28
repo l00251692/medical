@@ -393,8 +393,6 @@ public class OrderControler {
 				return map;
 			}
 		
-
-
 			JSONObject obj = new JSONObject();
 			obj.put("order_id", order.getOrderId());
 			obj.put("status", order.getOrderStatus());
@@ -837,8 +835,7 @@ public class OrderControler {
             String image2 = WordGenerator.GetImageStrFromUrl(order.getIdCardBack());
             dataMap.put("image1", image1);
             dataMap.put("image2", image2);
-			 
-	        
+			     
 	        String path = request.getSession().getServletContext().getRealPath("/").concat("File/");
 	        String name = order.getOrderId() + ".doc";
 	        File outFile = WordGenerator.createDoc(dataMap, path, name, "order");

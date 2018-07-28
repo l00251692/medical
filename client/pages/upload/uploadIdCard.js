@@ -1,4 +1,7 @@
 // pages/upload/uploadIdCard.js
+import {
+  alert
+} from '../../utils/util'
 Page({
 
   /**
@@ -44,17 +47,40 @@ Page({
   },
 
   initData(){
+
+    var that = this
     var tmp1 = wx.getStorageSync('idCardFrontPath')
     if (tmp1){
-      this.setData({
-        idCardFrontPath: tmp1
+      wx.getFileInfo({
+        filePath: tmp1,
+        success(res){
+          that.setData({
+            idCardFrontPath: tmp1
+          })
+        },
+        fail(res){
+          that.setData({
+            idCardFrontPath: null
+          })
+        }
       })
+      
     }
 
     var tmp2 = wx.getStorageSync('idCardBackPath')
     if (tmp2) {
-      this.setData({
-        idCardBackPath: tmp2
+      wx.getFileInfo({
+        filePath: tmp1,
+        success(res) {
+          that.setData({
+            idCardBackPath: tmp2
+          })
+        },
+        fail(res) {
+          that.setData({
+            idCardBackPath: null
+          })
+        }
       })
     }
   },
@@ -72,10 +98,18 @@ Page({
   },
 
   uploadIdCard(e){
-    console.log("uploadIdCard")
-    wx.navigateTo({
-      url: '/pages/order/pay',
-    })
+
+    var { idCardFrontPath, idCardBackPath} = this.data
+
+    if (idCardFrontPath != null && idCardBackPath !=null){
+      wx.navigateTo({
+        url: '/pages/order/pay',
+      })
+    }
+    else{
+      alert("请先上传身份证照片")
+    }
+    
   },
 
   /**

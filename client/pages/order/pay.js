@@ -135,9 +135,6 @@ Page({
                   key: 'order_' + order_id + '_' + key_str + '_back',
                   uptoken: token
                 }, (res) => {
-                  console.log('上传进度', res.progress)
-                  console.log('已经上传的数据长度', res.totalBytesSent)
-                  console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
                 });
 
             }, (error) => {
@@ -149,9 +146,7 @@ Page({
                 key: 'order_' + order_id + '_' + key_str + '_front',
                 uptoken: token
               }, (res) => {
-                console.log('上传进度', res.progress)
-                console.log('已经上传的数据长度', res.totalBytesSent)
-                console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
+                
               });
           },
           error(data) {

@@ -3,6 +3,10 @@
     background-color: #f7f7f7;
 }
 
+.scroll-view-info{
+  padding-bottom: 80rpx;
+}
+
 ::-webkit-scrollbar {
   width: 0;
   height: 0;

@@ -1,4 +1,5 @@
 <form class="parent" catchsubmit="formSubmit">
+<scroll-view class="form_info" scroll-y>
   <view class="reporter-detail">
     <text class="reporter-detail-title">基本信息</text>
     <view class="reporter-user reporter-detail-item">
@@ -77,6 +78,8 @@
       </view>
     </view>
   </view>
+
+  </scroll-view>
 
   <view class="submit-declare" >
     <button class="submit-declare-button" formType="submit">下一步</button>

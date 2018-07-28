@@ -1,79 +1,82 @@
 <form class="parent" catchsubmit="formSubmit">
-  <view class="reporter-detail">
-    <view class="reporter-user reporter-detail-item">
-      <text class="reporter-detail-name" decode="{{true}}">姓名&emsp;&emsp;</text>
-      <view class="reporter-detail-input">
-        <input type="text" value="{{name}}" name="name" maxlength="12" disabled='true' />
+  <scroll-view class="form_info" scroll-y>
+    <view class="reporter-detail">
+      <view class="reporter-user reporter-detail-item">
+        <text class="reporter-detail-name" decode="{{true}}">姓名&emsp;&emsp;</text>
+        <view class="reporter-detail-input">
+          <input type="text" value="{{name}}" name="name" maxlength="12" disabled='true' />
+        </view>
+      </view>
+      <view class="reporter-tel reporter-detail-item">
+        <text class="reporter-detail-name">联系电话</text>
+        <view class="reporter-detail-input">
+          <input type="number" value="{{phone}}" name="phone" maxlength="11" disabled='true' />
+        </view>
+      </view>
+      <view class="reporter-address reporter-detail-item">
+        <text class="reporter-detail-name">身份证号</text>
+        <view class="reporter-detail-input">
+          <input type="text" value="{{idcard}}" name="idcard" maxlength="18" disabled='true' />
+        </view>
       </view>
     </view>
-    <view class="reporter-tel reporter-detail-item">
-      <text class="reporter-detail-name">联系电话</text>
-      <view class="reporter-detail-input">
-        <input type="number" value="{{phone}}" name="phone" maxlength="11" disabled='true'/>
+    <view class="reporter-detail">
+      <view class="reporter-user reporter-detail-item">
+        <text class="reporter-detail-name">医院名称</text>
+        <view class="reporter-detail-input">
+          <input type="text" value="{{hospital}}" name="hospital" disabled='true' />
+        </view>
+      </view>
+      <view class="reporter-tel reporter-detail-item">
+        <text class="reporter-detail-name" decode="{{true}}">住院号&emsp;</text>
+        <view class="reporter-detail-input">
+          <input type="number" value="{{mrNo}}" name="mrNo" disabled='true' />
+        </view>
+      </view>
+      <view class="reporter-tel reporter-detail-item">
+        <view bindtap="showHelp">
+          <text class="reporter-detail-name" decode="{{true}}">科室&ensp;</text>
+          <image class="help-img" src="../../images/index/help.png"></image>
+        </view>
+        <view class="reporter-detail-input">
+          <input type="text" value="{{department}}" name="department" disabled='true' />
+        </view>
+      </view>
+      <view class="reporter-address reporter-detail-item">
+        <text class="reporter-detail-name">主治医生</text>
+        <view class="reporter-detail-input">
+          <input type="text" value="{{doctor}}" name="doctor" disabled='true' />
+        </view>
+      </view>
+      <view class="reporter-address reporter-detail-item">
+        <text class="reporter-detail-name" decode="{{true}}">床位号&emsp;</text>
+        <view class="reporter-detail-input">
+          <input type="text" value="{{bedNo}}" name="bedNo" disabled='true' />
+        </view>
       </view>
     </view>
-    <view class="reporter-address reporter-detail-item">
-      <text class="reporter-detail-name">身份证号</text>
-      <view class="reporter-detail-input">
-        <input type="text" value="{{idcard}}" name="idcard" maxlength="18" disabled='true'  />
+    <view class="reporter-detail">
+      <view class="reporter-address reporter-detail-item">
+        <text class="reporter-detail-name">邮寄地址</text>
+        <view class="reporter-detail-input">
+          <text class='location'>{{addressStr}}</text>
+        </view>
       </view>
     </view>
-  </view>
-  <view class="reporter-detail">
-    <view class="reporter-user reporter-detail-item">
-      <text class="reporter-detail-name">医院名称</text>
-      <view class="reporter-detail-input">
-        <input type="text" value="{{hospital}}" name="hospital"  disabled='true' />
-      </view>
-    </view>
-    <view class="reporter-tel reporter-detail-item">
-      <text class="reporter-detail-name" decode="{{true}}">住院号&emsp;</text>
-      <view class="reporter-detail-input">
-        <input type="number" value="{{mrNo}}" name="mrNo"  disabled='true' />
-      </view>
-    </view>
-    <view class="reporter-tel reporter-detail-item">
-      <view bindtap="showHelp">
-        <text class="reporter-detail-name" decode="{{true}}">科室&ensp;</text>
-        <image class="help-img" src="../../images/index/help.png"></image>
-      </view>
-      <view class="reporter-detail-input">
-        <input type="text" value="{{department}}" name="department"  disabled='true' />
-      </view>
-    </view>
-    <view class="reporter-address reporter-detail-item">
-      <text class="reporter-detail-name">主治医生</text>
-      <view class="reporter-detail-input">
-        <input type="text" value="{{doctor}}" name="doctor" disabled='true' />
-      </view>
-    </view>
-    <view class="reporter-address reporter-detail-item">
-      <text class="reporter-detail-name" decode="{{true}}">床位号&emsp;</text>
-      <view class="reporter-detail-input">
-        <input type="text" value="{{bedNo}}" name="bedNo" disabled='true'/>
-      </view>
-    </view>
-  </view>
-  <view class="reporter-detail">
-    <view class="reporter-address reporter-detail-item" >
-      <text class="reporter-detail-name">邮寄地址</text>
-      <view class="reporter-detail-input" >
-        <text class='location'>{{addressStr}}</text>
-      </view>
-    </view>
-  </view>
 
-  <view class="reporter-img">
+    <view class="reporter-img">
       <text class="reporter-img-name">身份证照片</text>
-      <view class="reporter-img-idcard-front" >
-        <image src="{{idCardFrontPath}}"  mode='aspectFit'></image>
+      <view class="reporter-img-idcard-front">
+        <image src="{{idCardFrontPath}}" mode='aspectFit'></image>
       </view>
-      <view class="reporter-img-idcard-back" >
+      <view class="reporter-img-idcard-back">
         <image src="{{idCardBackPath}}" mode='aspectFit'></image>
       </view>
-  </view>
+    </view>
 
-  <view class="submit-declare" >
+  </scroll-view>
+
+  <view class="submit-declare">
     <button class="submit-declare-button" formType="submit">提交支付(￥50.00)</button>
   </view>
 

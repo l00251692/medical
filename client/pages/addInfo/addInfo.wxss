@@ -2,6 +2,16 @@
   height: 100%;
 }
 
+.form_info{
+  padding-bottom: 100rpx;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
 .reporter-detail{
     display: flex;
     flex-direction: column;

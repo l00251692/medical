@@ -1,6 +1,6 @@
 <!--bx_detail.wxml-->
 <view class="container">
-  <scroll-view scroll-y style="height: 100vh">
+  <scroll-view scroll-y style="height: 100vh" class='scroll-view-info'>
     <view class="repair-state-panel">
       <text class="repair-state-title">处理详情</text>
       <view class="repair-state">
