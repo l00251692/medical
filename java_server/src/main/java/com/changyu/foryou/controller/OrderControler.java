@@ -546,26 +546,54 @@ public class OrderControler {
 	 */
 	@RequestMapping("/getOrdersByDate")
 	@ResponseBody
-	public Map<String, Object> getOrdersByDate(String date, Integer limit, Integer page) {
+	public Map<String, Object> getOrdersByDate(String date_start, String date_end, Integer limit, Integer page) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
+		DateFormat formattmp = new SimpleDateFormat("yyyy-MM-dd");  
+
 		try {
-			if (date.equals("") || date.equals("null"))
+			if (date_start.equals("") || date_start.equals("null"))
 			{
-				date = null;
+				if (date_end.equals("") || date_end.equals("null"))
+				{
+					date_end =formattmp.format(new Date());
+				}
+				else
+				{
+					date_end = date_end.replace("年", "-").replace("月", "-").replace("日", "");
+				}
+				
+				date_start = date_end;
+				date_end = date_end + " 23:59:59";
 			}
 			else
 			{
-				date = date.replace("年", "-").replace("月", "-").replace("日", "");
+				date_start = date_start.replace("年", "-").replace("月", "-").replace("日", "");
+				if (date_end.equals("") || date_end.equals("null"))
+				{
+					date_end = date_start;
+				}
+				else
+				{
+					date_end = date_end.replace("年", "-").replace("月", "-").replace("日", "");
+				}
+				
+				date_end = date_end + " 23:59:59";
 			}
+			
+			System.out.println("getOrdersByDate:" + date_start + "," + date_end);
+			
+			
 			Map<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("createTime", date);
+			paramMap.put("TimeBegin", date_start);
+			paramMap.put("TimeEnd", date_end);
 
 			if (page != null && limit != null) {
 				paramMap.put("limit", limit);
 				paramMap.put("offset", (page - 1) * limit);
 			}
 
+			
 			List<Order> lists = orderService.selectOrdersByDate(paramMap);
 			
 			JSONArray arr = new JSONArray();
@@ -641,7 +669,7 @@ public class OrderControler {
 
 		return resultMap;
 	}
-	
+
 	
 	
 	/**

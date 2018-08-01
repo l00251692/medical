@@ -52,10 +52,10 @@
     }
 
     .pull-right {
-        padding-top:20px;
+        padding-top: 20px;
     }
 
-    .container{
+    .container {
         width: 95%;
         padding-right: 30px;
         padding-left: 30px;
@@ -83,8 +83,11 @@
         <div class="page-header">
             <h1 name="counts">订单列表</h1>
             <form id="order_center_filter">
-                <span class="ml10">选择日期：</span> <span> <input type="text" value=""
-          id="datepicker" class="datepicker">
+                <span class="ml10">选择日期：</span>
+                <span class="input-daterange input-group" id="datepicker">
+                    <input type="text" class="input-sm form-control" name="start" id="qBeginTime" />
+                    <span class=""> 至 </span>
+                    <input type="text" class="input-sm form-control" name="end" id="qEndTime"/>
                 </span>
                 <input type="button" id="select" value="查询" class="submit" />
             </form>
@@ -97,7 +100,7 @@
                     <option value="selected">导出选中数据</option>
                 </select>
             </div>-->
-            <table id="table" data-id-field="order_id"  data-striped="true" data-height="80%" data-show-refresh="true" data-show-columns="true" data-show-toggle="true" data-toolbar-align="right" data-page-list="[10, 20, 50, 100, 1000]" data-smart-display="false">
+            <table id="table" data-id-field="order_id" data-striped="true" data-height="80%" data-show-refresh="true" data-show-columns="true" data-show-toggle="true" data-toolbar-align="right" data-page-list="[10, 20, 50, 100, 1000]" data-smart-display="false">
                 <thead>
                     <tr>
                         <th data-align="left" data-field="order_id" data-sortable="true">订单号</th>
@@ -122,22 +125,41 @@
         </div>
     </div>
     <script>
-    $('#datepicker').datepicker({
-        todayBtn: "linked",
+
+    $('#qBeginTime').datepicker({
+        todayBtn : "linked",
         language: "zh-CN",
-        autoclose: true,
+        autoclose : true,
+        todayHighlight : true,
+        endDate : new Date()
+    }).on('changeDate',function(e){
+        var startTime = e.date;
+        $('#qEndTime').datepicker('setStartDate',startTime);
+    });
+    //结束时间：
+    $('#qEndTime').datepicker({
+        todayBtn : "linked",
+        language: "zh-CN",
+        autoclose : true,
+        todayHighlight : true,
+        endDate : new Date()
+    }).on('changeDate',function(e){
+        var endTime = e.date;
+        $('#qBeginTime').datepicker('setEndDate',endTime);
     });
 
 
-    $('#table').bootstrapTable({ showExport: true, exportDataType: "all", pagination:true});
+    $('#table').bootstrapTable({ showExport: true, exportDataType: "all", pagination: true });
 
     $(function() {
-        $('#datepicker').val(time());
-        getTotalDate(null);
+        $('#qBeginTime').val(time());
+        $('#qEndTime').val(time());
+
+        getTotalDate(null,null);
 
         $("#select").on("click", function() {
             $("#list_items").text("");
-            getTotalDate($("#datepicker").val());
+            getTotalDate($("#qBeginTime").val(), $("#qEndTime").val());
         });
     });
 
@@ -150,10 +172,11 @@
     })*/
 
 
-    function getTotalDate(datetime) {
+    function getTotalDate(start,end) {
 
         $.post("../order/getOrdersByDate", {
-            date: datetime,
+            date_start: start,
+            date_end: end,
             server: "56846a8a2fee49d14901d39cc48b8b2a"
         }, function(text) {
             var data1 = eval(text);
@@ -184,12 +207,12 @@
         return year + "年" + (month) + "月" + date + "日";
     }
 
-    function ImageFormatter(value, row, index){
-            if(value==""||!value){
+    function ImageFormatter(value, row, index) {
+        if (value == "" || !value) {
             return "暂无图片";
-            }
-            return "<img height='50' width='100' alt='图片加载中' src=" + value+">";
         }
+        return "<img height='50' width='100' alt='图片加载中' src=" + value + ">";
+    }
     </script>
 </body>
 

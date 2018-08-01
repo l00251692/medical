@@ -244,14 +244,11 @@
 		select *
 		from orders
 		where
-		order_status > 0 
-		<if test="createTime!=null">
-			and
-			DATE_FORMAT(create_time,"%Y-%m-%d")=#{createTime,jdbcType=DATE}
-		</if>
-		<if test="createTime==null">
-			and DATE_FORMAT(create_time,"%Y-%m-%d")=CURDATE()
-		</if>
+			order_status > 0 
+		and
+			create_time >= #{TimeBegin,jdbcType=VARCHAR}
+		and
+			create_time &lt;= #{TimeEnd,jdbcType=VARCHAR}
 		ORDER BY
 		create_time ASC
 	</select>

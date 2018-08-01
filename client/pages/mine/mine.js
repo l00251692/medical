@@ -16,6 +16,14 @@ Page({
   },
   onLoad: function (options) {
     var that = this
+
+    var userInfo = wx.getStorageSync("userInfo")
+    if (userInfo) {
+      this.setData({
+        userInfo: userInfo
+      })
+    }
+
     getApp().getLoginInfo(loginInfo => {
       if (loginInfo != null && loginInfo.is_login) {
         that.setData({

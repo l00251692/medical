@@ -12,8 +12,8 @@ public  class Constants {
     public static final String apiKey="7afb691ba14b3900ec3c88c5bb153e07";
     public static final String mchId="1508584831";
     public static final String mchKey="LiuJingTao2333KEY251692111111111";
-    public static String notifyUrl = "https://www.ailogic.xin/pay/payNotify";
-    //public static final String notifyUrl = "https://127.0.0.1/pay/payNotify";
+    //public static String notifyUrl = "https://www.ailogic.xin/pay/payNotify";
+    public static final String notifyUrl = "https://127.0.0.1/pay/payNotify";
  
     public static final String TemplateIdPaySuccess="vQoIDJ072tRjUpGDoh0GMb1qI8DzUPgBlrpOT_3p_9g";
     public static final String TemplateIdPayFail="qA_2yDLB6hlTKzsv9dY-SsFIC6QJChjTiii-kR2f-ms";
