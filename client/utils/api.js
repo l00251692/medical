@@ -127,6 +127,24 @@ export function addOrder(options) {
   })
 }
 
+export function uploadOrderIdCard(options) {
+  const {
+    front_img, back_img, order_id,
+    success, error
+  } = options
+
+  var { user_id } = wx.getStorageSync("userInfo")
+
+  fetch({
+    url: 'order/uploadOrderIdCardWx',
+    data: {
+      front_img, back_img, order_id, 
+      user_id
+    },
+    success, error
+  })
+}
+
 export function updateOrderIdCard(options) {
   const {
     front_img, back_img, order_id,
@@ -138,7 +156,7 @@ export function updateOrderIdCard(options) {
   fetch({
     url: 'order/updateOrderIdCardWx',
     data: {
-      front_img, back_img, order_id, 
+      front_img, back_img, order_id,
       user_id
     },
     success, error

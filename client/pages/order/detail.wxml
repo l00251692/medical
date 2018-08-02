@@ -95,4 +95,7 @@
   <view class="submit-declare" wx:if="{{info.status == 1}}" >
     <button class="submit-declare-button" bindtap="payTap">待支付(￥50.00)</button>
   </view>
+  <view class="submit-declare" wx:elif="{{info.status == 4}}" >
+    <button class="submit-declare-button" bindtap="updateIdCard">重新上传照片</button>
+  </view>
 </view>

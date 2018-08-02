@@ -63,7 +63,7 @@
     background: #73b4ef;
 }
 .repair-state-icon-4{
-    background: #9f8bea;
+    background: #ff0000;
 }
 .repair-state-info{
     position: relative;

@@ -34,7 +34,7 @@ public  class Constants {
  
     public static final short STATUS_CANCEL=0;
     public static final short STATUS_CREATE=1;  //创建
-    public static final short STATUS_PAYED=2;  //创建
+    public static final short STATUS_PAYED=2;  //待发货
     public static final short STATUS_DELIVERED=3;  //快递发送
     public static final short STATUS_REJECTED=4;  //订单被打回需补充信息
     

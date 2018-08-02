@@ -164,8 +164,8 @@ public class OrderControler {
 		return map;
 	}
 	
-	@RequestMapping("/updateOrderIdCardWx")
-	public @ResponseBody Map<String, String> updateOrderIdCardWx(
+	@RequestMapping("/uploadOrderIdCardWx")
+	public @ResponseBody Map<String, String> uploadOrderIdCardWx(
 			@RequestParam String user_id,  @RequestParam String order_id,@RequestParam String front_img,  @RequestParam String back_img){
 		Map<String,String> result = new HashMap<String, String>();
 		
@@ -183,6 +183,82 @@ public class OrderControler {
 				result.put("State", "Success");
 				result.put("data", null);	
 				return result;
+			} 
+			else 
+			{
+				result.put("State", "Fail");
+				result.put("info", "上传身份证照片失败");	
+				logger.error("[uploadOrderIdCardWx Fail:orderId=]" + order_id);
+				return result;
+			}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("[updateOrderIdCardWx Exceptiom:]" + e.getMessage());
+		}
+		
+		result.put("State", "Fail");
+		result.put("info", "更新身份证照片失败");	
+
+		return result;
+	}
+	
+	@RequestMapping("/updateOrderIdCardWx")
+	public @ResponseBody Map<String, String> updateOrderIdCardWx(
+			@RequestParam String user_id,  @RequestParam String order_id,@RequestParam String front_img,  @RequestParam String back_img){
+		Map<String,String> result = new HashMap<String, String>();
+		
+		try {
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("orderId",order_id);
+			paramMap.put("createUser",user_id);
+			
+			Order order = orderService.getOrderByIdWx(paramMap);
+			if(order == null)
+			{
+				result.put("State", "Fail");
+				result.put("info", "读取订单信息失败");	
+
+				return result;
+			}
+			
+			paramMap.put("idCardFront","https://" + front_img);
+			paramMap.put("idCardBack","https://" + back_img);
+
+			
+			int flag = orderService.updateOrderIdCard(paramMap);
+			if (flag != -1 && flag != 0)
+			{	
+				paramMap.put("orderStatus",Constants.STATUS_PAYED);
+				
+				Date now = new Date();
+				
+				JSONArray recordes = JSON.parseArray(order.getRecords());
+				JSONObject record = new JSONObject();
+				record.put("status",Constants.STATUS_PAYED);
+				record.put("time", now);
+				record.put("content", "更新身份证照片");
+				recordes.add(record);
+
+				paramMap.put("records",recordes.toString());
+				paramMap.put("lastUpdateTime",now);
+				
+				
+				int flag2 = orderService.updateOrderStatus(paramMap);
+				if (flag2 != -1 && flag2 != 0)
+				{	
+					result.put("State", "Success");
+					result.put("data", null);	
+					return result;
+				} 
+				else 
+				{
+					result.put("State", "Fail");
+					result.put("info", "更新订单信息失败");	
+					logger.error("[updateOrderPayedWx Err]order_id=" + order_id);
+					return result;
+				}
+				
 			} 
 			else 
 			{
@@ -450,10 +526,18 @@ public class OrderControler {
 					record.put("list", tmp);
 				}
 				else if(state == 2){
-					record.put("name", "支付");
+					record.put("name", "待发货");
 					record.put("type", state);
 					Map<String, Object> tmp = new HashMap<String, Object>();
-					tmp.put("支付成功", timeStr);				
+					String content = recordes.getJSONObject(i).getString("content");
+					if(content != null && !content.isEmpty()){
+						tmp.put("更新订单", timeStr);	
+						tmp.put("更新原因", content);
+					}
+					else{
+						tmp.put("支付成功", timeStr);	
+					}
+								
 					record.put("list", tmp);
 				}
 				else if(state == 3){

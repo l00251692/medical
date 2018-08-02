@@ -5,6 +5,7 @@
     "pages/agreement/agreement",
     "pages/addInfo/addInfo",
     "pages/upload/uploadIdCard",
+    "pages/upload/updateIdCard",
     "pages/upload/takePhoto",
     "pages/order/pay",
     "pages/mine/mine",

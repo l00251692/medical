@@ -105,6 +105,14 @@ Page({
         console.log("getPayment err:" + JSON.stringify(data))
       }
     })
+  },
+
+  updateIdCard(e){
+    var order_id = this.data.info.order_id
+
+    wx.navigateTo({
+      url: '/pages/upload/updateIdCard?id=' + order_id,
+    })
   }
 
 

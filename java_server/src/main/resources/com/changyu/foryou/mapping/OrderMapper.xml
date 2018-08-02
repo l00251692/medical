@@ -231,7 +231,7 @@
 		*
 		from orders
 		where create_user = #{createUser,jdbcType=VARCHAR} 
-		order by create_time
+		order by last_update_time
 		DESC
 		<if test="limit !=null and offset !=null">
 			LIMIT #{limit,jdbcType=INTEGER} OFFSET

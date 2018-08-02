@@ -1,7 +1,7 @@
 // pages/order/pay.js
 const qiniuUploader = require("../../utils/qiniuUploader")
 import {
-  addOrder, getQiniuToken, updateOrderIdCard, getPayment, updateOrderPayed
+  addOrder, getQiniuToken, uploadOrderIdCard, getPayment, updateOrderPayed
 } from '../../utils/api'
 import {
   alert, requestPayment, randomString
@@ -84,7 +84,7 @@ Page({
               qiniuUploader.upload(idCardBackPath, (res) => {
                 var back_img = res.imageURL
                 //更新照片信息到订单信息中
-                updateOrderIdCard({
+                uploadOrderIdCard({
                   front_img,
                   back_img,
                   order_id,
