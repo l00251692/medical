@@ -1,24 +1,34 @@
 .parent{
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  background-color:#696969;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }
 
 .camera{
-   width: 610rpx;
-   height: 33vh;
-   position: fixed;
-   left: 81.5rpx;
-   top:20.2vh;
+   width: 100%;
+   height: 470rpx;
+   position: relative;
+   border-width:4rpx;
+   border-color:#6495ed;
+   border-style:dotted;
+   box-sizing:border-box;
 } 
 
+
 .auth{
-  position: fixed;
+  position: relative;
   width:100%;
-  top:10vh;
-  color: #fff;
+  margin-top: 60rpx;
+  color: #6495ed;
+  background-color:#696969;
   height:80rpx;
   line-height:80rpx;
-  background-color:rgba(255,255,255,0);
   font-size:34rpx;
 }
 
@@ -37,7 +47,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  bottom: 500rpx;
+  margin-top: 60rpx;
   z-index: 20;
 }
 
