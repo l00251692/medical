@@ -36,6 +36,7 @@ public  class Constants {
     public static final short STATUS_CREATE=1;  //创建
     public static final short STATUS_PAYED=2;  //创建
     public static final short STATUS_DELIVERED=3;  //快递发送
+    public static final short STATUS_REJECTED=4;  //订单被打回需补充信息
     
     //阿里云短信配置
     public  static final String ALIOS_AK = "LTAI4CGPrpZbmFZx";  //accessKeyId

@@ -465,10 +465,11 @@ public class OrderControler {
 					record.put("list", tmp);
 				}
 				else if(state == 4){
-					record.put("name", "完成");
+					record.put("name", "需补充信息");
 					record.put("type", state);
 					Map<String, Object> tmp = new HashMap<String, Object>();
-					tmp.put("完成时间", timeStr);
+					tmp.put("订单返回", timeStr);
+					tmp.put("原因", recordes.getJSONObject(i).getString("content"));
 					record.put("list", tmp);
 				}
 				
@@ -671,7 +672,6 @@ public class OrderControler {
 	}
 
 	
-	
 	/**
 	 * 获取所有订单详情
 	 * 
@@ -814,6 +814,92 @@ public class OrderControler {
 		result.put(Constants.MESSAGE, "更新快递单号信息失败");	
 		return result;
 	}
+	
+	@RequestMapping("/updateOrderByEmployee")
+	public @ResponseBody Map<String, String> updateOrderByEmployee(@RequestParam String phone,
+			@RequestParam String order_id, @RequestParam Integer reason, @RequestParam String content){
+		Map<String,String> result = new HashMap<String, String>();
+
+		try {
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("orderId",order_id);
+			Order order = orderService.getOrderByIdWx(paramMap);
+			if(order == null)
+			{
+				result.put(Constants.STATUS, Constants.FAILURE);
+				result.put(Constants.MESSAGE, "未找到相应订单信息");
+				return result;
+			}
+
+			paramMap.put("orderStatus",Constants.STATUS_REJECTED);
+			paramMap.put("createUser",order.getCreateUser());
+			
+			String tmp = "";
+			
+			if(reason == 1){
+				tmp = "照片模糊";
+			}
+			else if(reason == 2){
+				tmp = "信息错误";
+			}
+			
+			if (content != null && !content.isEmpty())
+			{
+				tmp = tmp + "(" + content + ")";
+			}
+			
+			Date now = new Date();
+			
+			JSONArray recordes = JSON.parseArray(order.getRecords());
+			JSONObject record = new JSONObject();
+			record.put("status",Constants.STATUS_REJECTED);
+			record.put("time", now);
+			record.put("content", tmp);
+			recordes.add(record);
+			
+			paramMap.put("records",recordes.toString());
+			paramMap.put("lastUpdateTime",now);
+			
+			int flag = orderService.updateOrderStatus(paramMap);			
+			if (flag != -1 && flag != 0)
+			{	
+				//向用户发送短信信息
+				//组装请求对象-具体描述见控制台-文档部分内容
+		        SendSmsRequest request = new SendSmsRequest();
+		        //必填:待发送手机号
+		        request.setPhoneNumbers(order.getPhone());
+		        //必填:短信签名-可在短信控制台中找到
+		        request.setSignName("刘静涛");
+		        //必填:短信模板-可在短信控制台中找到
+		        request.setTemplateCode("SMS_140105457");
+		        //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
+		        request.setTemplateParam("{\"orderId\":\"" + order.getOrderId() + "\", \"deliveryNo\":\"" + "订单审核未通过，请补充信息" + "\"}");
+		        
+		        //SendSms.sendSmsAli(request);
+		        
+				result.put(Constants.STATUS, Constants.SUCCESS);
+				result.put(Constants.MESSAGE, "更新订单状态成功");
+				return result;
+			} 
+			else 
+			{
+				result.put(Constants.STATUS, Constants.FAILURE);
+				result.put(Constants.MESSAGE, "更新订单状态失败");
+				logger.error("[updateOrderByEmployee Err]order_id=" + order_id);
+				return result;
+			}
+			
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("[updateDeliveryNo Exception]" + e.getMessage());
+		}
+
+		result.put(Constants.STATUS, Constants.FAILURE);
+		result.put(Constants.MESSAGE, "更新快递单号信息失败");	
+		return result;
+	}
+	
 	
 	@RequestMapping("/download")
 	public void downloadOrder(@RequestParam String order_id, HttpServletRequest request, HttpServletResponse response){
