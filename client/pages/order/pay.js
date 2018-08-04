@@ -160,6 +160,17 @@ Page({
     })
   },
 
+  previewImage: function (e) {
+    var { idCardFrontPath ,idCardBackPath} = this.data
+    var imgalist = [idCardFrontPath, idCardBackPath]
+
+    var current = e.target.dataset.src;
+    wx.previewImage({
+      current: current, // 当前显示图片的http链接
+      urls: imgalist // 需要预览的图片http链接列表
+    })
+  },
+
   tapHelp: function (e) {
     if (e.target.id == 'help') {
       this.hideHelp();

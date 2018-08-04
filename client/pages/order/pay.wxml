@@ -67,11 +67,15 @@
     <view class="reporter-img">
       <text class="reporter-img-name">身份证照片</text>
       <view class="reporter-img-idcard-front">
-        <image src="{{idCardFrontPath}}" mode='aspectFit'></image>
+        <image src="{{idCardFrontPath}}" data-src="{{idCardFrontPath}}" mode='aspectFit' bindtap="previewImage"></image>
       </view>
       <view class="reporter-img-idcard-back">
-        <image src="{{idCardBackPath}}" mode='aspectFit'></image>
+        <image src="{{idCardBackPath}}" data-src="{{idCardBackPath}}" mode='aspectFit' bindtap="previewImage"></image>
       </view>
+    </view>
+
+    <view class='remind'>
+      重要：请点击照片预览确保照片清晰再提交
     </view>
 
   </scroll-view>

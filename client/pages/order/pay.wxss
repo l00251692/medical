@@ -104,6 +104,16 @@
   border-radius: 20rpx;
 }
 
+.remind{
+  text-align: center;
+  background-color: #fff;
+  font-size: 32rpx;
+  width: 100%;
+  color: #6495ed;
+  font-style: initial;
+  font-weight: bold;
+}
+
 .help-img {
   width: 11pt;
   height: 11pt;

@@ -83,10 +83,10 @@
         <view class="work-sheet-item">
           <text class="work-sheet-bd">身份证照</text>
           <view class="img-idcard-front">
-            <image src="{{info.front_img}}" mode='aspectFit'></image>
+            <image src="{{info.front_img}}" mode='aspectFit' data-src="{{info.front_img}}" bindtap="previewImage"></image>
           </view>
           <view class="img-idcard-back">
-            <image src="{{info.back_img}}" mode='aspectFit'></image>
+            <image src="{{info.back_img}}" mode='aspectFit' data-src="{{info.back_img}}" bindtap="previewImage"></image>
           </view>
         </view>
       </view>
