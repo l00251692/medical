@@ -722,13 +722,19 @@ public class OrderControler {
 				obj.put("create_time", order.getCreateTime());
 				obj.put("last_update_time", order.getLastUpdateTime());
 				obj.put("name", order.getName());
-				obj.put("phone", order.getPhone());
 				obj.put("idcard", order.getIdCard());
+				obj.put("sex", order.getSex());
 				obj.put("hospital", order.getHospital());
+				obj.put("hospitalArea", order.getHospitalArea());
 				obj.put("mrNo", order.getMrNo());
 				obj.put("department", order.getDepartment());
 				obj.put("doctor", order.getDoctor());
 				obj.put("bedNo", order.getBedNo());	
+				obj.put("diseases", order.getDiseases());
+				obj.put("date", order.getOutDate());
+				obj.put("phone", order.getPhone());
+				obj.put("concatName", order.getConcatName());
+				obj.put("concatPhone", order.getConcatPhone());
 				if(order.getDeliveryNo() == null || order.getDeliveryNo().length() == 0)
 				{
 					obj.put("deliveryNo", "暂无");
@@ -805,11 +811,17 @@ public class OrderControler {
 			obj.put("name", order.getName());
 			obj.put("phone", order.getPhone());
 			obj.put("idcard", order.getIdCard());
+			obj.put("sex", order.getSex());
 			obj.put("hospital", order.getHospital());
+			obj.put("hospitalArea", order.getHospitalArea());
 			obj.put("mrNo", order.getMrNo());
 			obj.put("department", order.getDepartment());
 			obj.put("doctor", order.getDoctor());
 			obj.put("bedNo", order.getBedNo());	
+			obj.put("diseases", order.getDiseases());
+			obj.put("date", order.getOutDate());
+			obj.put("concatName", order.getConcatName());
+			obj.put("concatPhone", order.getConcatPhone());
 			if(order.getDeliveryNo() == null || order.getDeliveryNo().length() == 0)
 			{
 				obj.put("deliveryNo", "暂无");
