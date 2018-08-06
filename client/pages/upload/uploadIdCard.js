@@ -70,7 +70,7 @@ Page({
     var tmp2 = wx.getStorageSync('idCardBackPath')
     if (tmp2) {
       wx.getFileInfo({
-        filePath: tmp1,
+        filePath: tmp2,
         success(res) {
           that.setData({
             idCardBackPath: tmp2

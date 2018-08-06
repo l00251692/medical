@@ -133,7 +133,7 @@
 }
 .work-sheet-bd{
     color: #888;
-    width: 55pt;
+    width: 60pt;
 }
 .work-sheet-ft{
     flex: 1;
@@ -143,14 +143,14 @@
 
 .work-sheet-ft text{
   color: #888;
-  padding-left: 50rpx;
+  padding-left: 30rpx;
 }
 
 .img-idcard-front{
   position: relative;
   width: 200rpx;
   height: 170rpx;
-  margin-left: 50rpx;
+  margin-left: 30rpx;
 }
 
 .img-idcard-front image{

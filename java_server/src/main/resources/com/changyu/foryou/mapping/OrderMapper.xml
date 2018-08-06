@@ -9,19 +9,25 @@
 		<result column="order_status" property="orderStatus" jdbcType="SMALLINT" />
 		<result column="records" property="records" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
 		<result column="idcard" property="idCard" jdbcType="VARCHAR" />
 		<result column="hospital" property="hospital" jdbcType="VARCHAR" />
+		<result column="hospital_area" property="hospitalArea" jdbcType="VARCHAR" />
 		<result column="mrNo" property="mrNo" jdbcType="VARCHAR" />
 		<result column="department" property="department" jdbcType="VARCHAR" />
 		<result column="doctor" property="doctor" jdbcType="VARCHAR" />
 		<result column="bedNo" property="bedNo" jdbcType="VARCHAR" />
+		<result column="diseases" property="diseases" jdbcType="VARCHAR" />
+		<result column="out_date" property="outDate" jdbcType="VARCHAR" />
 		<result column="address" property="address" jdbcType="VARCHAR" />
 		<result column="detail" property="detail" jdbcType="VARCHAR" />
 		<result column="provice" property="provice" jdbcType="VARCHAR" />
 		<result column="city" property="city" jdbcType="VARCHAR" />
 		<result column="district" property="district" jdbcType="VARCHAR" />	
 		<result column="adr_title" property="adrTitle" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="concat_name" property="concatName" jdbcType="VARCHAR" />
+		<result column="concat_phone" property="concatPhone" jdbcType="VARCHAR" />
 		<result column="idcard_front" property="idCardFront" jdbcType="VARCHAR" />	
 		<result column="idcard_back" property="idCardBack" jdbcType="VARCHAR" />
 		<result column="deliveryNo" property="deliveryNo" jdbcType="VARCHAR" />
@@ -51,15 +57,17 @@
 			<if test="name != null">
 				name,
 			</if>
-			<if test="phone != null">
-				phone,
-			</if>
 			<if test="idCard != null">
 				idcard,
 			</if>
-
+			<if test="sex != null">
+				sex,
+			</if>
 			<if test="hospital != null">
 				hospital,
+			</if>
+			<if test="hospitalArea != null">
+				hospital_area,
 			</if>
 			<if test="mrNo != null">
 				mrNo,
@@ -72,6 +80,12 @@
 			</if>
 			<if test="bedNo != null">
 				bedNo,
+			</if>
+			<if test="diseases != null">
+				diseases,
+			</if>
+			<if test="outDate != null">
+				out_date,
 			</if>
 			<if test="address != null">
 				address,
@@ -90,6 +104,15 @@
 			</if>
 			<if test="adrTitle != null">
 				adr_title,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="concatName != null">
+				concat_name,
+			</if>
+			<if test="concatPhone != null">
+				concat_phone,
 			</if>
 			<if test="idCardFront != null">
 				idcard_front,
@@ -120,14 +143,17 @@
 			<if test="name != null">
 				#{name,jdbcType=VARCHAR},
 			</if>
-			<if test="phone != null">
-				#{phone,jdbcType=VARCHAR},
-			</if>
 			<if test="idCard != null">
 				#{idCard,jdbcType=VARCHAR},
 			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=VARCHAR},
+			</if>
 			<if test="hospital != null">
 				#{hospital,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalArea != null">
+				#{hospitalArea,jdbcType=VARCHAR},
 			</if>
 			<if test="mrNo != null">
 				#{mrNo,jdbcType=VARCHAR},
@@ -140,6 +166,12 @@
 			</if>
 			<if test="bedNo != null">
 				#{bedNo,jdbcType=VARCHAR},
+			</if>
+			<if test="diseases != null">
+				#{diseases,jdbcType=VARCHAR},
+			</if>
+			<if test="outDate != null">
+				#{outDate,jdbcType=VARCHAR},
 			</if>
 			<if test="address != null">
 				#{address,jdbcType=VARCHAR},
@@ -158,6 +190,15 @@
 			</if>
 			<if test="adrTitle != null">
 				#{adrTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="concatName != null">
+				#{concatName,jdbcType=VARCHAR},
+			</if>
+			<if test="concatPhone != null">
+				#{concatPhone,jdbcType=VARCHAR},
 			</if>
 			<if test="idCardFront != null">
 				#{idCardFront,jdbcType=VARCHAR},

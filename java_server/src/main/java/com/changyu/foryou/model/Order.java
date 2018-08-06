@@ -16,20 +16,26 @@ public class Order {
 	private String records;
 	
 	private String name;
-	
-    private String phone;
     
     private String idCard;
     
+    private String sex;
+    
     private String hospital;
+    
+    private String hospitalArea;
     
     private String mrNo;
     
     private String department;
     
     private String doctor;
+
+	private String bedNo;
     
-    private String bedNo;
+    private String diseases;
+    
+    private String outDate;
     
     private String address;
 
@@ -42,6 +48,12 @@ public class Order {
     private String district;
     
     private String adrTitle;
+    
+    private String phone;
+    
+    private String concatName;
+    
+    private String concatPhone;
     
     private String idCardFront;
     
@@ -231,6 +243,54 @@ public class Order {
 
 	public void setDeliveryNo(String deliveryNo) {
 		this.deliveryNo = deliveryNo;
+	}
+	
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getHospitalArea() {
+		return hospitalArea;
+	}
+
+	public void setHospitalArea(String hospitalArea) {
+		this.hospitalArea = hospitalArea;
+	}
+
+	public String getDiseases() {
+		return diseases;
+	}
+
+	public void setDiseases(String diseases) {
+		this.diseases = diseases;
+	}
+
+	public String getOutDate() {
+		return outDate;
+	}
+
+	public void setOutDate(String outDate) {
+		this.outDate = outDate;
+	}
+
+	public String getConcatName() {
+		return concatName;
+	}
+
+	public void setConcatName(String concatName) {
+		this.concatName = concatName;
+	}
+
+	public String getConcatPhone() {
+		return concatPhone;
+	}
+
+	public void setConcatPhone(String concatPhone) {
+		this.concatPhone = concatPhone;
 	}
     
 }

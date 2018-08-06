@@ -12,7 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+      
   },
 
   /**
@@ -24,17 +24,24 @@ Page({
 
   init() {
     var info = wx.getStorageSync("info")
+    var arr = ['男', '女']
     if (info) {
       this.setData({
         name: info.name,
-        phone: info.phone,
         idcard: info.idcard,
+        sex: arr[info.sexIndex],
         hospital: info.hospital,
-        mrNo: info.mrNo,
+        hospitalArea: info.hospitalArea,
         department: info.department,
-        doctor: info.doctor,
         bedNo: info.bedNo,
+        mrNo: info.mrNo,
+        doctor: info.doctor,
+        diseases: info.diseases,
+        date: info.date,
         adDetail: info.adDetail,
+        phone: info.phone,
+        concatName: info.concatName,
+        concatPhone: info.concatPhone,
       })
     }
 
@@ -64,13 +71,13 @@ Page({
 
   formSubmit(e) {
     var {
-      name, phone, idcard, hospital, mrNo, department, doctor, bedNo, address, adDetail, idCardFrontPath, idCardBackPath
+      name, idcard, sex, hospital, hospitalArea, department, bedNo, mrNo, doctor, diseases, date, address, adDetail, phone, concatName, concatPhone, idCardFrontPath, idCardBackPath
     } = this.data
 
     var addresstr = JSON.stringify(address)
-
+    console.log("addOrder:1:" + sex)
     addOrder({
-      name, phone, idcard, hospital, mrNo, department, doctor, bedNo, addresstr, adDetail,
+      name, idcard, sex, hospital, hospitalArea, department, bedNo, mrNo, doctor, diseases, date, phone, concatName, concatPhone, addresstr, adDetail,
       success(data) {
         var token = ''
         var order_id = data.orderId

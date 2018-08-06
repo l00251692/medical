@@ -111,7 +111,7 @@ export function getMineInfo(options) {
  //添加准订单
 export function addOrder(options) {
   const {
-    name, phone, idcard, hospital, mrNo, department, doctor, bedNo, addresstr, adDetail,
+    name, idcard, sex, hospital, hospitalArea, department, bedNo, mrNo, doctor, diseases, date, phone, concatName, concatPhone, addresstr, adDetail,
     success, error
   } = options
 
@@ -120,7 +120,7 @@ export function addOrder(options) {
   fetch({
     url: 'order/addOrderWx',
     data: {
-      name, phone, idcard, hospital, mrNo, department, doctor, bedNo, addresstr, adDetail,
+      name, idcard, sex, hospital, hospitalArea, department, bedNo, mrNo, doctor, diseases, date, phone, concatName, concatPhone, addresstr, adDetail,
       user_id
     },
     success, error

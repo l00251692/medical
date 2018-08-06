@@ -82,9 +82,10 @@ public class OrderControler {
 	 * @return
 	 */
 	@RequestMapping("/addOrderWx")
-	public @ResponseBody Map<String, Object> addOrderWx(@RequestParam String name,  @RequestParam String phone,@RequestParam String idcard,  
-			@RequestParam String hospital, @RequestParam String mrNo,@RequestParam String department,@RequestParam String doctor,  
-			@RequestParam String bedNo, @RequestParam String addresstr,@RequestParam String adDetail, @RequestParam String user_id){
+	public @ResponseBody Map<String, Object> addOrderWx(@RequestParam String name,@RequestParam String idcard,  @RequestParam String sex, 
+			@RequestParam String hospital,@RequestParam String hospitalArea, @RequestParam String mrNo,@RequestParam String department,
+			@RequestParam String doctor, @RequestParam String bedNo, @RequestParam String diseases, @RequestParam String date,@RequestParam String phone,@RequestParam String concatName,
+			@RequestParam String concatPhone, @RequestParam String addresstr,@RequestParam String adDetail, @RequestParam String user_id){
 		Map<String,Object> map = new HashMap<String, Object>();
 		
 		try {
@@ -93,18 +94,22 @@ public class OrderControler {
 			Date createTime =  new Date();
 			paramMap.put("createUser",user_id);
 			paramMap.put("name",name);
-			paramMap.put("phone",phone);
 			paramMap.put("idCard",idcard);
+			paramMap.put("sex",sex);
 			paramMap.put("hospital",hospital);
+			paramMap.put("hospitalArea",hospitalArea);
 			paramMap.put("mrNo",mrNo);
 			paramMap.put("department",department);
 			paramMap.put("doctor",doctor);
 			paramMap.put("bedNo",bedNo);
+			paramMap.put("diseases",diseases);
+			paramMap.put("outDate",date);
 			paramMap.put("address",addresstr);
 			paramMap.put("adDetail",adDetail);
-			
-			System.err.println("address info:" + addresstr);
-			
+			paramMap.put("phone",phone);
+			paramMap.put("concatName",concatName);
+			paramMap.put("concatPhone",concatPhone);
+				
 			JSONObject addr = JSON.parseObject(addresstr);
 			
 			paramMap.put("provice",addr.get("province"));
@@ -475,13 +480,19 @@ public class OrderControler {
 			obj.put("create_time", order.getCreateTime());
 			obj.put("last_update_time", order.getLastUpdateTime());
 			obj.put("name", order.getName());
-			obj.put("phone", order.getPhone());
+			obj.put("sex", order.getSex());
 			obj.put("idcard", order.getIdCard());
 			obj.put("hospital", order.getHospital());
+			obj.put("hospitalArea", order.getHospitalArea());
 			obj.put("mrNo", order.getMrNo());
 			obj.put("department", order.getDepartment());
 			obj.put("doctor", order.getDoctor());
 			obj.put("bedNo", order.getBedNo());
+			obj.put("diseases", order.getDiseases());
+			obj.put("date", order.getOutDate());
+			obj.put("phone", order.getPhone());
+			obj.put("concatName", order.getConcatName());
+			obj.put("concatPhone", order.getConcatPhone());
 			if(order.getDeliveryNo() == null || order.getDeliveryNo().length() == 0)
 			{
 				obj.put("deliveryNo", "暂无");
