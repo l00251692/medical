@@ -58,7 +58,7 @@
       <view class="reporter-user reporter-detail-item">
         <text class="reporter-detail-name" decode="{{true}}">住院号&emsp;&emsp;</text>
         <view class="reporter-detail-input">
-          <input type="number" value="{{mrNo}}" name="mrNo" placeholder="请输入住院号" />
+          <input type="text" value="{{mrNo}}" name="mrNo" placeholder="请输入住院号" />
         </view>
       </view>
       <view class="reporter-user reporter-detail-item">
@@ -70,12 +70,12 @@
       <view class="reporter-user reporter-detail-item">
         <text class="reporter-detail-name" decode="{{true}}">所患疾病&emsp;</text>
         <view class="reporter-detail-input">
-          <input type="number" value="{{diseases}}" name="diseases" placeholder="请输入疾病信息" />
+          <input type="text" value="{{diseases}}" name="diseases" placeholder="请输入疾病信息" />
         </view>
       </view>
       <view class="reporter-user reporter-detail-item">
         <text class="reporter-detail-name" decode="{{true}}">出院日期&emsp;</text>
-        <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+        <picker mode="date" value="{{date}}" bindchange="bindDateChange">
           <view class="date_picker">
             {{date}}
           </view>

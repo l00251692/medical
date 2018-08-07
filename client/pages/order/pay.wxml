@@ -51,7 +51,7 @@
       <view class="reporter-user reporter-detail-item">
         <text class="reporter-detail-name" decode="{{true}}">住院号&emsp;&emsp;</text>
         <view class="reporter-detail-input">
-          <input type="number" value="{{mrNo}}" name="mrNo" disabled='true' />
+          <input type="text" value="{{mrNo}}" name="mrNo" disabled='true' />
         </view>
       </view>
       <view class="reporter-user reporter-detail-item">

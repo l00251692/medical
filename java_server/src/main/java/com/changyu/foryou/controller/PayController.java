@@ -56,7 +56,7 @@ public class PayController {
             //生成的随机字符串
             String nonce_str = StringUtil.getRandomStringByLength(32);
             //商品名称  
-            String body = "海遥-打伞";  
+            String body = "海遥-科技";  
             //获取客户端的ip地址  
             String spbill_create_ip = StringUtil.getIpAddr(request); 
             

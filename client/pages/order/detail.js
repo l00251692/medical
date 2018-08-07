@@ -124,6 +124,40 @@ Page({
     wx.navigateTo({
       url: '/pages/upload/updateIdCard?id=' + order_id,
     })
+  },
+
+  repayService(e){
+    var order_id = this.data.info.order_id
+    var pay_money = "0.02"
+    var that = this
+    //对于重新支付的订单需要与之前的订单号不一样，微信对于同一订单不能多次支付
+    var order_id2 = order_id + 'RE'
+    getPayment({
+      order_id: order_id2,
+      pay_money,
+      success(data) {
+        //发起微信支付
+        requestPayment({
+          data,
+          success() {
+            //更新订单状态
+            updateOrderPayed({
+              order_id,
+              success(data) {
+                getPrevPage()[that.callback]()
+                that.init()
+              }
+            })
+          },
+          error(data) {
+            console.log("支付失败")
+          }
+        })
+
+      }, error(data) {
+        console.log("getPayment err:" + JSON.stringify(data))
+      }
+    })
   }
 
 

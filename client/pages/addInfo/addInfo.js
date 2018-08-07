@@ -143,13 +143,27 @@ Page({
 
   init(){
     var that = this
+
+    var tmp_date = dateFormat(new Date(), "yyyy-mm-dd")
+    this.setData({
+      date: tmp_date
+    })
+
+    var address = wx.getStorageSync("address")
+    if (address) {
+      this.setData({
+        address: address
+      })
+    }
+
     //获得医院列表
     getHospitalList({
       success(data) {
         that.setData({
           provinceList: data.provinceList,
           hospitalList: data.hospitalList,
-          hospitalRange: [data.provinceList, data.hospitalList[0].hospitals]
+          hospitalRange: [data.provinceList, data.hospitalList[0].hospitals],
+          selectHospital: data.hospitalList[0].hospitals[0].name
         })
       },
       error(res) {
@@ -169,7 +183,6 @@ Page({
             mrNo: info.mrNo,
             doctor: info.doctor,
             diseases: info.diseases,
-            date: info.date,
             adDetail: info.adDetail,
             phone: info.phone,
             concatName: info.concatName,
@@ -178,18 +191,6 @@ Page({
         }
       }
     })
-
-    var tmp_date = dateFormat(new Date(), "yyyy-mm-dd")
-    this.setData({
-      date: tmp_date
-    })
-
-    var address = wx.getStorageSync("address")
-    if (address) {
-      this.setData({
-        address: address
-      })
-    }
   },
 
   /**

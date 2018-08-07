@@ -430,7 +430,7 @@ public class OrderControler {
 			else 
 			{
 				result.put("State", "Fail");
-				result.put("info", "更新订单信息失败");	
+				result.put("info", "更新订单失败");	
 				logger.error("[updateOrderPayedWx Err]order_id=" + order_id);
 				return result;
 			}
@@ -441,7 +441,7 @@ public class OrderControler {
 		}
 		
 		result.put("State", "Fail");
-		result.put("info", "取消订单失败");	
+		result.put("info", "更新订单失败");	
 
 		return result;
 	}
@@ -618,6 +618,13 @@ public class OrderControler {
 					tmp.put("订单打回", timeStr);
 					tmp.put("原因", recordes.getJSONObject(i).getString("content"));
 					record.put("list", tmp);
+					if(recordes.getJSONObject(i).getString("content").startsWith("照片模糊"))
+					{
+						obj.put("reason", 1);
+					}
+					else if(recordes.getJSONObject(i).getString("content").startsWith("需补缴服务费")){
+						obj.put("reason", 2);
+					}	
 				}
 				
 				arr.add(record);
@@ -639,6 +646,7 @@ public class OrderControler {
 		map.put("data", null);	
 		return map;
 	}
+	
 	
 	/**
      * 申请退款
