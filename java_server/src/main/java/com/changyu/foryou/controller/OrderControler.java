@@ -1101,7 +1101,7 @@ public class OrderControler {
 				tmp = "照片模糊";
 			}
 			else if(reason == 2){
-				tmp = "信息错误";
+				tmp = "需补缴服务费";
 			}
 			
 			if (content != null && !content.isEmpty())
@@ -1249,7 +1249,8 @@ public class OrderControler {
 			e.printStackTrace();
 			logger.error("[downloadOrder Exception]" + order_id);
 		}
-	
+		
 		return;
 	}
+	
 }
