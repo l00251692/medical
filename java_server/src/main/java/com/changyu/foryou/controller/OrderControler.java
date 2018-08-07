@@ -612,10 +612,10 @@ public class OrderControler {
 					record.put("list", tmp);
 				}
 				else if(state == 4){
-					record.put("name", "需补充信息");
+					record.put("name", "被打回");
 					record.put("type", state);
 					Map<String, Object> tmp = new HashMap<String, Object>();
-					tmp.put("订单返回", timeStr);
+					tmp.put("订单打回", timeStr);
 					tmp.put("原因", recordes.getJSONObject(i).getString("content"));
 					record.put("list", tmp);
 				}
@@ -767,6 +767,9 @@ public class OrderControler {
 				else if(status == 3){
 					obj.put("status", "已发货");
 				}
+				else if(status == 4){
+					obj.put("status", "被打回");
+				}
 				else{
 					obj.put("status", "");
 				}
@@ -821,7 +824,107 @@ public class OrderControler {
 
 		return resultMap;
 	}
+	
+	/**
+	 * 根据姓名和身份证号查询所有订单详情
+	 * 
+	 * @param date
+	 * @return
+	 */
+	@RequestMapping("/getOrdersByNameAndIdcard")
+	@ResponseBody
+	public Map<String, Object> getOrdersByNameAndIdcard(String name, String idcard, Integer limit, Integer page) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 
+
+		try{ 
+				
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("name", name);
+			paramMap.put("idcard", idcard);
+			
+			List<Order> lists = orderService.selectOrdersByNameIdCard(paramMap);
+			
+			JSONArray arr = new JSONArray();
+
+			for (Order order : lists)
+			{
+				JSONObject obj =  new JSONObject();
+				
+				Users user = userService.selectByUserId(order.getCreateUser());
+				if(user != null)
+				{
+					obj.put("nick_name", user.getNickname());
+				}
+				obj.put("order_id", order.getOrderId());
+				
+				short status = order.getOrderStatus();
+				if(status == 1){
+					obj.put("status", "待支付");
+				}
+				else if(status == 2){
+					obj.put("status", "待发货");
+				}
+				else if(status == 3){
+					obj.put("status", "已发货");
+				}
+				else if(status == 4){
+					obj.put("status", "被打回");
+				}
+				else{
+					obj.put("status", "");
+				}
+				
+				obj.put("create_time", order.getCreateTime());
+				obj.put("last_update_time", order.getLastUpdateTime());
+				obj.put("name", order.getName());
+				obj.put("idcard", order.getIdCard());
+				obj.put("sex", order.getSex());
+				obj.put("hospital", order.getHospital());
+				obj.put("hospitalArea", order.getHospitalArea());
+				obj.put("mrNo", order.getMrNo());
+				obj.put("department", order.getDepartment());
+				obj.put("doctor", order.getDoctor());
+				obj.put("bedNo", order.getBedNo());	
+				obj.put("diseases", order.getDiseases());
+				obj.put("date", order.getOutDate());
+				obj.put("phone", order.getPhone());
+				obj.put("concatName", order.getConcatName());
+				obj.put("concatPhone", order.getConcatPhone());
+				if(order.getDeliveryNo() == null || order.getDeliveryNo().length() == 0)
+				{
+					obj.put("deliveryNo", "暂无");
+				}
+				else
+				{
+					obj.put("deliveryNo", order.getDeliveryNo());
+				}
+				String temp = order.getProvice() + order.getCity()+order.getDistrict()+order.getAdrTitle();			
+				if(order.getDetail() == null || order.getDetail().isEmpty()){
+					obj.put("addr", temp);
+				}
+				else
+				{
+					obj.put("addr", temp + order.getDetail());
+				}	
+				obj.put("front_img", order.getIdCardFront());
+				obj.put("back_img", order.getIdCardBack());
+				
+				arr.add(obj);
+				
+			}
+			
+			resultMap.put("counts", arr.size());
+			resultMap.put("orderList", JSONArray.parse(JSON.toJSONStringWithDateFormat(arr,
+							"yyyy-MM-dd HH:mm:ss")));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("[getOrdersByDate Exception:]" + e.getMessage());
+		}
+
+		return resultMap;
+	}
 	
 	/**
 	 * 获取所有订单详情

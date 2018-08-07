@@ -295,6 +295,17 @@
 		create_time ASC
 	</select>
 	
+	<select id="selectOrdersByNameIdCard" resultMap="BaseResultMap" flushCache="true" useCache="false" >
+		select *
+		from orders
+		where
+			name = #{name,jdbcType=VARCHAR} 
+		and
+			idcard >= #{idcard,jdbcType=VARCHAR}
+		ORDER BY
+		create_time ASC
+	</select>
+	
 	<select id="getOrdersByStatus" resultMap="BaseResultMap">
 		select
 		*

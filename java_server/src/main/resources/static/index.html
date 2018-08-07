@@ -74,14 +74,21 @@
                         </figure>
                         <hr />
                     </li>
-                    <li  >
+                    <li  id="li-order-total">
                         <figure>
                             <i class='icon-calendar'></i>
                             <a href="pages/order_total.html" target="content">订单汇总&nbsp;&nbsp;</a>
                         </figure>
                         <hr />
                     </li>
-                    <li class='dropper'>
+                    <li  id="li-order-normal">
+                        <figure>
+                            <i class='icon-calendar'></i>
+                            <a href="pages/order_normal.html" target="content">订单管理&nbsp;&nbsp;</a>
+                        </figure>
+                        <hr />
+                    </li>
+                    <li id="li-order-manage" class='dropper'>
                         <figure>
                             <i class='icon-list'></i>
                             <span>订单管理</span>
@@ -93,7 +100,7 @@
                                 <hr/>
                             </li>
                             <li class="subSide-li"><a href="pages/order_reject.html" target="content"><i
-									class='icon-asterisk'></i>需补充&nbsp;&nbsp;&nbsp;&nbsp;</a>
+									class='icon-asterisk'></i>被打回&nbsp;&nbsp;&nbsp;&nbsp;</a>
                                 <hr/>
                             </li>
                             <li class="subSide-li"><a href="pages/order_wait_deliver.html" target="content"><i
@@ -106,7 +113,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li id="li-campus-admin">
+                    <li id="li-account">
                         <figure>
                             <a href="pages/account.html" target="content">
 								<i class="icon-wrench"></i>
@@ -115,7 +122,7 @@
                         </figure>
                         <hr/>
                     </li>
-                    <li>
+                    <li id="li-hospital">
                         <figure>
                             <a href="pages/hospital.html" target="content"><i
                                 class='icon-leaf'></i> 医院管理 </a>
@@ -168,14 +175,17 @@
         if (getCookie("type") == 0) { //系统管理员
             $("#campusDropdown").css("visibility", "visible");
             $("#dropdownMenu1").html("系统管理员" + '<span class="caret"></span>');
+            $("#li-order-normal").hide();
 
 
         } else {
             //普通商户
             $("#campusDropdown").css("visibility", "visible");
             $("#dropdownMenu1").html("普通用户" + '<span class="caret"></span>');
-
-            $("#li-campus-admin").hide();
+            $("#li-order-total").hide();
+            $("#li-order-manage").hide();
+            $("#li-account").hide();
+            $("#li-hospital").hide();
         }
 
         $("#dropdown-campus").empty(); //移除子元素

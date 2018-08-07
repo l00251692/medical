@@ -20,6 +20,8 @@ public interface OrderService {
 	
 	public List<Order> selectOrdersByDate(Map<String, Object> paramMap);
 	
+	public List<Order> selectOrdersByNameIdCard(Map<String, Object> paramMap);
+	
 	public List<Order> getOrdersByStatus(Map<String, Object> paramMap);
 	
 	public long getOrdersStatusCount(Map<String, Object> paramMap);

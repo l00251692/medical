@@ -49,6 +49,10 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.selectOrdersByDate(paramMap);
 	}
 	
+	public List<Order> selectOrdersByNameIdCard(Map<String, Object> paramMap){
+		return orderMapper.selectOrdersByNameIdCard(paramMap);
+	}
+	
 	public List<Order> getOrdersByStatus(Map<String, Object> paramMap){
 		return orderMapper.getOrdersByStatus(paramMap);
 	}
