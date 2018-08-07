@@ -77,6 +77,11 @@
   font-size: 10pt;
 }
 
+.hospital_picker{
+  padding-left: 30rpx;
+  font-size: 10pt;
+}
+
 .date_picker{
   padding-left: 30rpx;
   font-size: 10pt;

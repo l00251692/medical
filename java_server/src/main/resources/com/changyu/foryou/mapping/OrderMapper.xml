@@ -33,6 +33,12 @@
 		<result column="deliveryNo" property="deliveryNo" jdbcType="VARCHAR" />
 	</resultMap>
 	
+	<resultMap id="BaseResultMap2" type="com.changyu.foryou.model.Hospital">
+		<id column="hospital" property="hospital" jdbcType="VARCHAR" />
+		<id column="address" property="address" jdbcType="VARCHAR" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+	</resultMap>
+	
 	<insert id="insertSelective" >
 		insert into orders
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -326,5 +332,23 @@
 			)
 		</if>
 	</select>
+	
+	<select id="getProvinceList"  resultType="String" flushCache="true" useCache="false">
+		select
+			distinct(province) 
+		from 
+			hospital
+	</select>
+	
+	<select id="getHospitalList"  resultMap="BaseResultMap2" flushCache="true" useCache="false">
+		select
+			*
+		from 
+			hospital
+		where 
+			province = #{province,jdbcType=VARCHAR} 
+		order by convert(hospital using gb2312) asc
+	</select>
+	
 	
 </mapper>

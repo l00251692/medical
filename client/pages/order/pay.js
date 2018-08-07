@@ -30,7 +30,7 @@ Page({
         name: info.name,
         idcard: info.idcard,
         sex: arr[info.sexIndex],
-        hospital: info.hospital,
+        hospital: info.selectHospital,
         hospitalArea: info.hospitalArea,
         department: info.department,
         bedNo: info.bedNo,

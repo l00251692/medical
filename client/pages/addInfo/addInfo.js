@@ -3,6 +3,10 @@ import {
   reverseGeocoder,alert
 } from '../../utils/util'
 
+import {
+  getHospitalList
+} from '../../utils/api'
+
 import dateFormat from '../../utils/dateformat'
 Page({
 
@@ -68,9 +72,6 @@ Page({
         required: true,
         idcard: true,
       },
-      hospital: {
-        required: true,
-      },
       hospitalArea:{
         required: true,
       },
@@ -108,9 +109,6 @@ Page({
           required: '请输入身份证号',
           idcard: '请输入有效身份证号码'
         },
-        hospital: {
-          required: '请输入医院名称'
-        },
         hospitalArea: {
           required: '请输入病区信息'
         },
@@ -144,30 +142,47 @@ Page({
   },
 
   init(){
-    var info = wx.getStorageSync("info")
+    var that = this
+    //获得医院列表
+    getHospitalList({
+      success(data) {
+        that.setData({
+          provinceList: data.provinceList,
+          hospitalList: data.hospitalList,
+          hospitalRange: [data.provinceList, data.hospitalList[0].hospitals]
+        })
+      },
+      error(res) {
+        console.log("获得校区列表失败")
+      },
+      complete(res){
+        var info = wx.getStorageSync("info")
+        if (info) {
+          that.setData({
+            name: info.name,
+            idcard: info.idcard,
+            sexIndex: info.sexIndex,
+            selectHospital: info.selectHospital,
+            hospitalArea: info.hospitalArea,
+            department: info.department,
+            bedNo: info.bedNo,
+            mrNo: info.mrNo,
+            doctor: info.doctor,
+            diseases: info.diseases,
+            date: info.date,
+            adDetail: info.adDetail,
+            phone: info.phone,
+            concatName: info.concatName,
+            concatPhone: info.concatPhone,
+          })
+        }
+      }
+    })
+
     var tmp_date = dateFormat(new Date(), "yyyy-mm-dd")
     this.setData({
       date: tmp_date
     })
-    if(info){
-      this.setData({
-        name: info.name,
-        idcard: info.idcard, 
-        sexIndex: info.sexIndex,
-        hospital: info.hospital, 
-        hospitalArea: info.hospitalArea,
-        department: info.department,
-        bedNo: info.bedNo,
-        mrNo: info.mrNo,
-        doctor: info.doctor,
-        diseases: info.diseases,
-        date: info.date,
-        adDetail: info.adDetail,
-        phone: info.phone,
-        concatName: info.concatName,
-        concatPhone: info.concatPhone,
-      })
-    }
 
     var address = wx.getStorageSync("address")
     if (address) {
@@ -228,6 +243,30 @@ Page({
     })
   },
 
+  bindMultiPickerChange: function (e) {
+    var { provinceList, hospitalList } = this.data
+    this.setData({
+      selectProvince: provinceList[e.detail.value[0]].name,
+      selectHospital: hospitalList[e.detail.value[0]].hospitals[e.detail.value[1]].name
+    })
+  },
+
+  bindMultiPickerColumnChange(e) {
+    var { provinceList, hospitalList } = this.data
+    if (e.detail.column == 0) {
+      var hospitalRange = [];
+      for (var i = 0; i < hospitalList.length; i++) {
+        if (hospitalList[i].province == provinceList[e.detail.value].province) {
+          hospitalRange = hospitalList[i].hospitals;
+          break;
+        }
+      }
+      this.setData({
+        province: [provinceList, hospitalRange]
+      })
+    }
+  },
+
   bindDateChange: function (e) {
     this.setData({
       date: e.detail.value
@@ -240,7 +279,7 @@ Page({
        return alert(error.msg)
      }
 
-    var { address, sexIndex, date } = this.data
+    var { address, sexIndex, date, selectHospital } = this.data
 
     if ( !sexIndex){
        sexIndex = 0
@@ -251,10 +290,10 @@ Page({
     }
 
     var {
-      name, idcard, hospital, hospitalArea, department, bedNo, mrNo, doctor, diseases, adDetail, phone, concatName, concatPhone
+      name, idcard, hospitalArea, department, bedNo, mrNo, doctor, diseases, adDetail, phone, concatName, concatPhone
     } = e.detail.value
 
-    var info = Object.assign({ name, idcard, sexIndex, hospital, hospitalArea, department, bedNo, mrNo, doctor, diseases, date, adDetail, phone, concatName, concatPhone},{})
+    var info = Object.assign({ name, idcard, sexIndex, selectHospital, hospitalArea, department, bedNo, mrNo, doctor, diseases, date, adDetail, phone, concatName, concatPhone},{})
 
     console.log(JSON.stringify(info))
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.changyu.foryou.mapper.OrderMapper;
+import com.changyu.foryou.model.Hospital;
 import com.changyu.foryou.model.Order;
 import com.changyu.foryou.service.OrderService;
 
@@ -58,6 +59,14 @@ public class OrderServiceImpl implements OrderService {
 	
 	public int updateDeliveryNo(Map<String, Object> paramMap){
 		return orderMapper.updateDeliveryNo(paramMap);
+	}
+	
+	public List<String> getProvinceList(){
+		return orderMapper.getProvinceList();
+	}
+	
+	public List<Hospital> getHospitalList(Map<String, Object> paramMap){
+		return orderMapper.getHospitalList(paramMap);
 	}
 	
 }

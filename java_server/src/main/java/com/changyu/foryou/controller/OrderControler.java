@@ -29,6 +29,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
+import com.changyu.foryou.model.Hospital;
 import com.changyu.foryou.model.Order;
 import com.changyu.foryou.model.Users;
 import com.changyu.foryou.service.OrderService;
@@ -71,6 +72,52 @@ public class OrderControler {
 		data.put("data", rtn);			
     	return data;	
 	}
+    
+    @RequestMapping("/getHospitalListWx")
+    public @ResponseBody Map<String,Object> getHospitalListWx()throws Exception{
+		Map<String,Object> data = new HashMap<String, Object>();
+		
+		JSONArray provinceList = new JSONArray(); 
+		JSONArray hospitalList = new JSONArray(); 
+        
+        List<String> list1 = orderService.getProvinceList();
+        for(String provTmp: list1)
+        {
+        	JSONObject province = new JSONObject();
+        	
+        	province.put("name", provTmp);
+        	
+        	provinceList.add(province);
+        	
+        	Map<String, Object> paramMap = new HashMap<String, Object>();
+    		paramMap.put("province", provTmp);
+        	
+        	List<Hospital> list2 = orderService.getHospitalList(paramMap);
+   
+        	JSONArray hospitals = new JSONArray();
+            for(Hospital hospitalTmp: list2)
+            {
+            	
+            	JSONObject tmp = new JSONObject();
+            	tmp.put("name", hospitalTmp.getHospital()+"(" + hospitalTmp.getAddress() + ")");
+            	//tmp.put("address", hospitalTmp.getAddress());
+            	hospitals.add(tmp);
+            }
+            
+            JSONObject obj = new JSONObject();
+            obj.put("province", provTmp);
+            obj.put("hospitals", hospitals);
+            hospitalList.add(obj);
+        }
+		JSONObject rtn = new JSONObject();
+		rtn.put("provinceList", provinceList);
+		rtn.put("hospitalList", hospitalList);
+						
+		data.put("State", "Success");
+		data.put("data", rtn);				
+		return data;			
+	}
+	
 	
 	/**
 	 * 生成订单
@@ -756,8 +803,6 @@ public class OrderControler {
 				
 				arr.add(obj);
 				
-	
-				
 			}
 			
 			resultMap.put("counts", arr.size());
@@ -809,7 +854,6 @@ public class OrderControler {
 			obj.put("create_time", formattmp.format(order.getCreateTime()));
 			obj.put("last_update_time", order.getLastUpdateTime());
 			obj.put("name", order.getName());
-			obj.put("phone", order.getPhone());
 			obj.put("idcard", order.getIdCard());
 			obj.put("sex", order.getSex());
 			obj.put("hospital", order.getHospital());
@@ -820,6 +864,7 @@ public class OrderControler {
 			obj.put("bedNo", order.getBedNo());	
 			obj.put("diseases", order.getDiseases());
 			obj.put("date", order.getOutDate());
+			obj.put("phone", order.getPhone());
 			obj.put("concatName", order.getConcatName());
 			obj.put("concatPhone", order.getConcatPhone());
 			if(order.getDeliveryNo() == null || order.getDeliveryNo().length() == 0)

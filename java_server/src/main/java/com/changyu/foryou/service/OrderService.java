@@ -3,6 +3,7 @@ package com.changyu.foryou.service;
 import java.util.List;
 import java.util.Map;
 
+import com.changyu.foryou.model.Hospital;
 import com.changyu.foryou.model.Order;
 
 public interface OrderService {
@@ -24,6 +25,10 @@ public interface OrderService {
 	public long getOrdersStatusCount(Map<String, Object> paramMap);
 	
 	public int updateDeliveryNo(Map<String, Object> paramMap);
+	
+	public List<String> getProvinceList();
+	
+	public List<Hospital> getHospitalList(Map<String, Object> paramMap);
 	
 
 }

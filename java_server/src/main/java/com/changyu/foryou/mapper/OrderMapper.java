@@ -3,6 +3,7 @@ package com.changyu.foryou.mapper;
 import java.util.List;
 import java.util.Map;
 
+import com.changyu.foryou.model.Hospital;
 import com.changyu.foryou.model.Order;
 
 
@@ -24,5 +25,9 @@ public interface OrderMapper {
 	public long getOrdersStatusCount(Map<String, Object> paramMap);
 	
 	public int updateDeliveryNo(Map<String, Object> paramMap);
+	
+	public List<String> getProvinceList();
+	
+	public List<Hospital> getHospitalList(Map<String, Object> paramMap);
 	
 }

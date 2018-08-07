@@ -234,6 +234,20 @@ export function getQiniuToken(options) {
   })
 }
 
+export function getHospitalList(options) {
+
+  var { success, error, complete } = options
+
+  fetch({
+    url: 'order/getHospitalListWx',
+    data: {
+    },
+    success,
+    error,
+    complete
+  })
+}
+
 // 获取支付参数
 export function getPayment(options) {
   var {

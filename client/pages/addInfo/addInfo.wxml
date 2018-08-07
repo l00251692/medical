@@ -28,9 +28,11 @@
       <text class="reporter-detail-title">病情信息</text>
       <view class="reporter-user reporter-detail-item">
         <text class="reporter-detail-name" decode="{{true}}">医院&emsp;&emsp;&emsp;</text>
-        <view class="reporter-detail-input">
-          <input type="text" value="{{hospital}}" name="hospital" placeholder="请输入医院名称" />
-        </view>
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{hospitalRange}}" range-key="{{'name'}}">
+          <view class="hospital_picker">
+            {{selectHospital}}
+          </view>
+        </picker>
       </view>
       <view class="reporter-user reporter-detail-item">
         <text class="reporter-detail-name" decode="{{true}}">病区&emsp;&emsp;&emsp;</text>
