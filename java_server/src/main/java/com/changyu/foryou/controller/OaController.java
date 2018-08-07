@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.changyu.foryou.model.Employee;
+import com.changyu.foryou.model.Hospital;
 import com.changyu.foryou.service.EmployeeService;
 import com.changyu.foryou.tools.Constants;
 import com.changyu.foryou.tools.Md5;
@@ -273,4 +274,96 @@ public class OaController {
 				
 				return map;	
 	}
+	
+	/**
+     * 返回所有医院列表
+     *
+     * @return
+     */
+    @RequestMapping("getAllHospital")
+    public @ResponseBody JSONArray getAllHospital() {
+    	
+    	JSONArray array = new JSONArray();
+    	Map<String, Object> paramMap = new HashMap<String, Object>();
+  
+        List<Hospital> list = employeeService.getAllHospital(paramMap); 
+  
+        for(Hospital hospital : list)
+        {
+        	JSONObject obj = new JSONObject();
+        	obj.put("province", hospital.getProvince());
+        	obj.put("hospital", hospital.getHospital());
+        	obj.put("address", hospital.getAddress());
+        	      	
+        	array.add(obj);
+        }
+        return array;
+    }
+    
+    /**
+     * 添加医院
+     *
+     * @param province
+     * @param hospital
+     * @param address
+     * @return
+     */
+    @RequestMapping("addHospital")
+    public @ResponseBody
+    Map<String, Object> addHospital(@RequestParam String province, @RequestParam String hospital, @RequestParam String address) {
+        Map<String, Object> responseMap = new HashMap<>();
+       
+        
+        Map<String, Object> paramMap = new HashMap<>();
+   
+        paramMap.put("province", province);
+        paramMap.put("hospital", hospital);
+        paramMap.put("address", address);
+
+        int flag = employeeService.addHospital(paramMap);
+
+        if (flag != 0 && flag != -1) {
+            responseMap.put(Constants.STATUS, Constants.SUCCESS);
+            responseMap.put(Constants.MESSAGE, "添加医院成功");
+        } else {
+            responseMap.put(Constants.STATUS, Constants.FAILURE);
+            responseMap.put(Constants.MESSAGE, "添加医院失败");
+            logger.error("添加医院失败，医院名称:" + hospital);
+        }
+        return responseMap;
+    }
+    
+    /**
+     * 添加医院
+     *
+     * @param province
+     * @param hospital
+     * @param address
+     * @return
+     */
+    @RequestMapping("deleteHospital")
+    public @ResponseBody
+    Map<String, Object> deleteHospital(@RequestParam String province, @RequestParam String hospital, @RequestParam String address) {
+        Map<String, Object> responseMap = new HashMap<>();
+       
+        
+        Map<String, Object> paramMap = new HashMap<>();
+   
+        paramMap.put("province", province);
+        paramMap.put("hospital", hospital);
+        paramMap.put("address", address);
+
+        int flag = employeeService.delHospital(paramMap);
+
+        if (flag != 0 && flag != -1) {
+            responseMap.put(Constants.STATUS, Constants.SUCCESS);
+            responseMap.put(Constants.MESSAGE, "删除医院成功");
+        } else {
+            responseMap.put(Constants.STATUS, Constants.FAILURE);
+            responseMap.put(Constants.MESSAGE, "删除医院失败");
+            logger.error("删除医院失败，医院名称:" + hospital);
+        }
+        return responseMap;
+    }
+    
 }

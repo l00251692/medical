@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.changyu.foryou.model.Employee;
+import com.changyu.foryou.model.Hospital;
 
 
 public interface EmployeeService {
@@ -25,5 +26,15 @@ public interface EmployeeService {
 	List<Employee> selectByPhoneAndPassword(Map<String, Object> paramMap);	
 	
 	int updatePassword(Map<String, Object> paramMap);
- 
+	
+	public List<String> getProvinceList();
+	
+	public List<Hospital> getHospitalList(Map<String, Object> paramMap);
+	
+	List<Hospital> getAllHospital(Map<String, Object> paramMap);
+	
+	int addHospital(Map<String, Object> paramMap);
+	
+	int delHospital(Map<String, Object> paramMap);
+	
 }

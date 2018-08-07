@@ -26,8 +26,4 @@ public interface OrderMapper {
 	
 	public int updateDeliveryNo(Map<String, Object> paramMap);
 	
-	public List<String> getProvinceList();
-	
-	public List<Hospital> getHospitalList(Map<String, Object> paramMap);
-	
 }

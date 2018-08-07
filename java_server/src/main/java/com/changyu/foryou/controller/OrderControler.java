@@ -32,6 +32,7 @@ import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
 import com.changyu.foryou.model.Hospital;
 import com.changyu.foryou.model.Order;
 import com.changyu.foryou.model.Users;
+import com.changyu.foryou.service.EmployeeService;
 import com.changyu.foryou.service.OrderService;
 import com.changyu.foryou.service.UserService;
 import com.changyu.foryou.tools.Constants;
@@ -46,6 +47,9 @@ public class OrderControler {
 	private UserService userService;
 	
 	@Autowired
+	private EmployeeService employeeService;
+	
+	@Autowired
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
 	}
@@ -54,6 +58,7 @@ public class OrderControler {
 	public void setUserServce(UserService userService) {
 		this.userService = userService;
 	}
+	
 	
 	
     private static final Logger logger = LoggerFactory.getLogger(OrderControler.class);
@@ -80,7 +85,7 @@ public class OrderControler {
 		JSONArray provinceList = new JSONArray(); 
 		JSONArray hospitalList = new JSONArray(); 
         
-        List<String> list1 = orderService.getProvinceList();
+        List<String> list1 = employeeService.getProvinceList();
         for(String provTmp: list1)
         {
         	JSONObject province = new JSONObject();
@@ -92,7 +97,7 @@ public class OrderControler {
         	Map<String, Object> paramMap = new HashMap<String, Object>();
     		paramMap.put("province", provTmp);
         	
-        	List<Hospital> list2 = orderService.getHospitalList(paramMap);
+        	List<Hospital> list2 = employeeService.getHospitalList(paramMap);
    
         	JSONArray hospitals = new JSONArray();
             for(Hospital hospitalTmp: list2)

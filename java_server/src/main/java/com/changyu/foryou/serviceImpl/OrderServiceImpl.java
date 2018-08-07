@@ -61,12 +61,4 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.updateDeliveryNo(paramMap);
 	}
 	
-	public List<String> getProvinceList(){
-		return orderMapper.getProvinceList();
-	}
-	
-	public List<Hospital> getHospitalList(Map<String, Object> paramMap){
-		return orderMapper.getHospitalList(paramMap);
-	}
-	
 }

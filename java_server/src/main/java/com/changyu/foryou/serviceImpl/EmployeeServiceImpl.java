@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.changyu.foryou.mapper.EmployeeMapper;
 import com.changyu.foryou.model.Employee;
+import com.changyu.foryou.model.Hospital;
 import com.changyu.foryou.service.EmployeeService;
 
 
@@ -55,5 +56,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	public int updateLastLoginTime(Map<String, Object> paramMap){
 		return employeeMapper.updateLastLoginTime(paramMap);
+	}
+	
+	public List<String> getProvinceList(){
+		return employeeMapper.getProvinceList();
+	}
+	
+	public List<Hospital> getHospitalList(Map<String, Object> paramMap){
+		return employeeMapper.getHospitalList(paramMap);
+	}
+	
+	public List<Hospital> getAllHospital(Map<String, Object> paramMap){
+		return employeeMapper.getAllHospital(paramMap);
+	}
+	
+	public int addHospital(Map<String, Object> paramMap){
+		return employeeMapper.addHospital(paramMap);
+	}
+	
+	public int delHospital(Map<String, Object> paramMap){
+		return employeeMapper.delHospital(paramMap);
 	}
 }
