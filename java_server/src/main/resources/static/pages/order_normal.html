@@ -217,8 +217,8 @@
 </body>
 <script>
 var usertype = getCookie("type");
-var phone = getCookie("phone");
-var name = "";
+var phone=getCookie('phone');
+var patient = "";
 var idcard = "";
 
 $('#table').bootstrapTable({ showExport: true, pagination: true });
@@ -227,10 +227,10 @@ $(function() {
 
     $("#select").on("click", function() {
 
-        name = $("#name").val().trim();
+        patient = $("#name").val().trim();
         idcard = $("#idcard").val().trim();
 
-        if (name == null || name.length == 0) {
+        if (patient == null || patient.length == 0) {
             alert("请填写患者姓名")
             return
         } else if (idcard == null || idcard.length == 0) {
