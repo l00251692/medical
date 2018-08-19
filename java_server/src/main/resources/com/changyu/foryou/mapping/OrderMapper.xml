@@ -301,7 +301,7 @@
 		where
 			name = #{name,jdbcType=VARCHAR} 
 		and
-			idcard >= #{idcard,jdbcType=VARCHAR}
+			idcard = #{idcard,jdbcType=VARCHAR}
 		ORDER BY
 		create_time ASC
 	</select>

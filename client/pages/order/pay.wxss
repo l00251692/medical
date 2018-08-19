@@ -3,7 +3,7 @@
 }
 
 .form_info{
-  padding-bottom: 120rpx;
+  padding-bottom: 100rpx;
 }
 
 ::-webkit-scrollbar {

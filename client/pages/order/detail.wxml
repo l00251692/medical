@@ -129,12 +129,12 @@
     </view>
   </scroll-view>
   <view class="submit-declare" wx:if="{{info.status == 1}}" >
-    <button class="submit-declare-button" bindtap="payTap">待支付(￥200.00)</button>
+    <button class="submit-declare-button" bindtap="payTap" disabled='{{!canClick}}'>待支付(￥200.00)</button>
   </view>
   <view class="submit-declare" wx:elif="{{info.status == 4 && info.reason == 1}}" >
     <button class="submit-declare-button" bindtap="updateIdCard">重新上传照片</button>
   </view>
   <view class="submit-declare" wx:elif="{{info.status == 4 && info.reason == 2}}" >
-    <button class="submit-declare-button" bindtap="repayService">补缴服务费(￥50.00)</button>
+    <button class="submit-declare-button" bindtap="repayService" disabled='{{!canClick}}'>补缴服务费(￥50.00)</button>
   </view>
 </view>

@@ -15,6 +15,7 @@ Page({
    */
   data: {
     // state: [{ status: '已完成', name: '受理', type: 'finished', list: { '受理人': '六六六', "受理部门": "哈哈哈部门" } }, { status: '已完成', name: '审核', type: 'finished', list: { "审核人": "七七七" } }, { status: '已完成', name: '申请', type: 'finished', list: { '申请人': '六六六', "审核人": "七七七" } }],
+   canClick:true
 
   
   },
@@ -78,6 +79,10 @@ Page({
     var order_id = this.data.info.order_id
     var pay_money = "0.01"
     var that = this
+    this.setData({
+      canClick: false
+    })
+
     getPayment({
       order_id,
       pay_money,
@@ -93,16 +98,30 @@ Page({
               success(data) {
                 getPrevPage()[that.callback]()
                 that.init()
+                that.setData({
+                  canClick: true
+                })
+              },
+              error(data){
+                that.setData({
+                  canClick: true
+                })
               }
             })
           },
-          fail(data) {
+          error(data) {
             console.log("用户取消支付")
+            that.setData({
+              canClick: true
+            })
           }
         })
 
       }, error(data) {
         console.log("getPayment err:" + JSON.stringify(data))
+        that.setData({
+          canClick: true
+        })
       }
     })
   },
@@ -130,6 +149,9 @@ Page({
     var order_id = this.data.info.order_id
     var pay_money = "0.02"
     var that = this
+    this.setData({
+      canClick: false
+    })
     //对于重新支付的订单需要与之前的订单号不一样，微信对于同一订单不能多次支付
     var order_id2 = order_id + 'RE'
     getPayment({
@@ -146,16 +168,30 @@ Page({
               success(data) {
                 getPrevPage()[that.callback]()
                 that.init()
+                that.setData({
+                  canClick: true
+                })
+              },
+              error(data){
+                that.setData({
+                  canClick: true
+                })
               }
             })
           },
           error(data) {
             console.log("支付失败")
+            that.setData({
+              canClick: true
+            })
           }
         })
 
       }, error(data) {
         console.log("getPayment err:" + JSON.stringify(data))
+        that.setData({
+          canClick: true
+        })
       }
     })
   }

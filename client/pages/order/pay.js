@@ -12,7 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-      
+    canClick:true 
   },
 
   /**
@@ -74,8 +74,11 @@ Page({
       name, idcard, sex, hospital, hospitalArea, department, bedNo, mrNo, doctor, diseases, date, address, adDetail, phone, concatName, concatPhone, idCardFrontPath, idCardBackPath
     } = this.data
 
+    var that = this
+    this.setData({
+      canClick:false
+    })
     var addresstr = JSON.stringify(address)
-    console.log("addOrder:1:" + sex)
     addOrder({
       name, idcard, sex, hospital, hospitalArea, department, bedNo, mrNo, doctor, diseases, date, phone, concatName, concatPhone, addresstr, adDetail,
       success(data) {
@@ -117,25 +120,37 @@ Page({
                               }
                             })    
                           },
-                          fail(data) {
+                          error(data) {
                             console.log("用户取消支付")
+                            that.setData({
+                              canClick: true
+                            })
                           }
                         })
                         
                       }, error(data) {
                         console.log("getPayment err:" + JSON.stringify(data))
+                        that.setData({
+                          canClick: true
+                        })
                       }
                     })
                   },
                   error(data) {
-                    console.log("上传身份证照片失败")
+                    console.log("订单上传照片失败")
+                    that.setData({
+                      canClick: true
+                    })
                   }
 
                 })
 
               }, (error) => {
                 console.log('error2: ' + error);
-                alert("上传身份证照片失败")
+                that.setData({
+                  canClick: true
+                })
+                alert("上传身份证照片失败")  
               }, {
                   region: 'ECN', //华东
                   domain: 'img.ailogic.xin',
@@ -146,7 +161,11 @@ Page({
 
             }, (error) => {
               console.log('error: ' + error);
+              that.setData({
+                canClick: true
+              })
               alert("上传身份证照片失败")
+              
             }, {
                 region: 'ECN', //华东
                 domain: 'img.ailogic.xin',
@@ -157,12 +176,19 @@ Page({
               });
           },
           error(data) {
-            alert("上传身份证照片失败，请稍候")
+            that.setData({
+              canClick: true
+            })
+            alert("照片上传服务器信息获取失败，请稍候")
+           
           }
         })
       },
       error(data) {
         console.log("订单创建失败，请稍后重试")
+        that.setData({
+          canClick: true
+        })
       }
     })
   },
