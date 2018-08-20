@@ -833,6 +833,7 @@ public class OrderControler {
 		return resultMap;
 	}
 	
+	
 	/**
 	 * 根据姓名和身份证号查询所有订单详情
 	 * 
@@ -1219,7 +1220,10 @@ public class OrderControler {
             dataMap.put("image1", image1);
             dataMap.put("image2", image2);
 			     
-	        String path = request.getSession().getServletContext().getRealPath("/").concat("File/");
+            
+            String path = System.getProperty("user.dir").concat("/File/");
+	        //String path = request.getSession().getServletContext().getRealPath("/").concat("File/");
+	        //System.out.println("downloadOrder:" + path);
 	        String name = order.getOrderId() + ".doc";
 	        File outFile = WordGenerator.createDoc(dataMap, path, name, "order");
 			

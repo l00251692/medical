@@ -24,11 +24,8 @@ public class TempFileListener implements ServletContextListener {
  
 		timer = new Timer();
 		
-		String path = sce.getServletContext().getRealPath("/");
-		
-		System.out.println("contextInitialized,path:" + sce.getServletContext().getRealPath("/"));
-		
-		systemTask = new SystemTaskTest(path + "File/", sce.getServletContext());
+		String path= System.getProperty("user.dir").concat("/File/");	
+		systemTask = new SystemTaskTest(path, sce.getServletContext());
 		try {
 			sce.getServletContext().log("定时器已启动");
 			// 设置在每晚24:0分执行任务

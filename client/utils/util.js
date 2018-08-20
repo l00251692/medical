@@ -195,7 +195,7 @@ export function getCurrentPage() {
 
 export function fetch(options) {
   wx.request({
-    url: `http://${host}/${options.url}`,
+    url: `https://${host}/${options.url}`,
     data: Object.assign(options.data, {
       'app_v': 'ailogic'
     }),

@@ -45,15 +45,16 @@ public class OaController {
 	Map<String, Object> toLogin(@RequestParam String phone,@RequestParam String password,HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 
+
 		if (phone!=null&&password!=null&&!phone.trim().equals("") && !password.trim().equals("")) {
 			Employee employee = employeeService.checkLogin(phone);
 			if (employee != null) {
 				if (employee.getPassword().equals(Md5.GetMD5Code(password))) {
-					
+
 					map.put(Constants.STATUS, Constants.SUCCESS);
 					map.put(Constants.MESSAGE, "登陆成功");
 					map.put("type", employee.getType());
-					HttpSession session=request.getSession();
+					HttpSession session= request.getSession();
 					session.setAttribute("type", employee.getType());
 					session.setAttribute("phone", employee.getPhone());
 					
@@ -72,7 +73,6 @@ public class OaController {
 			}
 		}
 
-		
 		return map;
 	}
 	
