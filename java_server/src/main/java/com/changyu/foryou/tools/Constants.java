@@ -8,10 +8,6 @@ public  class Constants {
 	public static final String MESSAGE = "message";
 	
 	public static final String localIp = "https://localhost/JiMuImage"; //存放上传的图片的服务器JiMuImage为上传图片时创建的目录
-    public static final String appId="wx7b7aabca0fc1737d";
-    public static final String apiKey="7afb691ba14b3900ec3c88c5bb153e07";
-    public static final String mchId="1508584831";
-    public static final String mchKey="LiuJingTao2333KEY251692111111111";
     //public static String notifyUrl = "https://www.ailogic.xin/pay/payNotify";
     public static final String notifyUrl = "https://127.0.0.1/pay/payNotify";
  
@@ -21,16 +17,11 @@ public  class Constants {
     public static final String TemplateIdWithDrawSuccess="boU1BwC-VVuIEKkeSSAMdDAL93qvohZD7AryuM5G_ps";
     
     
-    public static final String QQMAPKEY = "NJIBZ-FDNLD-3754C-HYIBR-J3NV7-UIBHI";
-    
     public static final String REFUND_KEY_PATH = "classpath:apiclient_cert.p12";
     public static final String CERTPATH        = "apiclient_cert.p12";
     
     //七牛云相关配置
-    public  static final String QINIU_AK = "jxsCxEr-9Z1jeJxLUGJkMeUuRSx_8zuSI07B1mkX";
-    public  static final String QINIU_SK = "Yqy_CdP_SxvrsBfNNEUSMCvuxyAf_wuFVPS7dOJu";
-    public  static final String QINIU_BUCKET = "medical";
-    public static final String QINIU_IP = "https://img.mingjing.tech/"; //采用绑定的域名，否则真机上不显示
+    
  
     public static final short STATUS_CANCEL=0;
     public static final short STATUS_CREATE=1;  //创建
@@ -39,8 +30,6 @@ public  class Constants {
     public static final short STATUS_REJECTED=4;  //订单被打回需补充信息
     
     //阿里云短信配置
-    public  static final String ALIOS_AK = "LTAIEhsWTpBZ49Fr";  //accessKeyId
-    public  static final String ALIOS_SK = "dR4Ol8Ip47SrGLYISG8ZlHt1DxbbNV";
     
     
     
