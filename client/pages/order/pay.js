@@ -153,7 +153,7 @@ Page({
                 alert("上传身份证照片失败")  
               }, {
                   region: 'ECN', //华东
-                  domain: 'img.ailogic.xin',
+                  domain: 'img.mingjing.tech',
                   key: 'order_' + order_id + '_' + key_str + '_back',
                   uptoken: token
                 }, (res) => {
@@ -168,7 +168,7 @@ Page({
               
             }, {
                 region: 'ECN', //华东
-                domain: 'img.ailogic.xin',
+                domain: 'img.mingjing.tech',
                 key: 'order_' + order_id + '_' + key_str + '_front',
                 uptoken: token
               }, (res) => {

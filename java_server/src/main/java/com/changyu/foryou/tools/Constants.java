@@ -27,10 +27,10 @@ public  class Constants {
     public static final String CERTPATH        = "apiclient_cert.p12";
     
     //七牛云相关配置
-    public  static final String QINIU_AK = "YxW2_V1FQj2yOYNlHlzhHiAHI4cwWkPWNIxiT_ae";
-    public  static final String QINIU_SK = "1d1Uo7S3x7qJXSL8ljbW46b2dKgWL0fPjHxG4PdI";
-    public  static final String QINIU_BUCKET = "lanjing";
-    public static final String QINIU_IP = "https://img.ailogic.xin/"; //采用绑定的域名，否则真机上不显示
+    public  static final String QINIU_AK = "jxsCxEr-9Z1jeJxLUGJkMeUuRSx_8zuSI07B1mkX";
+    public  static final String QINIU_SK = "Yqy_CdP_SxvrsBfNNEUSMCvuxyAf_wuFVPS7dOJu";
+    public  static final String QINIU_BUCKET = "medical";
+    public static final String QINIU_IP = "https://img.mingjing.tech/"; //采用绑定的域名，否则真机上不显示
  
     public static final short STATUS_CANCEL=0;
     public static final short STATUS_CREATE=1;  //创建
@@ -39,8 +39,8 @@ public  class Constants {
     public static final short STATUS_REJECTED=4;  //订单被打回需补充信息
     
     //阿里云短信配置
-    public  static final String ALIOS_AK = "LTAI4CGPrpZbmFZx";  //accessKeyId
-    public  static final String ALIOS_SK = "6BMA3kW58dUpwPOSpHW6Awy95K07Jf";
+    public  static final String ALIOS_AK = "LTAIEhsWTpBZ49Fr";  //accessKeyId
+    public  static final String ALIOS_SK = "dR4Ol8Ip47SrGLYISG8ZlHt1DxbbNV";
     
     
     
