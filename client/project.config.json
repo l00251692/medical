@@ -8,9 +8,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.5.2",
-	"appid": "wx7b7aabca0fc1737d",
-	"projectname": "medical",
+	"libVersion": "2.2.0",
+	"appid": "wx0993d237b65a1919",
+	"projectname": "MingJing",
 	"condition": {
 		"search": {
 			"current": -1,
