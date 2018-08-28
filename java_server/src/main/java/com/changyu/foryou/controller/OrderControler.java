@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -148,7 +149,7 @@ public class OrderControler {
 			paramMap.put("name",name);
 			paramMap.put("idCard",idcard);
 			paramMap.put("sex",sex);
-			paramMap.put("hospital",hospital);
+			paramMap.put("hospital",hospital.replaceAll("&#40;", "("));
 			paramMap.put("hospitalArea",hospitalArea);
 			paramMap.put("mrNo",mrNo);
 			paramMap.put("department",department);
@@ -167,7 +168,7 @@ public class OrderControler {
 			paramMap.put("provice",addr.get("province"));
 			paramMap.put("city",addr.get("city"));
 			paramMap.put("district",addr.get("district"));
-			paramMap.put("adrTitle",addr.get("title"));
+			paramMap.put("adrTitle",addr.get("title").toString().replaceAll("&#40;", "("));
 			
 			Date now = new Date();
 			paramMap.put("createTime",now);
