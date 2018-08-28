@@ -66,7 +66,7 @@ App({
 
                 } else {
                   console.log(res)
-                  alert('获取用户信息失败2')
+                  alert('获取用户信息失败')
                 }
                 cb && cb()
               }
