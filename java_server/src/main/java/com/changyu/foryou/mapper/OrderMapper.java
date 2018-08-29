@@ -28,4 +28,6 @@ public interface OrderMapper {
 	
 	public int updateDeliveryNo(Map<String, Object> paramMap);
 	
+	public List<Order> getOrdersBeforeDate(Map<String, Object> paramMap);
+	
 }

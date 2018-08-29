@@ -339,4 +339,16 @@
 		</if>
 	</select>
 	
+	<!-- 获取某天的总订单详情和数目 -->
+	<select id="getOrdersBeforeDate" resultMap="BaseResultMap" flushCache="true" useCache="false" >
+		select *
+		from orders
+		where
+			order_status = #{status,jdbcType=SMALLINT} 
+		and
+			last_update_time &lt;= #{TimeEnd,jdbcType=VARCHAR}
+		ORDER BY
+		last_update_time ASC
+	</select>
+	
 </mapper>

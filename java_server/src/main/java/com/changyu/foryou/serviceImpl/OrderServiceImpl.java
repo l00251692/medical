@@ -65,4 +65,8 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.updateDeliveryNo(paramMap);
 	}
 	
+	
+	public List<Order> getOrdersBeforeDate(Map<String, Object> paramMap){
+		return orderMapper.getOrdersBeforeDate(paramMap);
+	}
 }

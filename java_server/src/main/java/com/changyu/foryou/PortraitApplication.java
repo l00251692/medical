@@ -9,7 +9,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 
-import com.changyu.foryou.listener.TempFileListener;
+import com.changyu.foryou.listener.TimerListener;
 
 import javax.servlet.MultipartConfigElement;
 
@@ -34,8 +34,8 @@ public class PortraitApplication extends SpringBootServletInitializer {
 	
 	
 	@Bean  
-    public ServletListenerRegistrationBean<TempFileListener> testListenerRegistration(){  
-        ServletListenerRegistrationBean<TempFileListener> registration = new ServletListenerRegistrationBean<TempFileListener>(new TempFileListener());  
+    public ServletListenerRegistrationBean<TimerListener> testListenerRegistration(){  
+        ServletListenerRegistrationBean<TimerListener> registration = new ServletListenerRegistrationBean<TimerListener>(new TimerListener());  
         return registration;  
     }
 
