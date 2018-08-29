@@ -4,7 +4,7 @@
 </view>
 
 <view class="scrope">
-  <button bindgetuserinfo="onLogin" open-type="getUserInfo" class="start">
+  <button bindgetuserinfo="onLogin" open-type="getUserInfo" class="start" bindtap='onLogin2'>
     授权登录小程序
   </button>
 

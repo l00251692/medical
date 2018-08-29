@@ -56,7 +56,7 @@ public class PayController {
             //生成的随机字符串
             String nonce_str = StringUtil.getRandomStringByLength(32);
             //商品名称  
-            String body = "海遥-科技";  
+            String body = "上海-明静";  
             //获取客户端的ip地址  
             String spbill_create_ip = StringUtil.getIpAddr(request); 
             
@@ -101,7 +101,7 @@ public class PayController {
                     + "</xml>";  
               
   
-            //调用统一下单接口，并接受返回的结果  
+            //调用统一下单接口，并接受返回的结果
             String result = PayUtil.httpRequest("https://api.mch.weixin.qq.com/pay/unifiedorder", "POST", xml);     
               
             // 将解析结果存储在HashMap中     
