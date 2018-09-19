@@ -1,7 +1,9 @@
+.parent{
+  height: 100%;
+}
 
 .form_info{
   padding-bottom: 100rpx;
-  background-color: #fff;
 }
 
 ::-webkit-scrollbar {
@@ -10,46 +12,56 @@
   color: transparent;
 }
 
-.aggrement_title{
-  text-align: center;
-  font-size: 40rpx;
-  line-height: 60rpx;
-  height: 60rpx;
-  margin-top: 40rpx;
+.reporter-detail{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #eee;
+    margin-top: 15rpx;
+    overflow: hidden;
+}
+.reporter-detail-title{
+    color: #888;
+    margin: 5rpx 0 5rpx 30rpx;
+}
+.reporter-detail-item{
+    display: flex;
+    align-items: center;
+    height: 88rpx;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #fff;
+    padding-left: 30rpx;
 }
 
-.aggrement_line{
-  margin-top: 20rpx;
-  padding-left: 30rpx;
-  display: flex;
+.reporter-detail-name{
+    font-size: 11pt;
 }
 
-.partyA{
-  border-bottom: 1px #000 solid; 
-  width: 300rpx;
-  text-align: center;
+.reporter-detail-input{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 30rpx;
+    padding-left: 30rpx;
+}
+.reporter-detail-input input{
+    font-size: 10pt;
+    width: 100%;
 }
 
-.partyA{
-  border-bottom: 1px #000 solid; 
-  width: 400rpx;
-  text-align: center;
+.reporter-detail-input .location{
+    font-size: 10pt;
+    width: 100%;
 }
 
-.partyB{
-  border-bottom: 1px #000 solid; 
-  width: 400rpx;
-  text-align: center;
+.reporter-detail-input .location2{
+    font-size: 10pt;
+    color: #999;
+    width: 100%;
 }
 
-.content{
-  padding-left: 30rpx;
-  line-height: 60rpx;
-  font-size: 32rpx;
-}
-
-.text_underline{
-  text-decoration:underline; 
+.input-placeholder {
+    font-size: 10pt;
 }
 
 .reporter-img{

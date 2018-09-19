@@ -2,28 +2,26 @@
   <image src="../../images/index/background.png" mode='widthFit'></image>
 </view>
 
+
 <view class='main'>
   <view class='title'>
-    <text>服务协议</text>
+    <text>重要须知</text>
   </view>
 
   <view class='content'>
-    <text class='content_head'>为使用本小程序服务，你应当阅读并遵守以下协议(说明)：</text>
+    <text class='content_head'>本公司为患者提供复印并邮寄病历资料的服务，若需请阅读以下告知：</text>
     <text class='content_text'>
 
-      1.	我司提供为患者复印并邮寄出院病历资料服务。
-      2.	由于病历由病房转入病案室需要时间，一般患者出院后三周可以复印邮寄病史资料。
-      3.	因医院需要患者本人的身份证复印件才可复印病历资料，故在拍摄上传患者身份证时务必拍摄清楚，如不清晰需重拍。
-      4.	病历复印后发顺丰快递给家属，并以短信告知快递运单号。
-      5.	复印邮寄病历资料服务收费200元，如复印超过50页资料，加收50元。
+      1.本服务另需提供患者的身份信息（身份证等)。
+      2.本服务为有偿服务，收费为200元/次，复印资料超过50页收费为250元/次。
     </text>
   </view>
 
   <view class="foot">
     <checkbox-group class="checkbox" bindchange="toAgree">
       <label>
-        <checkbox checked="{{agree}}" />
-        <text class="xieyi">我已阅读并接受上述协议</text>
+        <checkbox checked="{{agree}}"/>
+        <text class="xieyi">我已阅读上述告知</text>
       </label>
     </checkbox-group>
 

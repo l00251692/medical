@@ -77,7 +77,7 @@ Page({
 
   payTap(e){
     var order_id = this.data.info.order_id
-    var pay_money = "0.01"
+    var pay_money = "200.00"
     var that = this
     this.setData({
       canClick: false
@@ -147,7 +147,7 @@ Page({
 
   repayService(e){
     var order_id = this.data.info.order_id
-    var pay_money = "0.02"
+    var pay_money = "50.00"
     var that = this
     this.setData({
       canClick: false

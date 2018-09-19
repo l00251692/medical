@@ -36,14 +36,14 @@ Page({
 
     if(agree == false)
     {
-      alert('请接受服务协议');
+      alert('请确认已阅读并理解告知信息');
       return;
     }
 
     var { user_id } = wx.getStorageSync("userInfo")
     if (user_id == null || user_id.length == 0)
     {
-      alert('用户未登录，请在我的页面授权登录');
+      alert('用户未登录，请先在我的页面授权登录');
       return;
     }
 
@@ -61,7 +61,7 @@ Page({
 
   onShareAppMessage() {
     return {
-      title: '我的小程序',
+      title: '上海明静',
       path: '/pages/index/index'
     }
   },

@@ -12,9 +12,6 @@
 
 
 </view>
-<button class="phone" bindtap='onPhoneTap'>
-  <image src="../../images/phone.png"></image>
-</button>
 <button class="concat" open-type="contact">
   <image src="../../images/concat.png"></image>
 </button>

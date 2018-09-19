@@ -141,7 +141,7 @@
       <view class="box-bd">
         <view class="help-q">医院科室信息填写规则？</view>
         <view class="help-a">
-          <text>请参考如下示例填写科室，如：骨科，内科，外科等</text>
+          <text>例如胸外科，骨科，普外科，神经外科，神经内科，泌尿外科，ICU，心外科，心内科，内分泌科，肾内科，感染科，皮肤科等等</text>
         </view>
       </view>
     </view>
