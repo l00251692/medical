@@ -51,6 +51,7 @@
         width: 200px;
     }
 
+
     .pull-right {
         padding-top: 20px;
     }
@@ -64,19 +65,6 @@
     }
     </style>
 </head>
-<script src="../assets/js/jquery.min.js"></script>
-<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="../js/bootstrap-datepicker.zh-CN.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.4.0/bootstrap-table.min.js"></script>
-<script src="../js/bootstrap-table-export.min.js"></script>
-<script src="../js/tableExport.js"></script>
-<script src="../js/ga.js"></script>
-<script src="../js/jquery.base64.js"></script>
-<script src="../js/bootstrap-table-editable.min.js"></script>
-<script src="../js/bootstrap-editable.js"></script>
-<script src="../js/util.js"></script>
-<script src="../js/bootstrap-table-zh-CN.min.js"></script>
 
 <body>
     <div class="container">
@@ -87,22 +75,21 @@
                 <span class="input-daterange input-group" id="datepicker">
                     <input type="text" class="input-sm form-control" name="start" id="qBeginTime" />
                     <span class=""> 至 </span>
-                    <input type="text" class="input-sm form-control" name="end" id="qEndTime"/>
+                <input type="text" class="input-sm form-control" name="end" id="qEndTime" />
                 </span>
                 <input type="button" id="select" value="查询" class="submit" />
             </form>
         </div>
         <div>
-            <!--<div id="toolbar" class="btn-group">
-                <select class="select-control">
-                    <option value="">导出当前页数据</option>
-                    <option value="all">导出全部数据</option>
-                    <option value="selected">导出选中数据</option>
-                </select>
-            </div>-->
-            <table id="table" data-id-field="order_id" data-striped="true" data-height="80%" data-show-refresh="true" data-show-columns="true" data-show-toggle="true" data-toolbar-align="right" data-page-list="[10, 20, 50, 100, 1000]" data-smart-display="false">
+            <div id="toolbar" class="btn-group">
+                <button id="delete" type="button" class="btn btn-default">
+                    <i class="icon icon-minus"></i>
+                </button>
+            </div>
+            <table id="table" data-toolbar="#toolbar" data-pagination="true" data-id-field="order_id" data-striped="true" data-height="80%" data-show-refresh="true" data-search="true" data-show-columns="true" data-show-toggle="true" data-toolbar-align="right" data-click-to-select="true" data-page-list="[10, 20, 50, 100, 1000]" data-smart-display="false" data-show-export="true">
                 <thead>
                     <tr>
+                        <th data-field="state" data-checkbox="true"></th>
                         <th data-align="left" data-field="order_id" data-sortable="true">订单号</th>
                         <th data-align="left" data-field="create_time" data-sortable="true">创建时间</th>
                         <th data-align="left" data-field="status" data-sortable="true">状态</th>
@@ -113,7 +100,7 @@
                         <th data-align="left" data-field="hospital">医院</th>
                         <th data-align="left" data-field="hospitalArea">病区</th>
                         <th data-align="left" data-field="department">科室</th>
-                        <th data-align="left" data-field="bedNo" >床位号</th>
+                        <th data-align="left" data-field="bedNo">床位号</th>
                         <th data-align="left" data-field="mrNo" data-visible="false">住院号</th>
                         <th data-align="left" data-field="doctor">主治医生</th>
                         <th data-align="left" data-field="diseases" data-visible="false">所患疾病</th>
@@ -130,38 +117,90 @@
             </table>
         </div>
     </div>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-datepicker.zh-CN.min.js"></script>
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.4.0/bootstrap-table.min.js"></script>-->
+    <script src="../js/bootstrap-table-export.min.js"></script>
+    <script src="../js/tableExport.js"></script>
+    <script src="../js/ga.js"></script>
+    <script src="../js/jquery.base64.js"></script>
+    <script src="../js/bootstrap-table-editable.min.js"></script>
+    <script src="../js/bootstrap-editable.js"></script>
+    <script src="../js/util.js"></script>
+    <script src="../assets/bootstrap-table/bootstrap-table.js"></script>
+    <script src="../js/bootstrap-table-zh-CN.min.js"></script>
     <script>
-
     $('#qBeginTime').datepicker({
-        todayBtn : "linked",
+        todayBtn: "linked",
         language: "zh-CN",
-        autoclose : true,
-        todayHighlight : true,
-        endDate : new Date()
-    }).on('changeDate',function(e){
+        autoclose: true,
+        todayHighlight: true,
+        endDate: new Date()
+    }).on('changeDate', function(e) {
         var startTime = e.date;
-        $('#qEndTime').datepicker('setStartDate',startTime);
+        $('#qEndTime').datepicker('setStartDate', startTime);
     });
     //结束时间：
     $('#qEndTime').datepicker({
-        todayBtn : "linked",
+        todayBtn: "linked",
         language: "zh-CN",
-        autoclose : true,
-        todayHighlight : true,
-        endDate : new Date()
-    }).on('changeDate',function(e){
+        autoclose: true,
+        todayHighlight: true,
+        endDate: new Date()
+    }).on('changeDate', function(e) {
         var endTime = e.date;
-        $('#qBeginTime').datepicker('setEndDate',endTime);
+        $('#qBeginTime').datepicker('setEndDate', endTime);
     });
 
 
-    $('#table').bootstrapTable({ showExport: true, pagination: true });
+    var $deleteButton = $("#delete");
+
+    $deleteButton.click(function() {
+        var array = $('#table').bootstrapTable('getSelections'); //获取选中的所有记录
+        var orderIdString = "";
+        if (array.length == 0)
+            alert("请先选中要删除的记录！"); //选择记录不能为空
+        else {
+            for (var i = array.length - 1; i >= 0; i--) {
+                if (i == 0) {
+                    orderIdString += array[i].order_id; //连接最末不加，号
+                } else {
+                    orderIdString += array[i].order_id + ","; //id用逗号连接
+                }
+            };
+
+            if (confirm("是否确定要执行删除操作！")) {
+                //做删除的访问请求
+                $.post("../order/deleteOrders", {
+                    orderIds: orderIdString,
+                    userId: getCookie("phone"),
+                    userType: getCookie("type"),
+                    server: "56846a8a2fee49d14901d39cc48b8b2a"
+                }, function(text) {
+                    var json = eval(text);
+                    if (json.status == "success") {
+                        for (var i = array.length - 1; i >= 0; i--) {
+                            $('#table').bootstrapTable('remove', {
+                                field: 'order_id',
+                                values: [array[i].order_id]
+                            });
+                        };
+                    } else {
+                        alert(json.message);
+                    }
+                });
+            }
+        }
+
+    });
 
     $(function() {
         $('#qBeginTime').val(time());
         $('#qEndTime').val(time());
 
-        getTotalDate(null,null);
+        getTotalDate(null, null);
 
         $("#select").on("click", function() {
             $("#list_items").text("");
@@ -178,7 +217,7 @@
     })*/
 
 
-    function getTotalDate(start,end) {
+    function getTotalDate(start, end) {
 
         $.post("../order/getOrdersByDate", {
             date_start: start,
@@ -186,9 +225,7 @@
             server: "56846a8a2fee49d14901d39cc48b8b2a"
         }, function(text) {
             var data1 = eval(text);
-            //console.log("getTotalDate:" + JSON.stringify(data1));
-            $("h2[name='counts']").text("订单列表(" + data1.counts + ")");
-            $("span[name='counts']").text(data1.counts);
+            console.log("getTotalDate:" + JSON.stringify(data1));
             $("#table").bootstrapTable("load", data1.orderList);
 
             $(function() {

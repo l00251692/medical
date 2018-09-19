@@ -117,9 +117,13 @@
 .process-state-3{
     color: #73b4ef;
 }
-/* 保留状态 */
+/* 被大会 */
 .process-state-4{
     color: #ff0000;
+}
+
+.process-state-9{
+    color: #999;
 }
 
 .process-bd{

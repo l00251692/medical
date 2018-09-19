@@ -158,7 +158,7 @@ public class OrderControler {
 			paramMap.put("diseases",diseases);
 			paramMap.put("outDate",date);
 			paramMap.put("address",addresstr);
-			paramMap.put("adDetail",adDetail);
+			paramMap.put("detail",adDetail);
 			paramMap.put("phone",phone);
 			paramMap.put("concatName",concatName);
 			paramMap.put("concatPhone",concatPhone);
@@ -627,9 +627,18 @@ public class OrderControler {
 						obj.put("reason", 2);
 					}	
 				}
+				else if(state == 9){
+					record.put("name", "订单预删除");
+					record.put("type", state);
+					Map<String, Object> tmp = new HashMap<String, Object>();
+					tmp.put("订单删除", "系统即将自动删除订单信息");
+					record.put("list", tmp);
+				}
+				
 				
 				arr.add(record);
 			}
+			
 			
 			JSONObject data = new JSONObject();
 			data.put("info", obj);
@@ -1014,6 +1023,78 @@ public class OrderControler {
 		map.put("rows", jsonArray);
 		map.put("total", totalCount);
 		return map;
+	}
+	
+	/**
+	 * 获取所有订单详情
+	 * 
+	 * @param date
+	 * @return
+	 */
+	@RequestMapping("/deleteOrders")
+	@ResponseBody
+	public Map<String, Object> deleteOrders(String orderIds, String userId, String userType) {
+		Map<String,Object> result = new HashMap<String, Object>();
+		
+		System.out.println("deleteOrders:userId:" + userId + ",userType:" + userType);
+		System.out.println("deleteOrders:orderIds:" + orderIds);
+		
+		if (orderIds == null || orderIds.length() == 0){
+			result.put(Constants.STATUS, Constants.FAILURE);
+			result.put(Constants.MESSAGE, "未找到相应订单信息");
+			return result;
+		}
+		String[] arr = orderIds.split(",");
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		int fail = 0;
+		
+		for (int i = 0; i < arr.length; i++)
+		{
+			paramMap.put("orderId", arr[i]);
+			Order order = orderService.getOrderByIdWx(paramMap);
+			if(order == null)
+			{
+				fail++;
+				System.out.println("未查找到待删除订单，orderId=" + arr[i]);
+				logger.error("未查找到待删除订单，orderId=" + arr[i]);
+				continue;
+			}
+			
+			paramMap.put("orderStatus",Constants.STATUS_SYS_DELETE);
+			
+			Date now = new Date();
+			
+			JSONArray recordes = JSON.parseArray(order.getRecords());
+			JSONObject record = new JSONObject();
+			record.put("status",Constants.STATUS_SYS_DELETE);
+			record.put("time", now);
+			record.put("content", "订单信息即将被系统删除");
+			recordes.add(record);
+			
+			paramMap.put("records",recordes.toString());
+			paramMap.put("lastUpdateTime",now);
+			
+			int flag = orderService.deleteOrderById(paramMap);
+			if(flag == -1 || flag ==0)
+			{
+				fail++;
+				System.out.println("删除订单失败，orderId=" + arr[i]);
+				logger.error("删除订单失败，orderId=" + arr[i]);
+			}
+		}
+		
+		if( fail == 0){
+			result.put(Constants.STATUS, Constants.SUCCESS);
+			result.put(Constants.MESSAGE, "删除订单成功");
+			return result;
+		}
+		else{
+			result.put(Constants.STATUS, Constants.FAILURE);
+			result.put(Constants.MESSAGE, "部分订单删除失败，请刷新后再试");
+			return result;
+		}
+		
+		
 	}
 	
 	@RequestMapping("/updateDeliveryNo")

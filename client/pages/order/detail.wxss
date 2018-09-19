@@ -65,6 +65,9 @@
 .repair-state-icon-4{
     background: #ff0000;
 }
+.repair-state-icon-9{
+    background: #999;
+}
 .repair-state-info{
     position: relative;
     flex: 1;

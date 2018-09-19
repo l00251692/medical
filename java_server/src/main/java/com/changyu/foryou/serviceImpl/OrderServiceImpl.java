@@ -28,6 +28,10 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.insertSelective(paramMap);
 	}
 	
+	public int deleteOrderById(Map<String, Object> paramMap){
+		return orderMapper.deleteOrderById(paramMap);
+	}
+	
 	public Order getOrderByIdWx(Map<String, Object> paramMap) {
 		return orderMapper.selectByPrimaryKey(paramMap);
 	}

@@ -10,6 +10,8 @@ public interface OrderService {
 	
 	public int addOrder(Map<String, Object> paramMap);
 	
+	public int deleteOrderById(Map<String, Object> paramMap);
+	
 	public Order getOrderByIdWx(Map<String, Object> paramMap);
 	
 	public int updateOrderStatus(Map<String, Object> paramMap);
