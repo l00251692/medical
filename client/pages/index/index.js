@@ -36,7 +36,7 @@ Page({
 
     if(agree == false)
     {
-      alert('请确认已阅读并理解告知信息');
+      alert('请勾选确认已阅读并理解告知信息');
       return;
     }
 

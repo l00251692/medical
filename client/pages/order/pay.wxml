@@ -35,7 +35,7 @@
   </view>
 
   <view class="reporter-img">
-    <text class="reporter-img-name">身份证照片</text>
+    <text class="reporter-img-name">患者身份证</text>
     <view class="reporter-img-idcard-front">
       <image src="{{idCardFrontPath}}" data-src="{{idCardFrontPath}}" mode='aspectFit' bindtap="previewImage"></image>
     </view>
@@ -44,8 +44,22 @@
     </view>
   </view>
 
+  <view class='aggrement_foot'> 甲方：
+    <text class='partyA'>{{name}}</text> </view>
+  <view class='aggrement_foot'> 乙方：
+    <text class='partyB'>上海明静食品有限公司</text> 
+  </view>
+
+  <checkbox-group class="checkbox" bindchange="toAgree">
+      <label>
+        <checkbox checked="{{agree}}"/>
+        <text class="xieyi">接受上述委托服务合同协议</text>
+      </label>
+  </checkbox-group>
+
   <view class='remind'>
-    重要：请点击照片预览确保照片清晰再提交
+    <text >重要：提交前请预览确保患者身份证照片清晰</text> 
+    
   </view>
 
 </scroll-view>

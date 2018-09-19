@@ -23,13 +23,6 @@
   padding-left: 30rpx;
   display: flex;
 }
-
-.partyA{
-  border-bottom: 1px #000 solid; 
-  width: 300rpx;
-  text-align: center;
-}
-
 .partyA{
   border-bottom: 1px #000 solid; 
   width: 400rpx;
@@ -92,14 +85,65 @@
   border-radius: 20rpx;
 }
 
+.aggrement_foot{
+  padding-right: 30rpx;
+  display: flex;
+  float: right;
+  line-height: 60rpx;
+  font-size: 32rpx;
+}
+
+.checkbox{
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+  height: 80rpx;
+  width: 100%;
+  line-height: 80rpx;
+  margin-top:20rpx;
+}
+
+/* 未选中的 背景样式 */
+checkbox .wx-checkbox-input{
+   border-radius: 50%;/* 圆角 */
+   width: 40rpx; /* 背景的宽 */
+   height: 40rpx; /* 背景的高 */
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+   border: none;
+   background: #6495ed;
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 40rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 40rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 40rpx;
+   text-align: center;
+   font-size:30rpx; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+
+.xieyi{
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-left:10rpx;
+}
+
 .remind{
+  display: flex;
+  flex-direction: column;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
   text-align: center;
-  background-color: #fff;
   font-size: 32rpx;
   width: 100%;
   color: #6495ed;
   font-style: initial;
-  font-weight: bold;
 }
 
 .help-img {

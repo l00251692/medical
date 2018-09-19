@@ -12,7 +12,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    canClick:true 
+    canClick:true,
+    agree: false
   },
 
   /**
@@ -71,8 +72,13 @@ Page({
 
   formSubmit(e) {
     var {
-      name, idcard, sex, hospital, hospitalArea, department, bedNo, mrNo, doctor, diseases, date, address, adDetail, phone, concatName, concatPhone, idCardFrontPath, idCardBackPath
+      agree, name, idcard, sex, hospital, hospitalArea, department, bedNo, mrNo, doctor, diseases, date, address, adDetail, phone, concatName, concatPhone, idCardFrontPath, idCardBackPath
     } = this.data
+
+    if (agree == false) {
+      alert('请接受相关委托服务合同协议');
+      return;
+    }
 
     var that = this
     this.setData({
@@ -201,6 +207,13 @@ Page({
     wx.previewImage({
       current: current, // 当前显示图片的http链接
       urls: imgalist // 需要预览的图片http链接列表
+    })
+  },
+
+  toAgree: function (e) {
+    var { agree } = this.data
+    this.setData({
+      agree: !agree
     })
   },
 
