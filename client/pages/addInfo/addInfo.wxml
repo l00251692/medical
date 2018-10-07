@@ -113,13 +113,13 @@
     <view class="reporter-detail">
       <text class="reporter-detail-title">联系人信息</text>
       <view class="reporter-user reporter-detail-item">
-        <text class="reporter-detail-name">主要联系人</text>
+        <text class="reporter-detail-name" >紧急联系人姓名</text>
         <view class="reporter-detail-input">
           <input type="text" value="{{concatName}}" name="concatName" placeholder="请填写联系人名字" />
         </view>
       </view>
       <view class="reporter-user reporter-detail-item">
-        <text class="reporter-detail-name">联系人电话</text>
+        <text class="reporter-detail-name">紧急联系人电话</text>
         <view class="reporter-detail-input">
           <input type="number" value="{{concatPhone}}" name="concatPhone" maxlength="11" placeholder="请填写联系人电话" />
         </view>
