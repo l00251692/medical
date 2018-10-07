@@ -37,6 +37,7 @@
 
 .content{
   padding-left: 30rpx;
+  padding-right: 30rpx;
   line-height: 60rpx;
   font-size: 32rpx;
 }

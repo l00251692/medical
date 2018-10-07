@@ -131,6 +131,9 @@ Page({
                             that.setData({
                               canClick: true
                             })
+                            wx.switchTab({
+                              url: '/pages/mine/mine',
+                            })
                           }
                         })
                         
