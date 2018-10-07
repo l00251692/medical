@@ -138,6 +138,11 @@
     color: #888;
     width: 60pt;
 }
+
+.work-sheet-bd2{
+    color: #888;
+    width: 90pt;
+}
 .work-sheet-ft{
     flex: 1;
     display: flex;

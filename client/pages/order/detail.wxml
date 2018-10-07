@@ -105,13 +105,13 @@
           </view>
         </view>
         <view class="work-sheet-item">
-          <text class="work-sheet-bd">主要联系人</text>
+          <text class="work-sheet-bd2">紧急联系人姓名</text>
           <view class="work-sheet-ft">
             <text>{{info.concatName}}</text>
           </view>
         </view>
         <view class="work-sheet-item">
-          <text class="work-sheet-bd">联系人电话</text>
+          <text class="work-sheet-bd2">紧急联系人电话</text>
           <view class="work-sheet-ft">
             <text>{{info.concatPhone}}</text>
           </view>
