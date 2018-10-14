@@ -59,6 +59,8 @@ public class Order {
     
     private String idCardBack;
     
+    private String outSummary;
+    
     private String deliveryNo;
     
     public String getOrderId() {
@@ -291,6 +293,14 @@ public class Order {
 
 	public void setConcatPhone(String concatPhone) {
 		this.concatPhone = concatPhone;
+	}
+
+	public String getOutSummary() {
+		return outSummary;
+	}
+
+	public void setOutSummary(String outSummary) {
+		this.outSummary = outSummary;
 	}
     
 }

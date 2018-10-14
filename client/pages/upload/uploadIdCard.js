@@ -83,6 +83,23 @@ Page({
         }
       })
     }
+
+    var tmp3 = wx.getStorageSync('outSummaryPath')
+    if (tmp3) {
+      wx.getFileInfo({
+        filePath: tmp3,
+        success(res) {
+          that.setData({
+            outSummaryPath: tmp3
+          })
+        },
+        fail(res) {
+          that.setData({
+            outSummaryPath: null
+          })
+        }
+      })
+    }
   },
 
   onChooseFront(e){
@@ -97,18 +114,43 @@ Page({
     })
   },
 
+  onPhoto() {
+    var that = this;
+    wx.chooseImage({
+      count: 1, // 默认9 
+      sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有 
+      sourceType: ['camera', 'album' ], // 可以指定来源是相册还是相机，默认二者都有 
+      success: function (res) {
+        that.setData({
+          outSummaryPath: res.tempFilePaths[0]
+        })
+        wx.setStorageSync("outSummaryPath", res.tempFilePaths[0])
+      }
+    })
+  },
+
   uploadIdCard(e){
 
-    var { idCardFrontPath, idCardBackPath} = this.data
+    var { idCardFrontPath, idCardBackPath, outSummaryPath} = this.data
 
-    if (idCardFrontPath != null && idCardBackPath !=null){
-      wx.navigateTo({
-        url: '/pages/order/pay',
-      })
+    if (idCardFrontPath == null) {
+      alert("请上传身份证正面照片")
+      return
     }
-    else{
-      alert("请先上传身份证照片")
+
+    if (idCardBackPath == null) {
+      alert("请上传身份证反面照片")
+      return
     }
+
+    if (outSummaryPath == null) {
+      alert("请上传出院小结照片")
+      return
+    }
+
+    wx.navigateTo({
+      url: '/pages/order/pay',
+    })
     
   },
 

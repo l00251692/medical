@@ -52,7 +52,7 @@ public class SendMail {
      */
     public void initMessage(){
         this.auth = new Email_Autherticator();
-        Session session = Session.getDefaultInstance(pros,auth);
+        Session session = Session.getInstance(pros,auth);
         session.setDebug(true); //设置获取 debug 信息
         mimeMessage = new MimeMessage(session);
     }

@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -60,8 +59,6 @@ public class OrderControler {
 		this.userService = userService;
 	}
 	
-	
-	
     private static final Logger logger = LoggerFactory.getLogger(OrderControler.class);
     
     @RequestMapping("/getQiniuTokenWx")
@@ -106,7 +103,6 @@ public class OrderControler {
             	
             	JSONObject tmp = new JSONObject();
             	tmp.put("name", hospitalTmp.getHospital()+"(" + hospitalTmp.getAddress() + ")");
-            	//tmp.put("address", hospitalTmp.getAddress());
             	hospitals.add(tmp);
             }
             
@@ -173,8 +169,6 @@ public class OrderControler {
 			Date now = new Date();
 			paramMap.put("createTime",now);
 			paramMap.put("lastUpdateTime",now);
-			
-
 			paramMap.put("orderStatus",Constants.STATUS_CREATE);
 			
 			JSONArray records = new JSONArray();
@@ -187,7 +181,7 @@ public class OrderControler {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			Random random = new Random();  
 			String result="";  
-			for (int i=0;i<4;i++)  
+			for (int i=0; i<4; i++)  
 			{  
 			    result+=random.nextInt(10);  
 			}  
@@ -224,7 +218,8 @@ public class OrderControler {
 	
 	@RequestMapping("/uploadOrderIdCardWx")
 	public @ResponseBody Map<String, String> uploadOrderIdCardWx(
-			@RequestParam String user_id,  @RequestParam String order_id,@RequestParam String front_img,  @RequestParam String back_img){
+			@RequestParam String user_id,  @RequestParam String order_id,@RequestParam String front_img,  @RequestParam String back_img
+			,@RequestParam String summary_img){
 		Map<String,String> result = new HashMap<String, String>();
 		
 		try {
@@ -233,6 +228,7 @@ public class OrderControler {
 			paramMap.put("createUser",user_id);
 			paramMap.put("idCardFront","https://" + front_img);
 			paramMap.put("idCardBack","https://" + back_img);
+			paramMap.put("outSummary","https://" + summary_img);
 
 			
 			int flag = orderService.updateOrderIdCard(paramMap);
@@ -565,6 +561,7 @@ public class OrderControler {
 			
 			obj.put("front_img", order.getIdCardFront());
 			obj.put("back_img", order.getIdCardBack());
+			obj.put("summary_img", order.getOutSummary());
 			
 			JSONArray recordes = JSON.parseArray(order.getRecords());
 			JSONArray arr = new JSONArray();
@@ -619,11 +616,11 @@ public class OrderControler {
 					tmp.put("订单打回", timeStr);
 					tmp.put("原因", recordes.getJSONObject(i).getString("content"));
 					record.put("list", tmp);
-					if(recordes.getJSONObject(i).getString("content").startsWith("照片模糊"))
+					if(recordes.getJSONObject(i).getString("content").startsWith("身份证不清晰"))
 					{
 						obj.put("reason", 1);
 					}
-					else if(recordes.getJSONObject(i).getString("content").startsWith("需补缴服务费")){
+					else if(recordes.getJSONObject(i).getString("content").startsWith("资料超过50页")){
 						obj.put("reason", 2);
 					}	
 				}
@@ -635,10 +632,8 @@ public class OrderControler {
 					record.put("list", tmp);
 				}
 				
-				
 				arr.add(record);
 			}
-			
 			
 			JSONObject data = new JSONObject();
 			data.put("info", obj);
@@ -826,6 +821,7 @@ public class OrderControler {
 				}	
 				obj.put("front_img", order.getIdCardFront());
 				obj.put("back_img", order.getIdCardBack());
+				obj.put("summary_img", order.getOutSummary());
 				
 				arr.add(obj);
 				
@@ -928,6 +924,7 @@ public class OrderControler {
 				}	
 				obj.put("front_img", order.getIdCardFront());
 				obj.put("back_img", order.getIdCardBack());
+				obj.put("summary_img", order.getOutSummary());
 				
 				arr.add(obj);
 				
@@ -1012,6 +1009,7 @@ public class OrderControler {
 			}	
 			obj.put("front_img", order.getIdCardFront());
 			obj.put("back_img", order.getIdCardBack());	
+			obj.put("summary_img", order.getOutSummary());
 			arr.add(obj);	
 		}
 		
@@ -1036,8 +1034,8 @@ public class OrderControler {
 	public Map<String, Object> deleteOrders(String orderIds, String userId, String userType) {
 		Map<String,Object> result = new HashMap<String, Object>();
 		
-		System.out.println("deleteOrders:userId:" + userId + ",userType:" + userType);
-		System.out.println("deleteOrders:orderIds:" + orderIds);
+		logger.info("deleteOrders:userId:" + userId + ",userType:" + userType);
+		logger.info("deleteOrders:orderIds:" + orderIds);
 		
 		if (orderIds == null || orderIds.length() == 0){
 			result.put(Constants.STATUS, Constants.FAILURE);
@@ -1055,7 +1053,6 @@ public class OrderControler {
 			if(order == null)
 			{
 				fail++;
-				System.out.println("未查找到待删除订单，orderId=" + arr[i]);
 				logger.error("未查找到待删除订单，orderId=" + arr[i]);
 				continue;
 			}
@@ -1078,7 +1075,6 @@ public class OrderControler {
 			if(flag == -1 || flag ==0)
 			{
 				fail++;
-				System.out.println("删除订单失败，orderId=" + arr[i]);
 				logger.error("删除订单失败，orderId=" + arr[i]);
 			}
 		}
@@ -1092,9 +1088,7 @@ public class OrderControler {
 			result.put(Constants.STATUS, Constants.FAILURE);
 			result.put(Constants.MESSAGE, "部分订单删除失败，请刷新后再试");
 			return result;
-		}
-		
-		
+		}	
 	}
 	
 	@RequestMapping("/updateDeliveryNo")
@@ -1136,13 +1130,13 @@ public class OrderControler {
 		        //必填:待发送手机号
 		        request.setPhoneNumbers(order.getPhone());
 		        //必填:短信签名-可在短信控制台中找到
-		        request.setSignName("刘静涛");
+		        request.setSignName("上海明静");
 		        //必填:短信模板-可在短信控制台中找到
-		        request.setTemplateCode("SMS_140105457");
+		        request.setTemplateCode("SMS_145597339");
 		        //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
 		        request.setTemplateParam("{\"orderId\":\"" + order.getOrderId() + "\", \"deliveryNo\":\"" + deliveryNo + "\"}");
 		        
-		        //SendSms.sendSmsAli(request);
+		        SendSms.sendSmsAli(request);
 		        
 				result.put(Constants.STATUS, Constants.SUCCESS);
 				result.put(Constants.MESSAGE, "更新快递单号信息成功");
@@ -1188,11 +1182,12 @@ public class OrderControler {
 			
 			String tmp = "";
 			
+			//!!!注意这里修改字符串需要同时修改订单详情的时候中判断打回原因微信接口
 			if(reason == 1){
-				tmp = "照片模糊";
+				tmp = "身份证不清晰";
 			}
 			else if(reason == 2){
-				tmp = "需补缴服务费";
+				tmp = "资料超过50页需补缴费用";
 			}
 			
 			if (content != null && !content.isEmpty())
@@ -1221,13 +1216,12 @@ public class OrderControler {
 		        //必填:待发送手机号
 		        request.setPhoneNumbers(order.getPhone());
 		        //必填:短信签名-可在短信控制台中找到
-		        request.setSignName("刘静涛");
+		        request.setSignName("上海明静");
 		        //必填:短信模板-可在短信控制台中找到
-		        request.setTemplateCode("SMS_140105457");
+		        request.setTemplateCode("SMS_145597385");
 		        //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
-		        request.setTemplateParam("{\"orderId\":\"" + order.getOrderId() + "\", \"deliveryNo\":\"" + "订单审核未通过，请补充信息" + "\"}");
-		        
-		        //SendSms.sendSmsAli(request);
+		        request.setTemplateParam("{\"orderId\":\"" + order.getOrderId() + "\", \"reason\":\"" + tmp + "\"}");      
+		        SendSms.sendSmsAli(request);
 		        
 				result.put(Constants.STATUS, Constants.SUCCESS);
 				result.put(Constants.MESSAGE, "更新订单状态成功");
@@ -1251,8 +1245,7 @@ public class OrderControler {
 		result.put(Constants.MESSAGE, "更新快递单号信息失败");	
 		return result;
 	}
-	
-	
+		
 	@RequestMapping("/download")
 	public void downloadOrder(@RequestParam String order_id, HttpServletRequest request, HttpServletResponse response){
 
@@ -1271,13 +1264,20 @@ public class OrderControler {
 			dataMap.put("orderId", order.getOrderId());
 			dataMap.put("createTime", formattmp.format(order.getCreateTime()));
 			dataMap.put("name", order.getName());
-			dataMap.put("phone", order.getPhone());
+			dataMap.put("sex", order.getSex());
 			dataMap.put("idcard", order.getIdCard());
+			dataMap.put("concatName", order.getConcatName());
+			dataMap.put("concatPhone", order.getConcatPhone());
+			
 			dataMap.put("hospital", order.getHospital());
-			dataMap.put("mrNo", order.getMrNo());
+			dataMap.put("hospitalArea", order.getHospitalArea());
 			dataMap.put("department", order.getDepartment());
-			dataMap.put("doctor", order.getDoctor());
 			dataMap.put("bedNo", order.getBedNo());	
+			dataMap.put("mrNo", order.getMrNo());
+			dataMap.put("doctor", order.getDoctor());
+			dataMap.put("diseases", order.getDiseases());
+			dataMap.put("outDate", order.getOutDate());
+			
 			
 			if(order.getDeliveryNo() == null || order.getDeliveryNo().length() == 0)
 			{
@@ -1287,6 +1287,8 @@ public class OrderControler {
 			{
 				dataMap.put("deliveryNo", order.getDeliveryNo());
 			}
+			
+			dataMap.put("phone", order.getPhone());
 			
 			String temp = order.getProvice() + order.getCity()+order.getDistrict()+order.getAdrTitle();			
 			if(order.getDetail() == null || order.getDetail().isEmpty()){
@@ -1299,8 +1301,10 @@ public class OrderControler {
 			
             String image1 = WordGenerator.GetImageStrFromUrl(order.getIdCardFront());
             String image2 = WordGenerator.GetImageStrFromUrl(order.getIdCardBack());
+            String image3 = WordGenerator.GetImageStrFromUrl(order.getOutSummary());
             dataMap.put("image1", image1);
             dataMap.put("image2", image2);
+            dataMap.put("image3", image3);
 			     
             
             String path = System.getProperty("user.dir").concat("/File/");
@@ -1342,8 +1346,7 @@ public class OrderControler {
 		catch (Exception e) {
 			e.printStackTrace();
 			logger.error("[downloadOrder Exception]" + order_id);
-		}
-		
+		}	
 		return;
 	}
 	

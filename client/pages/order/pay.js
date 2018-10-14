@@ -68,11 +68,18 @@ Page({
         idCardBackPath: tmp2
       })
     }
+
+    var tmp3 = wx.getStorageSync('outSummaryPath')
+    if (tmp3) {
+      this.setData({
+        outSummaryPath: tmp3
+      })
+    }
   },
 
   formSubmit(e) {
     var {
-      agree, name, idcard, sex, hospital, hospitalArea, department, bedNo, mrNo, doctor, diseases, date, address, adDetail, phone, concatName, concatPhone, idCardFrontPath, idCardBackPath
+      agree, name, idcard, sex, hospital, hospitalArea, department, bedNo, mrNo, doctor, diseases, date, address, adDetail, phone, concatName, concatPhone, idCardFrontPath, idCardBackPath, outSummaryPath
     } = this.data
 
     if (agree == false) {
@@ -99,67 +106,85 @@ Page({
               //上传反面身份证照片
               qiniuUploader.upload(idCardBackPath, (res) => {
                 var back_img = res.imageURL
-                //更新照片信息到订单信息中
-                uploadOrderIdCard({
-                  front_img,
-                  back_img,
-                  order_id,
-                  success(data) {
-                    //获取支付参数
-                    var pay_money = "200.00"
-                    getPayment({
-                      order_id,
-                      pay_money,
-                      success(data) {
-                        //发起微信支付
-                        console.log("getPayment success:")
-                        requestPayment({
-                          data,
-                          success() {
-                            //更新订单状态
-                            updateOrderPayed({
-                              order_id,
-                              success(data){
-                                wx.switchTab({
-                                  url: '/pages/mine/mine',
-                                })
-                              }
-                            })    
-                          },
-                          error(data) {
-                            console.log("用户取消支付")
-                            that.setData({
-                              canClick: true
-                            })
-                            wx.switchTab({
-                              url: '/pages/mine/mine',
-                            })
-                          }
-                        })
-                        
-                      }, error(data) {
-                        console.log("getPayment err:" + JSON.stringify(data))
-                        that.setData({
-                          canClick: true
-                        })
-                      }
-                    })
-                  },
-                  error(data) {
-                    console.log("订单上传照片失败")
-                    that.setData({
-                      canClick: true
-                    })
-                  }
+                //上传出院小结照片
+                qiniuUploader.upload(outSummaryPath, (res) => {
+                  var summary_img = res.imageURL
+                  //更新照片信息到订单信息中
+                  uploadOrderIdCard({
+                    front_img,
+                    back_img,
+                    summary_img,
+                    order_id,
+                    success(data) {
+                      //获取支付参数
+                      var pay_money = "200.00"
+                      getPayment({
+                        order_id,
+                        pay_money,
+                        success(data) {
+                          //发起微信支付
+                          console.log("getPayment success:")
+                          requestPayment({
+                            data,
+                            success() {
+                              //更新订单状态
+                              updateOrderPayed({
+                                order_id,
+                                success(data) {
+                                  wx.switchTab({
+                                    url: '/pages/mine/mine',
+                                  })
+                                }
+                              })
+                            },
+                            error(data) {
+                              console.log("用户取消支付")
+                              that.setData({
+                                canClick: true
+                              })
+                              wx.switchTab({
+                                url: '/pages/mine/mine',
+                              })
+                            }
+                          })
 
-                })
+                        }, error(data) {
+                          console.log("getPayment err:" + JSON.stringify(data))
+                          that.setData({
+                            canClick: true
+                          })
+                        }
+                      })
+                    },
+                    error(data) {
+                      console.log("订单上传照片失败")
+                      that.setData({
+                        canClick: true
+                      })
+                    }
+
+                  })
+
+                }, (error) => {
+                  console.log('error3: ' + error);
+                  that.setData({
+                    canClick: true
+                  })
+                  alert("上传出院小结照片失败")
+                }, {
+                    region: 'ECN', //华东
+                    domain: 'img.mingjing.tech',
+                    key: 'order_' + order_id + '_' + key_str + '_summary',
+                    uptoken: token
+                  }, (res) => {
+                  });
 
               }, (error) => {
                 console.log('error2: ' + error);
                 that.setData({
                   canClick: true
                 })
-                alert("上传身份证照片失败")  
+                alert("上传身份证背面照片失败")  
               }, {
                   region: 'ECN', //华东
                   domain: 'img.mingjing.tech',
@@ -173,7 +198,7 @@ Page({
               that.setData({
                 canClick: true
               })
-              alert("上传身份证照片失败")
+              alert("上传身份证正面照片失败")
               
             }, {
                 region: 'ECN', //华东
@@ -188,7 +213,7 @@ Page({
             that.setData({
               canClick: true
             })
-            alert("照片上传服务器信息获取失败，请稍候")
+            alert("照片上传服务器信息获取失败，请稍后重试")
            
           }
         })

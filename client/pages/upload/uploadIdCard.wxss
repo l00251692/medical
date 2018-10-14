@@ -9,7 +9,7 @@
 }
 .idCard-box{
     display: flex;
-    padding: 40rpx 30rpx;
+    padding: 30rpx 30rpx;
     flex-direction: column;
     background-color: #fff;
     margin-bottom: 20rpx;
@@ -30,18 +30,38 @@
     height:130rpx;
 }
 
+.cardBox-bd .img3{
+    width: 360rpx;
+    height: 500rpx;
+    margin: 0rpx 40rpx;
+}
+
+.cardBox-bd .img4{
+    width: 200rpx;
+    height:280rpx;
+}
+
 .cardBox-bd .shili{
   font-size: 20rpx;
   opacity: 0.8;
   padding-left: 10rpx;
   color: #999;
 }
-.ft-title{
-    padding:20rpx 30rpx 0;
+
+.head_container{
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .font-color-999{
   color: #999;
+}
+
+.foot{
+  height: 100rpx;
 }
 
 .submit-upload{

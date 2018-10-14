@@ -3,10 +3,6 @@
     background-color: #f7f7f7;
 }
 
-.scroll-view-info{
-  padding-bottom: 80rpx;
-}
-
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
@@ -179,6 +175,25 @@
   height: 100%;
   border-radius: 20rpx;
 }
+
+.img-summary{
+  position: relative;
+  width: 430rpx;
+  height: 600rpx;
+  margin-left: 30rpx;
+}
+
+.img-summary image{
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+}
+
+.footer{
+  height: 90rpx;
+}
+
+
 
 .submit-declare{
     position: fixed;

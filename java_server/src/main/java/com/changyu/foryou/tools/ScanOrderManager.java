@@ -42,9 +42,9 @@ public class ScanOrderManager {
 		
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
-		cal.add(Calendar.DATE, -20);//最后一个数字20可改，20天的意思
+		cal.add(Calendar.DATE, -14);//最后一个数字可改，代表天数
 	    Date date = cal.getTime();
-	    String timeEnd = sdf.format(date) + " 23:59:59";;//二十天之前日期
+	    String timeEnd = sdf.format(date);//十四天之前日期
 	    System.out.println("ScanOrderManager:date-"  + timeEnd);
 		
 		//查询所有待发货订单距离现在日期超过20天的订单	
@@ -69,9 +69,9 @@ public class ScanOrderManager {
         mail.setPros(map);
         mail.initMessage();
 
-        mail.setRecipient("982679298@qq.com");
+        mail.setRecipient("4264806@qq.com");
         mail.setRecipientCC("18261149716@163.com");
-        mail.setSubject("【提醒】订单距离用户支付已超过20天，请尽快处理");
+        mail.setSubject("【提醒】订单距离用户出院日期已超过14天，请尽快处理");
         
         StringBuilder content = new StringBuilder();
         content.append("<body>");
@@ -85,6 +85,7 @@ public class ScanOrderManager {
         content.append("<th>患者姓名</th>");
         content.append("<th>创建时间</th>");
         content.append("<th>医院名称</th>");
+        content.append("<th>出院时间</th>");
         content.append("</tr>");
         content.append("</thead>");
         content.append("<tbody>");
@@ -96,6 +97,7 @@ public class ScanOrderManager {
             content.append("<td style=\"text-align:center\">"+order.getName()+"</td>");
             content.append("<td style=\"text-align:center\">"+format.format(order.getCreateTime())+"</td>");
             content.append("<td style=\"text-align:center\">"+order.getHospital()+"</td>");
+            content.append("<td style=\"text-align:center\">"+order.getOutDate()+"</td>");
             content.append("</tr>");
         }
         content.append("</tbody>");

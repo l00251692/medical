@@ -129,7 +129,7 @@ export function addOrder(options) {
 
 export function uploadOrderIdCard(options) {
   const {
-    front_img, back_img, order_id,
+    front_img, back_img, summary_img, order_id,
     success, error
   } = options
 
@@ -138,7 +138,7 @@ export function uploadOrderIdCard(options) {
   fetch({
     url: 'order/uploadOrderIdCardWx',
     data: {
-      front_img, back_img, order_id, 
+      front_img, back_img, summary_img, order_id, 
       user_id
     },
     success, error
