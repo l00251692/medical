@@ -77,7 +77,12 @@ public class WordGenerator {
 		URL url = null;  
         InputStream inStream = null;   
         ByteArrayOutputStream outStream = null;  
-        HttpURLConnection conn = null;  
+        HttpURLConnection conn = null;
+        
+        if(imgURL == null || imgURL.length() == 0)
+        {	
+        	return rtnString;
+        }
         
 		try {
 			// 创建URL
