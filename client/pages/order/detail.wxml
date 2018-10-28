@@ -128,7 +128,7 @@
         <view class="work-sheet-item">
           <text class="work-sheet-bd">出院小结</text>
           <view class="img-summary" wx:if="{{info.summary_img}}">
-            <image  src="{{info.summary_img}}" mode='aspectFit' data-src="{{info.summary_img}}" bindtap="previewImage"></image>
+            <image  src="{{info.summary_img}}" mode='aspectFit' data-src="{{info.summary_img}}" bindtap="previewImage2"></image>
           </view>
           <view wx:else class="work-sheet-ft">
             <text>暂无图片</text>
