@@ -26,7 +26,7 @@
   </view>
 
   <view class="idCard-box">
-    <view class="cardBox-hd font-color-666">出院小结(拍摄正面)</view>
+    <view class="cardBox-hd font-color-666">出院小结(拍摄第一页)</view>
     <view class="cardBox-bd">
       <image class="img3" wx:if="{{outSummaryPath != null}}" src="{{outSummaryPath}}" bindtap='onPhoto'></image>
       <image class="img3" wx:else src="../../images/upload/Click_shooting2.png" bindtap='onPhoto'></image>

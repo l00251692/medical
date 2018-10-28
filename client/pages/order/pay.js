@@ -310,11 +310,13 @@ Page({
       this.hideHelp();
     }
   },
+  
   showHelp: function (e) {
     this.setData({
       'help_status': true
     });
   },
+
   hideHelp: function (e) {
     this.setData({
       'help_status': false
