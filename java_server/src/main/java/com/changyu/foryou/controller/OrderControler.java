@@ -219,7 +219,7 @@ public class OrderControler {
 	@RequestMapping("/uploadOrderIdCardWx")
 	public @ResponseBody Map<String, String> uploadOrderIdCardWx(
 			@RequestParam String user_id,  @RequestParam String order_id,@RequestParam String front_img,  @RequestParam String back_img
-			,@RequestParam String summary_img){
+			,@RequestParam String summary_img, @RequestParam String sign_img){
 		Map<String,String> result = new HashMap<String, String>();
 		
 		try {
@@ -229,6 +229,7 @@ public class OrderControler {
 			paramMap.put("idCardFront","https://" + front_img);
 			paramMap.put("idCardBack","https://" + back_img);
 			paramMap.put("outSummary","https://" + summary_img);
+			paramMap.put("sign","https://" + sign_img);
 
 			
 			int flag = orderService.updateOrderIdCard(paramMap);

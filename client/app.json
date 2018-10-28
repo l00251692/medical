@@ -8,6 +8,7 @@
     "pages/upload/updateIdCard",
     "pages/upload/takePhoto",
     "pages/order/pay",
+    "pages/handwriting/handwriting",
     "pages/mine/mine",
     "pages/order/detail",
     "pages/logs/logs"

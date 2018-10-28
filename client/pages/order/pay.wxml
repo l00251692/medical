@@ -45,22 +45,24 @@
     </view>
   </view>
 
-  <view class='aggrement_foot'> 甲方：
-    <text class='partyA'>{{name}}</text> </view>
-  <view class='aggrement_foot'> 乙方：
-    <text class='partyB'>上海明静食品有限公司</text> 
-  </view>
-
   <checkbox-group class="checkbox" bindchange="toAgree">
       <label>
         <checkbox checked="{{agree}}"/>
         <text class="xieyi">接受上述委托服务合同协议</text>
       </label>
   </checkbox-group>
-
+  <view class='aggrement_foot'> 甲方：
+    <view class='sign_name' bindtap='onSign'>
+      <image wx:if="{{sign}}" src="{{sign}}" class="hand_wrinting_img" mode="aspectFit"></image>
+      <text wx:else>请点击此处签名</text>
+    </view> 
+  </view>
+  <view class='aggrement_foot'> 乙方：
+    <view class='sign_name'><text>上海明静食品有限公司</text>
+    </view> 
+  </view>
   <view class='remind'>
     <text >重要：提交前请预览确保患者身份证照片清晰</text> 
-    
   </view>
 
 </scroll-view>

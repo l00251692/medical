@@ -90,8 +90,22 @@
   padding-right: 30rpx;
   display: flex;
   float: right;
-  line-height: 60rpx;
+  line-height: 100rpx;
   font-size: 32rpx;
+}
+
+.sign_name{
+  border-bottom: 1px #000 solid; 
+  width: 400rpx;
+  height: 100rpx;
+  text-align: center;
+}
+
+.hand_wrinting_img{
+  width: 200rpx;
+  height: 400rpx;
+  transform: rotate(270deg); 
+  margin-top:-150rpx;
 }
 
 .checkbox{

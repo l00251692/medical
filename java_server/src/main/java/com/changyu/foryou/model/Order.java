@@ -61,6 +61,8 @@ public class Order {
     
     private String outSummary;
     
+    private String sign;
+    
     private String deliveryNo;
     
     public String getOrderId() {
@@ -301,6 +303,14 @@ public class Order {
 
 	public void setOutSummary(String outSummary) {
 		this.outSummary = outSummary;
+	}
+
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
 	}
     
 }
