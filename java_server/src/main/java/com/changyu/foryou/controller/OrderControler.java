@@ -1303,11 +1303,18 @@ public class OrderControler {
             String image1 = WordGenerator.GetImageStrFromUrl(order.getIdCardFront());
             String image2 = WordGenerator.GetImageStrFromUrl(order.getIdCardBack());
             String image3 = WordGenerator.GetImageStrFromUrl(order.getOutSummary());
+            //用户上传的签名照片需要进行翻转
+            String image4 = "";
+            if(order.getSign().length() > 0)
+            {
+            	image4 = WordGenerator.GetImageStrFromUrl(order.getSign()+"?imageMogr2/rotate/270");
+            }
+
             dataMap.put("image1", image1);
             dataMap.put("image2", image2);
             dataMap.put("image3", image3);
+            dataMap.put("image4", image4);
 			     
-            
             String path = System.getProperty("user.dir").concat("/File/");
 	        //String path = request.getSession().getServletContext().getRealPath("/").concat("File/");
 	        //System.out.println("downloadOrder:" + path);

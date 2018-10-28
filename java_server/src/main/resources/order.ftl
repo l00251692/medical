@@ -6,8 +6,8 @@
             <o:LastAuthor>Administrator</o:LastAuthor>
             <o:Revision>5</o:Revision>
             <o:Created>2018-07-22T07:22:00Z</o:Created>
-            <o:LastSaved>2018-10-14T12:41:31Z</o:LastSaved>
-            <o:TotalTime>0</o:TotalTime>
+            <o:LastSaved>2018-10-28T14:51:31Z</o:LastSaved>
+            <o:TotalTime>5760</o:TotalTime>
             <o:Pages>2</o:Pages>
             <o:Words>32</o:Words>
             <o:Characters>189</o:Characters>
@@ -17,10 +17,10 @@
             <o:CharactersWithSpaces>220</o:CharactersWithSpaces>
         </o:DocumentProperties>
         <o:CustomDocumentProperties>
-            <o:KSOProductBuildVer dt:dt="string">2052-11.1.0.7849</o:KSOProductBuildVer>
+            <o:KSOProductBuildVer dt:dt="string">2052-11.1.0.7881</o:KSOProductBuildVer>
         </o:CustomDocumentProperties>
         <w:fonts>
-            <w:defaultFonts w:ascii="Calibri" w:fareast="宋体" w:h-ansi="Calibri" w:cs="Times New Roman" />
+            <w:defaultFonts w:ascii="Times New Roman" w:fareast="宋体" w:h-ansi="Times New Roman" w:cs="Times New Roman" />
             <w:font w:name="Times New Roman">
                 <w:panose-1 w:val="02020603050405020304" />
                 <w:charset w:val="00" />
@@ -392,17 +392,14 @@
         </w:bgPict>
         <w:docPr>
             <w:view w:val="print" />
-            <w:zoom w:percent="100" />
+            <w:zoom w:percent="110" />
             <w:characterSpacingControl w:val="CompressPunctuation" />
             <w:documentProtection w:enforcement="off" />
-            <w:punctuationKerning/>
             <w:doNotEmbedSystemFonts/>
-            <w:bordersDontSurroundHeader/>
-            <w:bordersDontSurroundFooter/>
             <w:defaultTabStop w:val="420" />
             <w:drawingGridVerticalSpacing w:val="156" />
-            <w:displayHorizontalDrawingGridEvery w:val="0" />
-            <w:displayVerticalDrawingGridEvery w:val="2" />
+            <w:displayHorizontalDrawingGridEvery w:val="1" />
+            <w:displayVerticalDrawingGridEvery w:val="1" />
             <w:compat>
                 <w:adjustLineHeightInTable/>
                 <w:ulTrailSpace/>
@@ -410,9 +407,7 @@
                 <w:balanceSingleByteDoubleByteWidth/>
                 <w:useFELayout/>
                 <w:spaceForUL/>
-                <w:wrapTextWithPunct/>
                 <w:breakWrappedTables/>
-                <w:useAsianBreakRules/>
                 <w:dontGrowAutofit/>
                 <w:useFELayout/></w:compat>
         </w:docPr>
@@ -473,8 +468,9 @@
                     <w:pPr>
                         <w:jc w:val="left" />
                         <w:rPr>
-                            <w:rFonts w:hint="fareast" />
-                            <w:b/></w:rPr>
+                            <w:rFonts w:fareast="宋体" w:hint="fareast" />
+                            <w:b/>
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
                     </w:pPr>
                     <w:r>
                         <w:rPr>
@@ -779,8 +775,7 @@
                             <w:p>
                                 <w:pPr>
                                     <w:rPr>
-                                        <w:rFonts w:fareast="宋体" w:hint="fareast" />
-                                        <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                                        <w:rFonts w:hint="fareast" /></w:rPr>
                                 </w:pPr>
                                 <w:r>
                                     <w:rPr>
@@ -1687,6 +1682,746 @@
                                 <w10:anchorlock/>
                             </v:shape>
                         </w:pict>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:jc w:val="center" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="28" />
+                            <w:sz-cs w:val="28" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="28" />
+                            <w:sz-cs w:val="28" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:br w:type="page" /></w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:jc w:val="center" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b/>
+                            <w:b-cs/>
+                            <w:sz w:val="24" />
+                            <w:sz-cs w:val="24" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b/>
+                            <w:b-cs/>
+                            <w:sz w:val="24" />
+                            <w:sz-cs w:val="24" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>委托服务合同</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:jc w:val="center" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b/>
+                            <w:b-cs/>
+                            <w:sz w:val="15" />
+                            <w:sz-cs w:val="15" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:first-line="420" w:first-line-chars="0" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:color w:val="000000" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>甲方（委托方）：</w:t>
+                    </w:r>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:color w:val="000000" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:u w:val="single" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t> ${name} </w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:first-line="420" w:first-line-chars="0" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:color w:val="000000" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:u w:val="single" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>乙方（受托方）：</w:t>
+                    </w:r>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:color w:val="000000" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:u w:val="single" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>上海明静食品有限公司 </w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:first-line="420" w:first-line-chars="0" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b/>
+                            <w:b-cs/>
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>乙方为甲方提供</w:t>
+                    </w:r>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b/>
+                            <w:b-cs/>
+                            <w:color w:val="000000" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:u w:val="single" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>病历资料复印并邮寄</w:t>
+                    </w:r>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b/>
+                            <w:b-cs/>
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>服务。上述各方经平等自愿协商，签订本合同以共同遵守。 </w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b w:val="off" />
+                            <w:b-cs w:val="off" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b w:val="off" />
+                            <w:b-cs w:val="off" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>一、双方权利及义务</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>1、甲方委托乙方工作人员办理病历资料复印并邮寄资料的提取、邮寄等一系列服务。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>2、甲方有义务按照协议内容向乙方如实提供有必备的资料，如实填写相关资料，以备乙方顺利工作。因甲方未能及时提供真实有效的材料而导致任何损失，乙方不负责任。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>3、甲方有义务按照协议内容中相关费用标准和支付方式支付乙方服务费用。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>4、乙方有权按照协议内容要求甲方对自身提供的服务支付费用。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>5、乙方有权依据协议内容要求甲方按时提供服务内容中所必备的资料。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>6、乙方有义务严格遵守服务行业标准和职业标准，严守甲方的资料机密。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>7、乙方有义务只以甲方的名义进行协议所规定的服务工作，未经甲方允许，不以甲方名义进行其他活动。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b w:val="off" />
+                            <w:b-cs w:val="off" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b w:val="off" />
+                            <w:b-cs w:val="off" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>二、服务时间及服务费用等事宜</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>1、服务时间：在患者出院三周后 </w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>2、服务费用：病史资料50页内收费200元，病史资料超过50页收费250元。邮寄使用顺丰快递到付服务。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>3、服务方式：</w:t>
+                    </w:r>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:u w:val="single" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>打印并邮寄甲方病史资料</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>4、甲方无故中途终止协议，服务费不予退还。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>5、乙方中途终止合同，全额退还甲方已交服务费。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>6、如因甲方提供资料虚假，服务费用不退还。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>7、如遇不可知原因造成乙方无法打印并邮寄病历资料，乙方全额退还甲方已交服务费。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b w:val="off" />
+                            <w:b-cs w:val="off" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b w:val="off" />
+                            <w:b-cs w:val="off" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>三、保密</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>1、保密信息指甲方病史资料的信息。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>2、乙方应在本协议终止前或终止后的任何时候对其在本协议签署前或签署后可能取得或已经取得的有关信息进行保密。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>3、除非经甲方事先书面同意，乙方不得向任何第三方透露甲方信息。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b w:val="off" />
+                            <w:b-cs w:val="off" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b w:val="off" />
+                            <w:b-cs w:val="off" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>四、协议的生效修改和终止</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>1、本协议在微信小程序上甲方付款后即生效。生效后未经协议各方一致同意，任何一方不得单方面变更、修改或解除本协议的任何条款。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>2、如由于新的法律、规定的颁布导致本协议的履行收到影响，则各方应互相协商，对本协议的相关条款做出调整。若本协议的某条款被宣布无效，应不影响本协议其他条款的效力。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left-chars="100" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="18" />
+                            <w:sz-cs w:val="18" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>3、按照本协议规定期满或终止对乙方的委托，不论出于何种原因，均不妨碍协议各方的权利和义务。</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b w:val="off" />
+                            <w:b-cs w:val="off" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:b w:val="off" />
+                            <w:b-cs w:val="off" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>五、附则</w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left="4620" w:first-line="420" w:first-line-chars="0" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:u w:val="single" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>甲方：</w:t>
+                    </w:r>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:u w:val="single" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t> </w:t>
+                    </w:r>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:u w:val="single" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:pict>
+                            <w:binData w:name="wordml://4.png">${image4}</w:binData>
+                            <v:shape id="图片 7" o:spid="_x0000_s1029" o:spt="75" alt="order_201810282056236487_2thC_sign (1)" type="#_x0000_t75" style="height:30.1pt;width:83.45pt;" filled="f" o:preferrelative="t" stroked="f" coordsize="21600,21600">
+                                <v:path/>
+                                <v:fill on="f" focussize="0,0" />
+                                <v:stroke on="f" />
+                                <v:imagedata src="wordml://4.png" o:title="" />
+                                <o:lock v:ext="edit" aspectratio="t" />
+                                <w10:wrap type="none" />
+                                <w10:anchorlock/>
+                            </v:shape>
+                        </w:pict>
+                    </w:r>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:u w:val="single" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t> </w:t>
+                    </w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr>
+                        <w:ind w:left="4620" w:first-line="420" w:first-line-chars="0" />
+                        <w:jc w:val="left" />
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="28" />
+                            <w:sz-cs w:val="28" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                    </w:pPr>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>乙方：</w:t>
+                    </w:r>
+                    <w:r>
+                        <w:rPr>
+                            <w:rFonts w:hint="fareast" />
+                            <w:sz w:val="21" />
+                            <w:sz-cs w:val="21" />
+                            <w:u w:val="single" />
+                            <w:lang w:val="EN-US" w:fareast="ZH-CN" /></w:rPr>
+                        <w:t>上海明静食品有限公司 </w:t>
                     </w:r>
                 </w:p>
                 <w:sectPr>
