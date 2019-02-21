@@ -12,9 +12,6 @@
 
 
 </view>
-<button class="concat" open-type="contact">
-  <image src="../../images/concat.png"></image>
-</button>
 <view class="title">
   <text class="service-process-title">申请记录</text>
 </view>

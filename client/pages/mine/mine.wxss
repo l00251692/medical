@@ -32,26 +32,6 @@
 .title{
   height: 80rpx;
 }
-
-.concat{
-  position:fixed;
-  right:30rpx;
-  top:20rpx;
-  height: 80rpx;
-  width: 80rpx;
-  background-color: #6495ed;
-  padding: 10rpx 10rpx;
-}
-
-.concat::after{
-  border:none;
-}
-
-.concat image{
-  width: 60rpx;
-  height: 60rpx;
-}
-
 .weui-btn_plain {
   background-color: #fff;
 }

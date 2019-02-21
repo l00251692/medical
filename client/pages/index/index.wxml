@@ -3,6 +3,7 @@
 </view>
 
 
+
 <view class='main'>
   <view class='title'>
     <text>重要须知</text>
@@ -20,7 +21,7 @@
   <view class="foot">
     <checkbox-group class="checkbox" bindchange="toAgree">
       <label>
-        <checkbox checked="{{agree}}"/>
+        <checkbox checked="{{agree}}" />
         <text class="xieyi">我已阅读上述告知</text>
       </label>
     </checkbox-group>
@@ -28,5 +29,10 @@
     <view class="content">
       <button class="create-btn" bindtap="createOrder">创建订单</button>
     </view>
+
+    <button class="concat" open-type="contact">
+      <view class="contact_text">在线咨询</view>
+      <image src="../../images/concat.png"></image>
+    </button>
   </view>
 </view>

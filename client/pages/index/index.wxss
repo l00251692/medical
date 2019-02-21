@@ -22,6 +22,35 @@
   height:100%;
 }
 
+.concat{
+  position: absolute;
+  margin-top: 40rpx;
+  height: 80rpx;
+  padding: 10rpx 10rpx;
+  background: none;
+  display: flex;
+  flex-direction: row;
+  left:253rpx;
+}
+
+.concat::after{
+  border:none;
+}
+
+.contact_text{
+  line-height: 60rpx;
+  padding-right: 20rpx;
+  color: #d81e06;
+  font-size: 38rpx;
+  font-weight: bold;
+  opacity: 0.9;
+}
+
+.concat image{
+  width: 60rpx;
+  height: 60rpx;
+}
+
 .main{
   display: flex;
   flex-direction: column;

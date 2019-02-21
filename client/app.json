@@ -18,7 +18,7 @@
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#6495ed",
     "navigationBarTitleText": "上海明静",
-    "navigationBarTextStyle":"light"
+    "navigationBarTextStyle":"white"
   },
   "tabBar": {
     "selectedColor": "#6495ed",
