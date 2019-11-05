@@ -11,6 +11,8 @@
 	"libVersion": "2.2.2",
 	"appid": "wx0993d237b65a1919",
 	"projectname": "MingJing",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

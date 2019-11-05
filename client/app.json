@@ -1,5 +1,5 @@
 {
-  "pages":[ 
+  "pages": [
     "pages/index/index",
     "pages/login/login",
     "pages/agreement/agreement",
@@ -13,12 +13,12 @@
     "pages/order/detail",
     "pages/logs/logs"
   ],
-  "window":{
+  "window": {
     "backgroundColor": "#6495ed",
-    "backgroundTextStyle":"light",
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#6495ed",
     "navigationBarTitleText": "上海明静",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "selectedColor": "#6495ed",
@@ -36,5 +36,6 @@
         "text": "我的"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

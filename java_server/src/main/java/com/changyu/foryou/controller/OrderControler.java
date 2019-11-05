@@ -1305,7 +1305,7 @@ public class OrderControler {
             String image3 = WordGenerator.GetImageStrFromUrl(order.getOutSummary());
             //用户上传的签名照片需要进行翻转
             String image4 = "";
-            if(order.getSign().length() > 0)
+            if(order.getSign()!= null && order.getSign().length() > 0)
             {
             	image4 = WordGenerator.GetImageStrFromUrl(order.getSign()+"?imageMogr2/rotate/270");
             }

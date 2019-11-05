@@ -274,7 +274,7 @@ public class PayUtil {
 		if(ACCESS_TOKEN_TIME < nowTime){
 			//请求接口地址
 			String requestUrl = "https://api.weixin.qq.com/cgi-bin/token";
-
+			
 			
 			//请求参数
 			String parameters = MessageFormat.format(
